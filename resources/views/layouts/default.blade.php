@@ -15,7 +15,7 @@
           rel="stylesheet">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('img/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{asset('favicon.png')}}" />
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
