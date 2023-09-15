@@ -5,6 +5,7 @@ use App\Http\Controllers\Main\HomeController;
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ProfileController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -14,17 +15,22 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------
 */
+Route::name('admin.')->group(function () {
+    Route::get('adminpanel', [LoginController::class, 'index'])->name('login');
+    Route::post('adminpanel', [LoginController::class, 'doLogin'])->name('login.form');
+});
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'doLogin'])->name('login.form');
-
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile/email', [ProfileController::class, 'doChangeEmail'])->name('profile.email');
+    Route::post('/profile/password', [ProfileController::class, 'doChangePassword'])->name('profile.password');
+
 });
