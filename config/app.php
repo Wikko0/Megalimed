@@ -186,7 +186,7 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
-        /*
+         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -194,7 +194,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\CategoryProvider::class,
+        /*
+        * Megalimed Service Providers...
+        */
+        App\Providers\CategoryProvider::class,
     ],
 
     /*

@@ -32,7 +32,7 @@ class ProfileController extends Controller
     public function doChangePassword(Request $request): RedirectResponse
     {
         $this->validate($request, [
-            'new_password' => ['required|min:8'],
+            'new_password' => 'required|min:8',
         ]);
 
         $newPassword = bcrypt($request->input('new_password'));
