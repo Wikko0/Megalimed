@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('menu');
+            $table->string('url');
+            $table->string('description');
             $table->text('image');
             $table->timestamps();
         });

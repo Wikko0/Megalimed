@@ -66,8 +66,9 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="#">Women’s</a></li>
-                        <li><a href="#">Men’s</a></li>
+                        @foreach($category as $values)
+                        <li><a href="shop/{{$values->url}}">{{$values->menu}}</a></li>
+                        @endforeach
                         <li><a href="./shop.html">Shop</a></li>
                         <li><a href="./about-us.html">About Us</a></li>
                         <li><a href="./contact.html">Contact</a></li>

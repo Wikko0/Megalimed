@@ -18,6 +18,17 @@
                     <input type="text" class="form-control" name="menu" placeholder="Enter menu category name">
                 </div>
                 <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" class="form-control" name="description" placeholder="Description..">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Url</label>
+                    <div class="input-group">
+                        <span class="input-group-text">Domain.com/shop/</span>
+                        <input type="text" class="form-control" name="url" placeholder="Enter URL">
+                    </div>
+                </div>
+                <div class="mb-3">
                     <div class="form-label">Image</div>
                     <input type="file" name="image" class="form-control" />
                 </div>

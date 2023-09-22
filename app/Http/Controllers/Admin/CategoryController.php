@@ -25,6 +25,8 @@ class CategoryController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'menu' => 'required|string|max:255',
+            'url' => ['required', 'string', 'max:10', 'regex:/^[a-zA-Z0-9_-]+$/'],
+            'description' => 'required|string|max:255',
             'image' => 'image|mimes:jpeg,png,jpg',
         ]);
 
@@ -38,12 +40,14 @@ class CategoryController extends Controller
         $file = $request->file("image");
         $photoPath = $file->storeAs('/img/categories', 'categories-'.$lastResult.'.jpg',['disk' => 'public_uploads']);
 
-        $photo = Image::make(public_path("{$photoPath}"))->resize(275, 275);
+        $photo = Image::make(public_path("{$photoPath}"));
         $photo->save();
 
         Category::create([
             'name' => $request->input('name'),
             'menu' => $request->input('menu'),
+            'url' => $request->input('url'),
+            'description' => $request->input('description'),
             'image' => $photoPath,
             ]);
 

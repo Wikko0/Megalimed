@@ -6,61 +6,31 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 p-0 categories__slider owl-carousel">
+                    @foreach($category as $values)
                     <div class="categories__item categories__large__item set-bg"
-                         data-setbg="{{asset('img/categories/category-1.jpg')}}">
+                         data-setbg="{{asset($values->image)}}">
                         <div class="categories__text">
-                            <h1>Men’s fashion</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, possimus.</p>
-                            <a href="#">Shop now</a>
+                            <h1>{{$values->name}}</h1>
+                            <p>{{$values->description}}</p>
+                            <a href="shop/{{$values->url}}">Shop now</a>
                         </div>
                     </div>
-                    <div class="categories__item categories__large__item set-bg"
-                         data-setbg="{{asset('img/categories/category-2.jpg')}}">
-                        <div class="categories__text">
-                            <h1>Women’s fashion</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, possimus.</p>
-                            <a href="#">Shop now</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
+                        @foreach($category->take(4) as $values)
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="{{asset('img/categories/category-2.jpg')}}">
+                            <div class="categories__item set-bg" data-setbg="{{asset($values->image)}}">
                                 <div class="categories__text">
-                                    <h4>Women’s fashion</h4>
+                                    <h4>{{$values->name}}</h4>
                                     <p>358 items</p>
-                                    <a href="#">Shop now</a>
+                                    <a href="shop/{{$values->url}}">Shop now</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="{{asset('img/categories/category-3.jpg')}}">
-                                <div class="categories__text">
-                                    <h4>Classic fashion</h4>
-                                    <p>273 items</p>
-                                    <a href="#">Shop now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="{{asset('img/categories/category-4.jpg')}}">
-                                <div class="categories__text">
-                                    <h4>Joggers</h4>
-                                    <p>159 items</p>
-                                    <a href="#">Shop now</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="{{asset('img/categories/category-5.jpg')}}">
-                                <div class="categories__text">
-                                    <h4>Accessories</h4>
-                                    <p>792 items</p>
-                                    <a href="#">Shop now</a>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
