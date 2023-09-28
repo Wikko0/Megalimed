@@ -39,4 +39,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('/category', [CategoryController::class, 'doCategory'])->name('category.form');
     Route::delete('/category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
 
+    Route::get('/product', [CategoryController::class, 'index'])->name('product');
+    Route::post('/product', [CategoryController::class, 'doProduct'])->name('product.form');
+    Route::delete('/product/{id}', [CategoryController::class, 'deleteProduct'])->name('product.delete');
+
 });

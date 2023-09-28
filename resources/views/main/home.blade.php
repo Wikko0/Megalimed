@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6 p-0 categories__slider owl-carousel">
-                    @foreach($category as $values)
+                    @foreach($categoryProvider as $values)
                     <div class="categories__item categories__large__item set-bg"
                          data-setbg="{{asset($values->image)}}">
                         <div class="categories__text">
@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="row">
-                        @foreach($category->take(4) as $values)
+                        @foreach($categoryProvider->take(4) as $values)
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
                             <div class="categories__item set-bg" data-setbg="{{asset($values->image)}}">
                                 <div class="categories__text">

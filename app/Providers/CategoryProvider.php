@@ -28,7 +28,7 @@ class CategoryProvider extends ServiceProvider
     {
         if (Schema::hasTable('categories')) {
             $category = Category::all();
-            View::share('category', $category);
+            View::share('categoryProvider', $category);
         }
     }
 }

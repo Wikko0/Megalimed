@@ -24,7 +24,7 @@
                 <div class="mb-3">
                     <label class="form-label">Url</label>
                     <div class="input-group">
-                        <span class="input-group-text">Domain.com/shop/</span>
+                        <span class="input-group-text">{{ url('/shop') }}/</span>
                         <input type="text" class="form-control" name="url" placeholder="Enter URL">
                     </div>
                 </div>

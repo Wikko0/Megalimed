@@ -56,7 +56,7 @@
                                 <td><span class="text-muted">{{ $loop->iteration + ($categories->perPage() * ($categories->currentPage() - 1)) }}</span></td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->menu }}</td>
-                                <td>Domain.com/shop/{{ $category->url }}</td>
+                                <td>{{ url('/shop') }}/{{ $category->url }}</td>
                                 <td>
                                     <img src="{{ asset($category->image) }}" width="120" height="120" alt="Category-{{ $category->id }}">
                                 </td>
