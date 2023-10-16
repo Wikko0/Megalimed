@@ -1,4 +1,4 @@
-<form action="{{ route('admin.category.form') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('admin.product.form') }}" method="post" enctype="multipart/form-data">
     @csrf
 
 <div class="modal modal-blur fade" id="modal-product" tabindex="-1" role="dialog" aria-hidden="true">
@@ -15,7 +15,7 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Barcode</label>
-                    <input type="number" class="form-control" name="barcode" placeholder="Barcode. Example - 0123456789">
+                    <input type="text" name="barcode" class="form-control" data-mask="00000000" data-mask-visible="true" placeholder="Barcode example: 00000000 " autocomplete="off"/>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Description</label>
@@ -81,7 +81,7 @@
                 <h5 class="modal-title">Organize</h5>
                 <div class="mb-3">
                     <label class="form-label">Category</label>
-                    <select class="form-select">
+                    <select name="category_id" class="form-select">
                         @foreach($categoryProvider as $values)
                         <option value="{{$values->id}}">{{$values->name}}</option>
                         @endforeach
@@ -211,7 +211,15 @@
                     <label class="form-label">Size XXXL (cm to cm)</label>
                     <input type="text" name="sizeXXXL" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
                 </div>
+            </div>
 
+            <div class="modal-body">
+                <h5 class="modal-title">Variants</h5>
+                <div class="mb-8">
+
+                    <input type="file" name="media" id="media" accept="image/jpeg, image/png" multiple />
+
+                </div>
             </div>
 
             <div class="modal-footer">
@@ -255,6 +263,26 @@
                 targetField.style.display = 'none';
             }
         });
+    });
+
+</script>
+<script>
+    FilePond.registerPlugin(FilePondPluginFileValidateType,FilePondPluginImagePreview);
+
+
+    const inputElement = document.querySelector('input[id="media"]');
+
+    const pond = FilePond.create(inputElement, {
+        allowMultiple: true,
+        allowFileValidate: true,
+        acceptedFileTypes: ['image/jpeg', 'image/png'],
+        server: {
+            process: '/admin/upload/temp',
+            revert: '/admin/delete/temp',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }
     });
 
 </script>

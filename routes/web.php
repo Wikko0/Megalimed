@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -39,8 +40,10 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('/category', [CategoryController::class, 'doCategory'])->name('category.form');
     Route::delete('/category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
 
-    Route::get('/product', [CategoryController::class, 'index'])->name('product');
-    Route::post('/product', [CategoryController::class, 'doProduct'])->name('product.form');
-    Route::delete('/product/{id}', [CategoryController::class, 'deleteProduct'])->name('product.delete');
+    Route::get('/product', [ProductController::class, 'index'])->name('product');
+    Route::post('/product', [ProductController::class, 'doProduct'])->name('product.form');
+
+    Route::post('/upload/temp', [ProductController::class, 'uploadTempProduct'])->name('product.temp.upload');
+    Route::delete('/delete/temp', [ProductController::class, 'deleteTempProduct'])->name('product.temp.delete');
 
 });

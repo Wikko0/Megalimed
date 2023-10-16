@@ -16,6 +16,15 @@
     <link href="{{asset('admin/css/tabler-payments.min.css?1684106062')}}" rel="stylesheet"/>
     <link href="{{asset('admin/css/tabler-vendors.min.css?1684106062')}}" rel="stylesheet"/>
     <link href="{{asset('admin/css/demo.min.css?1684106062')}}" rel="stylesheet"/>
+
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"
+    />
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="{{asset('js/filepond-plugin-file-validate-type.js')}}"></script>
     <style>
         @import url('https://rsms.me/inter/inter.css');
         :root {
@@ -688,5 +697,6 @@
     });
     // @formatter:on
 </script>
+
 </body>
 </html>
