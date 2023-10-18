@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('xl')->nullable();
             $table->string('xxl')->nullable();
             $table->string('xxxl')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

@@ -42,6 +42,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 
     Route::get('/product', [ProductController::class, 'index'])->name('product');
     Route::post('/product', [ProductController::class, 'doProduct'])->name('product.form');
+    Route::delete('/product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
+    Route::post('/product/status/{id}', [ProductController::class, 'statusProduct'])->name('product.status');
 
     Route::post('/upload/temp', [ProductController::class, 'uploadTempProduct'])->name('product.temp.upload');
     Route::delete('/delete/temp', [ProductController::class, 'deleteTempProduct'])->name('product.temp.delete');

@@ -214,7 +214,7 @@
             </div>
 
             <div class="modal-body">
-                <h5 class="modal-title">Variants</h5>
+                <h5 class="modal-title">Media</h5>
                 <div class="mb-8">
 
                     <input type="file" name="media" id="media" accept="image/jpeg, image/png" multiple />

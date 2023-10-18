@@ -199,6 +199,7 @@ return [
         * Megalimed Service Providers...
         */
         App\Providers\CategoryProvider::class,
+        App\Providers\ProductProvider::class,
     ],
 
     /*

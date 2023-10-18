@@ -44,14 +44,14 @@ class ProductController extends Controller
                 Storage::deleteDirectory('img/product/tmp/' . $temporaryImage->folder);
                 $temporaryImage->delete();
             }
-            return to_route('admin.profile')->withErrors($validator)->withInput();
+            return redirect()->route('admin.product')->withErrors($validator)->withInput();
         }
 
 
-        // Вземете всички данни от заявката
+
         $data = $request->all();
 
-        // Създайте нов продукт в базата данни
+
         $product = new Product();
         $product->name = $data['name'];
         $product->barcode = $data['barcode'];
@@ -59,24 +59,24 @@ class ProductController extends Controller
         $product->specification = $data['specification'];
         $product->price = $data['price'];
 
-        // Проверете дали е избрано "Discounted" и добавете съответната цена
+
         if ($data['discount-type'] === 'discounted') {
             $product->discount = $data['discount'];
         } else {
             $product->discount = null;
         }
 
-        // Запишете продукта в базата данни
+
         $product->save();
 
-        // Свържете продукта с категорията
+
         $product->category_id = $data['category_id'];
 
-        // Запишете избраните цветове и размери
+
         $product->color = json_encode($data['color']);
         $product->size = json_encode($data['size']);
 
-        // Запишете специфичните размери
+
         $product->xxs = $data['sizeXXS'];
         $product->xs = $data['sizeXS'];
         $product->s = $data['sizeS'];
@@ -85,6 +85,7 @@ class ProductController extends Controller
         $product->xl = $data['sizeXL'];
         $product->xxl = $data['sizeXXL'];
         $product->xxxl = $data['sizeXXXL'];
+        $product->status = 'Published';
 
         $product->save();
 
@@ -100,9 +101,43 @@ class ProductController extends Controller
             $temporaryImage->delete();
         }
 
-        return to_route('admin.profile');
+        return redirect()->route('admin.product')->withSuccess('Успешно създадохте продукт.');;
 
 
+    }
+
+    public function deleteProduct($id)
+    {
+        $products = Product::where('id', $id)->get();
+        foreach ($products as $product) {
+            $productFolder = public_path('img/product/product-' . $product->id);
+
+            if (File::exists($productFolder)) {
+                File::deleteDirectory($productFolder);
+            }
+
+            $product->delete();
+        }
+
+        return redirect()->back()->withSuccess('Усшено изтрихте този продукт!');
+    }
+
+    public function statusProduct($id)
+    {
+        $products = Product::where('id', $id)->get();
+        foreach ($products as $product) {
+
+        if ($product->status == 'Published')
+        {
+            $product->update(['status' => 'Inactive']);
+        } else
+        {
+            $product->update(['status' => 'Published']);
+        }
+
+        }
+
+        return redirect()->back()->withSuccess('Усшено инактивирахте този продукт!');
     }
 
     public function uploadTempProduct(Request $request)
