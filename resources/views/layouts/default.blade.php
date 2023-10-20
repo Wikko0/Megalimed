@@ -40,21 +40,30 @@
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__close">+</div>
     <ul class="offcanvas__widget">
-        <li><span class="icon_profile account-switch"></span></li>
-        <li><a href="#"><span class="icon_heart_alt"></span>
-                <div class="tip">2</div>
-            </a></li>
-        <li><a href="#"><span class="icon_bag_alt"></span>
-                <div class="tip">2</div>
-            </a></li>
+        @if(Auth::user())
+            <li style="display: block; text-align: center;">
+            <span class="icon_profile">
+                <a class="ml-2" href="{{ route('account') }}">{{ Auth::user()->name }}</a>
+            </span>
+            </li>
+        @else
+            <li><span class="icon_profile account-switch"></span></li>
+        @endif
+        <li><a href="#"><span class="icon_heart_alt"></span><div class="tip">2</div></a></li>
+        <li><a href="#"><span class="icon_bag_alt"></span><div class="tip">2</div></a></li>
     </ul>
     <div class="offcanvas__logo">
-        <a href="./index.html"><img src="{{asset('img/logo.png')}}" alt=""></a>
+        <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
-        <a class="account-switch" href="#">Login</a>
-        <a class="register-switch" href="#">Register</a>
+        @if(Auth::user())
+            <span class="icon_profile" href="{{route('account')}}"></span><a class="ml-2" href="{{route('account')}}">{{Auth::user()->name}}</a>
+            <a class="ml-2" href="{{route('logout')}}">Изход</a>
+        @else
+        <a class="account-switch" href="#">Вход</a>
+        <a class="register-switch" href="#">Регистрация</a>
+        @endif
     </div>
 </div>
 <!-- Offcanvas Menu End -->
@@ -78,13 +87,17 @@
             </div>
             <div class="col-xl-4 col-lg-2">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                    <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-3">
                 <div class="header__right">
                     <ul class="header__right__widget">
-                        <li><span class="icon_profile account-switch"></span></li>
+                        @if(Auth::user())
+                            <li><span class="icon_profile"><a class="ml-2" href="{{route('account')}}">{{Auth::user()->name}}</a></span></li>
+                        @else
+                            <li><span class="icon_profile account-switch"></span></li>
+                        @endif
                         <li><a href="#"><span class="icon_heart_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>

@@ -15,9 +15,19 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->input('remember'))) {
-                return redirect()->route('account');
+                return redirect()->route('home');
         } else {
             return redirect()->route('home')->withErrors('Грешен имейл или парола.');
         }
+    }
+
+    public function logoutUser(Request $request): RedirectResponse
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home')->withSuccess('Успешно излезнахте от профила си.');
     }
 }

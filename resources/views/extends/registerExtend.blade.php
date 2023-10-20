@@ -28,9 +28,9 @@
                                             <label class="form-control-placeholder" for="email">Твоят имейл адрес</label>
                                         </div>
                                         <div class="form-group">
-                                            <input id="password-field" type="password" class="form-control" name="password" required>
+                                            <input type="password" class="form-control" name="password" required>
                                             <label class="form-control-placeholder" for="password">Парола</label>
-                                        </div>
+                                               </div>
                                         <div class="form-group">
                                             <button type="submit" class="form-control btn btn-primary rounded submit px-3">Регистрирай се сега</button>
                                         </div>
