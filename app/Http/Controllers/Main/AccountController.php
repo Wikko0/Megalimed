@@ -37,4 +37,9 @@ class AccountController extends Controller
         return redirect()->route('account')
             ->withSuccess('Профилът е актуализиран успешно.');
     }
+
+    public function favorites(): View
+    {
+        return view('main.favorites');
+    }
 }

@@ -4,7 +4,7 @@
             <div class="col-md-9">
                 <div class="tab-content">
                     <div class="tab-pane active" id="profile">
-                        <h2>Профил и сигурност</h2>
+                        <h2>Любими</h2>
                         <!-- Включете форма за редактиране на информацията за профила, например име, фамилия, имейл и др. -->
                         <form action="{{ route('profile.update') }}" method="POST">
                             @csrf

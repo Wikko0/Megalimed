@@ -28,6 +28,8 @@ Route::post('/register', [RegisterController::class, 'registerUser'])->name('reg
 
 Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');
+Route::get('/account/favorites', [AccountController::class, 'favorites'])->name('favorites');
+Route::get('/account/orders', [AccountController::class, 'updateProfile'])->name('orders');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
