@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/login.css')}}" type="text/css">
 </head>
 
 <body>
@@ -39,7 +40,7 @@
 <div class="offcanvas-menu-wrapper">
     <div class="offcanvas__close">+</div>
     <ul class="offcanvas__widget">
-        <li><span class="icon_profile search-switch"></span></li>
+        <li><span class="icon_profile account-switch"></span></li>
         <li><a href="#"><span class="icon_heart_alt"></span>
                 <div class="tip">2</div>
             </a></li>
@@ -52,8 +53,8 @@
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
-        <a href="#">Login</a>
-        <a href="#">Register</a>
+        <a class="account-switch" href="#">Login</a>
+        <a class="register-switch" href="#">Register</a>
     </div>
 </div>
 <!-- Offcanvas Menu End -->
@@ -83,7 +84,7 @@
             <div class="col-lg-3">
                 <div class="header__right">
                     <ul class="header__right__widget">
-                        <li><span class="icon_profile search-switch"></span></li>
+                        <li><span class="icon_profile account-switch"></span></li>
                         <li><a href="#"><span class="icon_heart_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
@@ -168,16 +169,14 @@
 </footer>
 <!-- Footer Section End -->
 
-<!-- Search Begin -->
-<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Account Panel.....">
-        </form>
-    </div>
-</div>
-<!-- Search End -->
+<!-- SingIn Begin -->
+@include('extends.signInExtend')
+<!-- SingIn End -->
+
+
+<!-- Register Begin -->
+@include('extends.registerExtend')
+<!-- Register End -->
 
 <!-- Js Plugins -->
 <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>

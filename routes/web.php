@@ -1,10 +1,12 @@
 <?php
 /* Web Controllers */
 use App\Http\Controllers\Main\HomeController;
+use App\Http\Controllers\Main\LoginController;
+use App\Http\Controllers\Main\RegisterController;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -18,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/login', [LoginController::class, 'loginUser'])->name('login');
+Route::post('/register', [RegisterController::class, 'registerUser'])->name('register');
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +29,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 |--------------------------------------------------------------------------
 */
 Route::name('admin.')->group(function () {
-    Route::get('adminpanel', [LoginController::class, 'index'])->name('login');
-    Route::post('adminpanel', [LoginController::class, 'doLogin'])->name('login.form');
+    Route::get('adminpanel', [AdminLoginController::class, 'index'])->name('login');
+    Route::post('adminpanel', [AdminLoginController::class, 'doLogin'])->name('login.form');
 });
 
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {

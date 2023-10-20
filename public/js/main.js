@@ -49,6 +49,44 @@
         });
     });
 
+
+    //Account Switch
+    $('.account-switch').on('click', function () {
+        $('.account-model').fadeIn(400);
+    });
+
+    $('.account-close-switch').on('click', function () {
+        $('.account-model').fadeOut(400, function () {
+            $('#account-input').val('');
+        });
+    });
+
+    $('.account-register-switch').on('click', function () {
+        $('.account-model').fadeOut(400, function () {
+            $('#account-input').val('');
+        });
+        $('.register-model').fadeIn(400);
+    });
+
+    //Register Switch
+    $('.register-switch').on('click', function () {
+        $('.register-model').fadeIn(400);
+    });
+
+    $('.register-close-switch').on('click', function () {
+        $('.register-model').fadeOut(400, function () {
+            $('#register-input').val('');
+        });
+    });
+
+    $('.register-account-switch').on('click', function () {
+        $('.register-model').fadeOut(400, function () {
+            $('#register-input').val('');
+        });
+        $('.account-model').fadeIn(400);
+    });
+
+
     //Canvas Menu
     $(".canvas__open").on('click', function () {
         $(".offcanvas-menu-wrapper").addClass("active");
@@ -213,7 +251,7 @@
 			$('.product__big__img').attr({src: imgurl});
 		}
     });
-    
+
     /*-------------------
 		Quantity change
 	--------------------- */
@@ -235,13 +273,30 @@
 		}
 		$button.parent().find('input').val(newVal);
     });
-    
+
     /*-------------------
 		Radio Btn
 	--------------------- */
     $(".size__btn label").on('click', function () {
         $(".size__btn label").removeClass('active');
         $(this).addClass('active');
+    });
+
+})(jQuery);
+
+(function($) {
+
+    "use strict";
+
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
     });
 
 })(jQuery);
