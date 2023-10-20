@@ -19,7 +19,7 @@
                                         <label class="form-control-placeholder" for="email">Твоят имейл адрес</label>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control" required>
+                                        <input id="password-field" type="password" name="password" class="form-control" required>
                                         <label class="form-control-placeholder" for="password">Парола</label>
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
@@ -37,6 +37,8 @@
                                     <div class="form-group">
                                         <button type="submit" class="form-control btn btn-primary rounded submit px-3">Вход</button>
                                     </div>
+                                    <p class="text-center account-register-switch">Нямаш регистрация? <a data-toggle="tab" href="{{ route('register') }}">Регистрирай се сега</a></p>
+
                                 </div>
                             </div>
                         </div>
@@ -44,5 +46,5 @@
                 </div>
             </section>
         </form>
-    </div>
+         </div>
 </div>

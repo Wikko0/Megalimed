@@ -1493,6 +1493,14 @@ ol {
 	text-decoration: line-through;
 	margin-left: 4px;
 }
+/*---------------------
+  Account
+-----------------------*/
+
+.account {
+    padding-top: 70px;
+    padding-bottom: 80px;
+}
 
 /*---------------------
   Shop

@@ -21,11 +21,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::post('/login', [LoginController::class, 'loginUser'])->name('login');
 Route::get('/logout', [LoginController::class, 'logoutUser'])->name('logout');
 Route::post('/register', [RegisterController::class, 'registerUser'])->name('register');
-Route::get('/account', [AccountController::class, 'index'])->name('account');
 
+Route::get('/account', [AccountController::class, 'index'])->name('account');
+Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

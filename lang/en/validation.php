@@ -124,7 +124,7 @@ return [
     'starts_with' => ':attribute трябва да започва с едно от следните: :values.',
     'string' => ':attribute трябва да бъде низ.',
     'timezone' => ':attribute трябва да бъде валиден часови пояс.',
-    'unique' => ':attribute вече е заето.',
+    'unique' => ':attribute вече е зает/о.',
     'uploaded' => ':attribute не успя да качи.',
     'uppercase' => ':attribute трябва да бъде написано с главни букви.',
     'url' => ':attribute трябва да бъде валиден URL.',
