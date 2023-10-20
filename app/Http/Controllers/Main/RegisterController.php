@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
-    public function registerUser(Request $request)
+    public function registerUser(Request $request): Redirect
     {
         $request->validate([
             'first_name' => 'required|string|max:255',
