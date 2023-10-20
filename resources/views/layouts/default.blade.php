@@ -66,7 +66,7 @@
                 <nav class="header__menu">
                     <ul>
                         <li class="active"><a href="./index.html">Home</a></li>
-                        @foreach($category as $values)
+                        @foreach($categoryProvider as $values)
                         <li><a href="shop/{{$values->url}}">{{$values->menu}}</a></li>
                         @endforeach
                         <li><a href="./shop.html">Shop</a></li>

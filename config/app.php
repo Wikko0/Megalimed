@@ -194,7 +194,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\CategoryProvider::class,
         /*
         * Megalimed Service Providers...
         */
@@ -214,6 +213,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'ProductHelper' => App\Helpers\ProductHelper::class
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
