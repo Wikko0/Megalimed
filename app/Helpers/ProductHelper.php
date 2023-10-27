@@ -59,9 +59,44 @@ class ProductHelper
         }
 
         if (!is_null($product->discount)) {
-            return '<div class="product__price">$ ' . $product->discount . ' <span>$ ' . $product->price . '</span></div>';
+            return '<div class="product__price">' . $product->discount . ' лв <span>' . $product->price . ' лв</span></div>';
         } else {
-            return '<div class="product__price">$ ' . $product->price . '</div>';
+            return '<div class="product__price">' . $product->price . ' лв</div>';
+        }
+    }
+
+    public static function getAllProductImage($productId): array
+    {
+        $directory = public_path("img/product/product-{$productId}/");
+        $imageNames = [];
+
+        if (is_dir($directory)) {
+            if ($dh = opendir($directory)) {
+                while (($file = readdir($dh)) !== false) {
+                    if ($file != '.' && $file != '..') {
+                        $imageNames[] = "img/product/product-{$productId}/{$file}";
+                    }
+                }
+                closedir($dh);
+            }
+        }
+
+
+        return $imageNames;
+    }
+
+    public static function getPriceProductDetails($productId): string
+    {
+        $product = Product::find($productId);
+
+        if (!$product) {
+            return '';
+        }
+
+        if (!is_null($product->discount)) {
+            return ' <div class="product__details__price">' . $product->discount . ' лв <span>' . $product->price . ' лв</span></div>';
+        } else {
+            return ' <div class="product__details__price">' . $product->price . ' лв</div>';
         }
     }
 }

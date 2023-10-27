@@ -5,13 +5,14 @@ use App\Http\Controllers\Main\LoginController;
 use App\Http\Controllers\Main\RegisterController;
 use App\Http\Controllers\Main\AccountController;
 use App\Http\Controllers\Main\ShopController;
+use App\Http\Controllers\Main\ProductController;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,8 @@ Route::get('/account/orders', [AccountController::class, 'updateProfile'])->name
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.categories');
+
+Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -56,12 +59,12 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('/category', [CategoryController::class, 'doCategory'])->name('category.form');
     Route::delete('/category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
 
-    Route::get('/product', [ProductController::class, 'index'])->name('product');
-    Route::post('/product', [ProductController::class, 'doProduct'])->name('product.form');
-    Route::delete('/product/{id}', [ProductController::class, 'deleteProduct'])->name('product.delete');
-    Route::post('/product/status/{id}', [ProductController::class, 'statusProduct'])->name('product.status');
+    Route::get('/product', [AdminProductController::class, 'index'])->name('product');
+    Route::post('/product', [AdminProductController::class, 'doProduct'])->name('product.form');
+    Route::delete('/product/{id}', [AdminProductController::class, 'deleteProduct'])->name('product.delete');
+    Route::post('/product/status/{id}', [AdminProductController::class, 'statusProduct'])->name('product.status');
 
-    Route::post('/upload/temp', [ProductController::class, 'uploadTempProduct'])->name('product.temp.upload');
-    Route::delete('/delete/temp', [ProductController::class, 'deleteTempProduct'])->name('product.temp.delete');
+    Route::post('/upload/temp', [AdminProductController::class, 'uploadTempProduct'])->name('product.temp.upload');
+    Route::delete('/delete/temp', [AdminProductController::class, 'deleteTempProduct'])->name('product.temp.delete');
 
 });
