@@ -32,6 +32,7 @@ Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');
 /* za prawenee */
 Route::get('/account/favorites', [AccountController::class, 'favorites'])->name('favorites');
+Route::get('/favorites/{id}', [AccountController::class, 'makeFavorites'])->name('make.favorites');
 Route::get('/account/orders', [AccountController::class, 'updateProfile'])->name('orders');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');

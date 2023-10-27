@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Product extends Model
+class Favorite extends Model
 {
     use HasFactory;
 
     protected $guarded;
 
-    public function category(): BelongsTo
+    public function product(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Product::class);
     }
 
-    public function favorite(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(Favorite::class);
+        return $this->belongsTo(User::class);
     }
 }

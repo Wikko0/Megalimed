@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Favorite;
+use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
@@ -40,6 +43,35 @@ class AccountController extends Controller
 
     public function favorites(): View
     {
-        return view('main.favorites');
+        $userId = Auth::user()->id;
+
+        $favoriteProductIds = Favorite::where('user', $userId)->pluck('product')->toArray();
+
+        $products = Product::whereIn('id', $favoriteProductIds)->paginate(8);
+        $products->appends(request()->query());
+
+        return view('main.favorites', compact('products'));
+    }
+
+    public function makeFavorites($id): RedirectResponse
+    {
+        $products = Product::findOrFail($id);
+
+        $favorites = Favorite::where('user', Auth::user()->id)->get();
+
+        foreach ($favorites as $favorite){
+            if ($favorite->product == $products->id){
+                return redirect()->route('favorites')
+                    ->withErrors('Продукта вече е в любими.');
+            }
+        }
+        if ($products->id)
+        Favorite::create([
+           'user' => Auth::user()->id,
+            'product' => $products->id
+        ]);
+
+        return redirect()->route('favorites')
+            ->withSuccess('Добавихте продукта към любими.');
     }
 }
