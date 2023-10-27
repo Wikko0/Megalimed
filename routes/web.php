@@ -4,6 +4,7 @@ use App\Http\Controllers\Main\HomeController;
 use App\Http\Controllers\Main\LoginController;
 use App\Http\Controllers\Main\RegisterController;
 use App\Http\Controllers\Main\AccountController;
+use App\Http\Controllers\Main\ShopController;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
@@ -28,8 +29,12 @@ Route::post('/register', [RegisterController::class, 'registerUser'])->name('reg
 
 Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');
+/* za prawenee */
 Route::get('/account/favorites', [AccountController::class, 'favorites'])->name('favorites');
 Route::get('/account/orders', [AccountController::class, 'updateProfile'])->name('orders');
+
+Route::get('/shop', [ShopController::class, 'index'])->name('shop');
+Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.categories');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

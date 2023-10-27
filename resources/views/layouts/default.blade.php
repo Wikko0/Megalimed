@@ -18,6 +18,7 @@
     <link rel="shortcut icon" href="{{asset('favicon.png')}}" />
 
     <!-- Css Styles -->
+    <link rel="stylesheet" href="{{asset('css/login.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/elegant-icons.css')}}" type="text/css">
@@ -26,7 +27,6 @@
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/login.css')}}" type="text/css">
 </head>
 
 <body>
@@ -75,13 +75,13 @@
             <div class="col-xl-5 col-lg-7">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
+                        <li class="active"><a href="/">Home</a></li>
                         @foreach($categoryProvider as $values)
-                        <li><a href="shop/{{$values->url}}">{{$values->menu}}</a></li>
+                        <li><a href="/shop/{{$values->url}}">{{$values->menu}}</a></li>
                         @endforeach
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="./about-us.html">About Us</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="{{route('shop')}}">Shop</a></li>
+                        <li><a href="/about-us">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -202,6 +202,7 @@
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/jquery.nicescroll.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+@yield('scripts')
 </body>
 
 </html>
