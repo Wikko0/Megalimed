@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+    @livewireStyles
+
 </head>
 
 <body>
@@ -42,15 +44,14 @@
     <ul class="offcanvas__widget">
         @if(Auth::user())
             <li style="display: block; text-align: center;">
-            <span class="icon_profile">
+            <span class="icon_profile"></span>
                 <a class="ml-2" href="{{ route('account') }}">{{ Auth::user()->name }}</a>
-            </span>
             </li>
         @else
             <li><span class="icon_profile account-switch"></span></li>
         @endif
         <li><a href="#"><span class="icon_heart_alt"></span><div class="tip">2</div></a></li>
-        <li><a href="#"><span class="icon_bag_alt"></span><div class="tip">2</div></a></li>
+         @livewire('cart-counter')
     </ul>
     <div class="offcanvas__logo">
         <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
@@ -58,7 +59,7 @@
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
         @if(Auth::user())
-            <span class="icon_profile" href="{{route('account')}}"></span><a class="ml-2" href="{{route('account')}}">{{Auth::user()->name}}</a>
+            <span class="icon_profile"></span><a href="{{route('account')}}">{{Auth::user()->name}}</a>
             <a class="ml-2" href="{{route('logout')}}">Изход</a>
         @else
         <a class="account-switch" href="#">Вход</a>
@@ -94,16 +95,14 @@
                 <div class="header__right">
                     <ul class="header__right__widget">
                         @if(Auth::user())
-                            <li><span class="icon_profile"><a class="ml-2" href="{{route('account')}}">{{Auth::user()->name}}</a></span></li>
+                            <li><span class="icon_profile"></span><a class="ml-2" href="{{route('account')}}">{{Auth::user()->name}}</a></li>
                         @else
                             <li><span class="icon_profile account-switch"></span></li>
                         @endif
                         <li><a href="#"><span class="icon_heart_alt"></span>
                                 <div class="tip">2</div>
                             </a></li>
-                        <li><a href="#"><span class="icon_bag_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
+                            @livewire('cart-counter')
                     </ul>
                 </div>
             </div>
@@ -182,6 +181,19 @@
 </footer>
 <!-- Footer Section End -->
 
+<!-- Cart message -->
+<div class="cart-popup" id="cartPopup" wire:loading.remove>
+    <div class="cart-popup-content">
+        <span class="close-popup" id="closePopup" >&times;</span>
+        <h3>Успешно добавихте продукта в кошницата</h3>
+        <div class="buttons">
+            <button id="continueShopping" class="continue-shopping-button">Продължи да пазаруваш</button>
+            <button id="viewCart" class="view-cart-button">Към кошницата</button>
+        </div>
+    </div>
+</div>
+<!-- Cart message End -->
+
 <!-- SingIn Begin -->
 @include('extends.signInExtend')
 <!-- SingIn End -->
@@ -202,7 +214,33 @@
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/jquery.nicescroll.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+@livewireScripts
 @yield('scripts')
+<script>
+    document.addEventListener('livewire:load', function () {
+        Livewire.on('cart_updated', () => {
+            // Показване на прозореца
+            document.getElementById("cartPopup").style.display = "block";
+        });
+
+        // Затваряне на прозореца
+        document.getElementById("closePopup").addEventListener("click", function() {
+            document.getElementById("cartPopup").style.display = "none";
+        });
+
+        // Продължаване на пазаруването
+        document.getElementById("continueShopping").addEventListener("click", function() {
+            document.getElementById("cartPopup").style.display = "none";
+        });
+
+        // Отиване към кошницата
+        document.getElementById("viewCart").addEventListener("click", function() {
+            // Пренасочване към страницата на кошницата
+            window.location.href = "/cart"; // Заменете с правилния URL
+        });
+    });
+</script>
+
 </body>
 
 </html>

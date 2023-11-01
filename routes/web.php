@@ -6,6 +6,7 @@ use App\Http\Controllers\Main\RegisterController;
 use App\Http\Controllers\Main\AccountController;
 use App\Http\Controllers\Main\ShopController;
 use App\Http\Controllers\Main\ProductController;
+use App\Http\Controllers\Main\CartController;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
@@ -39,6 +40,9 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.categories');
 
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
