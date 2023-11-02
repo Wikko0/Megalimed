@@ -7,6 +7,7 @@ use App\Http\Controllers\Main\AccountController;
 use App\Http\Controllers\Main\ShopController;
 use App\Http\Controllers\Main\ProductController;
 use App\Http\Controllers\Main\CartController;
+use App\Http\Livewire\CartTable;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
@@ -42,7 +43,6 @@ Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.cat
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::get('/cart/{id}', [CartController::class, 'store'])->name('cart.store');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

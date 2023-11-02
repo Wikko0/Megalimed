@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Livewire;
+use App\Models\Product;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Validator;
+use Livewire\Component;
+
+class CartProduct extends Component
+{
+    public $product;
+    public $quantity = 1;
+    public $selectedColor;
+    public $selectedSize;
+    public $showCartPopup = false;
+
+
+    public function mount($product)
+    {
+        $this->product = $product;
+    }
+
+    public function addToCart()
+    {
+        $this->validate(
+            [
+                'quantity' => 'required|integer|min:1',
+                'selectedColor' => 'required',
+                'selectedSize' => 'required',
+            ],
+            [
+                'quantity.required' => 'Моля, въведете количество.',
+                'quantity.integer' => 'Количеството трябва да бъде цяло число.',
+                'quantity.min' => 'Количеството трябва да бъде поне 1.',
+                'selectedColor.required' => 'Моля, изберете цвят.',
+                'selectedSize.required' => 'Моля, изберете размер.',
+            ]
+        );
+
+        $product = Product::findOrFail($this->product->id);
+
+        if ($product->discount) {
+            $price = $product->discount;
+        } else {
+            $price = $product->price;
+        }
+
+        Cart::add($product->id, $product->name, $this->quantity, $price, [
+            'color' => $this->selectedColor,
+            'size' => $this->selectedSize,
+        ]);
+
+        $this->showCartPopup = true;
+
+        $this->emit('cart_updated');
+    }
+
+    public function render()
+    {
+        return view('livewire.cart-product');
+    }
+}

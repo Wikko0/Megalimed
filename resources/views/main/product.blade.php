@@ -70,45 +70,9 @@
                         </div>
                         {!! ProductHelper::getPriceProductDetails($product->id) !!}
                         <p>{{Str::words($product->description, 15, '...')}}</p>
-                        <div class="product__details__button">
-                            <div class="quantity">
-                                <span>Quantity:</span>
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
-                            <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
-                            <ul>
-                                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="product__details__widget">
-                            <ul>
-                                <li>
-                                    <span>Available color:</span>
-                                    <div class="color__checkbox">
-                                        @foreach(json_decode($product->color) as $color)
-                                            <label for="{{$color}}">
-                                                <input type="radio" name="color__radio" id="{{$color}}">
-                                                <span class="checkmark {{strtolower($color)}}-bg"></span>
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>Available size:</span>
-                                    <div class="size__btn">
-                                        @foreach(json_decode($product->size) as $size)
-                                        <label for="{{$size}}-btn">
-                                            <input type="radio" id="{{$size}}-btn">
-                                            {{$size}}
-                                        </label>
-                                        @endforeach
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+
+                        @livewire('cart-product', ['product' => $product])
+
                     </div>
                 </div>
                 <div class="col-lg-12">
