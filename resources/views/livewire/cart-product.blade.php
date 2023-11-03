@@ -8,8 +8,13 @@
     </div>
     <button type="submit" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</button>
     <ul>
-        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-        <li><a href="#"><span class="icon_adjust-horiz"></span></a></li>
+        @if(Auth::user())
+            <li><a href="{{route('make.favorites', [$product->id])}}"><span class="icon_heart_alt"></span></a></li>
+        @else
+            <li><a href="#"><span class="icon_heart_alt account-switch"></span></a></li>
+        @endif
+
+        <li><a href="#"><span class="icon_adjust-horiz calculator-switch"></span></a></li>
     </ul>
 </div>
     @error('quantity')
@@ -46,5 +51,17 @@
             @enderror
         </li>
     </ul>
+    <!-- Calculator Message -->
+    @if(session('calculator_message'))
+        <div class="alert alert-success alert-dismissible">
+            <h5>Вашият размер е - {{ session('calculator_message') }}</h5>
+        </div>
+        @endif
+
+<!-- Calculator Message End -->
 </div>
 </form>
+
+<!-- Calculator Begin -->
+@include('extends.calculatorExtend')
+<!-- Calculator End -->

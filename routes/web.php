@@ -32,7 +32,7 @@ Route::post('/register', [RegisterController::class, 'registerUser'])->name('reg
 
 Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');
-/* za prawenee */
+
 Route::get('/account/favorites', [AccountController::class, 'favorites'])->name('favorites');
 Route::get('/favorites/{id}', [AccountController::class, 'makeFavorites'])->name('make.favorites');
 Route::get('/account/orders', [AccountController::class, 'updateProfile'])->name('orders');
@@ -43,6 +43,8 @@ Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.cat
 Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+
+Route::post('/product/{productId}', [ProductController::class, 'calculator'])->name('calculator');
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

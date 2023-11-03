@@ -178,12 +178,21 @@
                                     {!! ProductHelper::getProductLabel($value->id) !!}
                                     <ul class="product__hover">
                                         <li><a href="{{ProductHelper::getFirstProductImage($value->id)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
-                                        <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                                        <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                                        @if(Auth::user())
+                                            <li><a href="{{route('make.favorites', [$value->id])}}"><span class="icon_heart_alt"></span></a></li>
+
+                                        @else
+                                            <li><a href="#"><span class="icon_heart_alt account-switch"></span></a></li>
+                                        @endif
+                                        <li>
+                                            <a href="/product/{{$value->id}}">
+                                                <span class="icon_bag_alt"></span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="#">{{$value->name}}</a></h6>
+                                    <h6><a href="/product/{{$value->id}}">{{$value->name}}</a></h6>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

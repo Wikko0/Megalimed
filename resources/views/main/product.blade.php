@@ -1,5 +1,6 @@
 @extends('layouts.default')
 @section('content')
+
     <!-- Success/ Errors -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible">

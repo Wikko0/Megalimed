@@ -1,5 +1,6 @@
 @extends('layouts.default')
 @section('content')
+
     <!-- Success/ Errors -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible">
@@ -26,7 +27,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="/"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
+                        <span>Cart</span>
                     </div>
                 </div>
             </div>

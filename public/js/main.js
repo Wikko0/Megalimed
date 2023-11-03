@@ -87,6 +87,29 @@
     });
 
 
+    //Calculator Switch
+    $('.calculator-switch').on('click', function () {
+        $('.calculator-model').fadeIn(400);
+    });
+
+    $('.calculator-close-switch').on('click', function () {
+        $('.calculator-model').fadeOut(400, function () {
+            $('#calculator-input').val('');
+        });
+    });
+
+    //Calculator Post Switch
+    $('.calculator-post-switch').on('click', function () {
+        $('.calculator-post-model').fadeIn(400);
+    });
+
+    $('.calculator-post-close-switch').on('click', function () {
+        $('.calculator-post-model').fadeOut(400, function () {
+            $('#calculator-input').val('');
+        });
+    });
+
+
     //Canvas Menu
     $(".canvas__open").on('click', function () {
         $(".offcanvas-menu-wrapper").addClass("active");
