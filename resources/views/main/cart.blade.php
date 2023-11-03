@@ -47,6 +47,8 @@
                             <tr>
                                 <th>Product</th>
                                 <th>Price</th>
+                                <th>Size</th>
+                                <th>Color</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
                                 <th></th>
@@ -62,7 +64,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="cart__btn">
-                        <a href="#">Continue Shopping</a>
+                        <a href="{{route('shop')}}">Continue Shopping</a>
                     </div>
                 </div>
                 @livewire('cart-total')

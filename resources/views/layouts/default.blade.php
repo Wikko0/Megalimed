@@ -47,11 +47,14 @@
             <span class="icon_profile"></span>
                 <a class="ml-2" href="{{ route('account') }}">{{ Auth::user()->name }}</a>
             </li>
+            <li><a href="{{route('favorites')}}"><span class="icon_heart_alt"></span><div class="tip">{{ProductHelper::countFavorites(Auth::user()->id)}}</div></a></li>
         @else
             <li><span class="icon_profile account-switch"></span></li>
+            <li><a href="#"><span class="icon_heart_alt account-switch"></span><div class="tip">0</div></a></li>
         @endif
-        <li><a href="#"><span class="icon_heart_alt"></span><div class="tip">2</div></a></li>
+
          @livewire('cart-counter')
+
     </ul>
     <div class="offcanvas__logo">
         <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
@@ -96,13 +99,18 @@
                     <ul class="header__right__widget">
                         @if(Auth::user())
                             <li><span class="icon_profile"></span><a class="ml-2" href="{{route('account')}}">{{Auth::user()->name}}</a></li>
+                            <li><a href="{{route('favorites')}}"><span class="icon_heart_alt"></span>
+                                    <div class="tip">{{ProductHelper::countFavorites( Auth::user()->id )}}</div>
+                                </a></li>
                         @else
                             <li><span class="icon_profile account-switch"></span></li>
+                            <li><a href="#"><span class="icon_heart_alt account-switch"></span>
+                                    <div class="tip">0</div>
+                                </a></li>
                         @endif
-                        <li><a href="#"><span class="icon_heart_alt"></span>
-                                <div class="tip">2</div>
-                            </a></li>
+
                             @livewire('cart-counter')
+
                     </ul>
                 </div>
             </div>
@@ -128,7 +136,7 @@
             <div class="col-lg-4 col-md-6 col-sm-7">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="./index.html"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                        <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
                     </div>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                         cilisis.</p>

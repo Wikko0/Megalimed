@@ -20,6 +20,16 @@ class CartProduct extends Component
         $this->product = $product;
     }
 
+    public function setSelectedColor($color)
+    {
+        $this->selectedColor = $color;
+    }
+
+    public function setSelectedSize($size)
+    {
+        $this->selectedSize = $size;
+    }
+
     public function addToCart()
     {
         $this->validate(

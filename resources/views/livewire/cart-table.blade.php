@@ -15,6 +15,8 @@
             </div>
         </td>
         <td class="cart__price">{{$cartItem->price}} лев.</td>
+        <td class="cart__size">{{$cartItem->options['size']}}</td>
+        <td class="cart__color">{{$cartItem->options['color']}}</td>
         <td class="cart__quantity">
             <div class="pro-qty">
                 <span class="dec qtybtn" wire:click="decrementQuantity('{{ $cartItem->rowId }}')">-</span>

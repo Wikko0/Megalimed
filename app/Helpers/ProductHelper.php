@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Favorite;
 use App\Models\Product;
 use Carbon\Carbon;
 
@@ -98,5 +99,10 @@ class ProductHelper
         } else {
             return ' <div class="product__details__price">' . $product->price . ' лв</div>';
         }
+    }
+
+    public static function countFavorites($user): string
+    {
+        return Favorite::where('user', $user)->count();
     }
 }

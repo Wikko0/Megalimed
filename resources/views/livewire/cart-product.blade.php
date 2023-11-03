@@ -22,7 +22,7 @@
             <div class="color__checkbox">
                 @foreach(json_decode($product->color) as $color)
                     <label for="{{$color}}">
-                        <input wire:model="selectedColor" type="radio" name="color__radio" id="{{$color}}">
+                        <input wire:click="setSelectedColor('{{$color}}')" type="radio" name="color__radio" id="{{$color}}">
                         <span class="checkmark {{strtolower($color)}}-bg"></span>
                     </label>
                 @endforeach
@@ -36,7 +36,7 @@
             <div class="size__btn">
                 @foreach(json_decode($product->size) as $size)
                     <label for="{{$size}}-btn">
-                        <input wire:model="selectedSize" type="radio" id="{{$size}}-btn">
+                        <input wire:click="setSelectedSize('{{$size}}')" type="radio" id="{{$size}}-btn">
                         {{$size}}
                     </label>
                 @endforeach
