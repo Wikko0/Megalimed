@@ -25,8 +25,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="/"><i class="fa fa-home"></i> Home</a>
-                        <span>Shop</span>
+                        <a href="/"><i class="fa fa-home"></i> Начало</a>
+                        <span>Магазин</span>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <div class="shop__sidebar">
                         <div class="sidebar__categories">
                             <div class="section-title">
-                                <h4>Categories</h4>
+                                <h4>Категория</h4>
                             </div>
                             <div class="categories__accordion">
                                 <div>
@@ -58,24 +58,24 @@
                         </div>
                         <div class="sidebar__filter">
                             <div class="section-title">
-                                <h4>Shop by price</h4>
+                                <h4>Пазарувай по цена</h4>
                             </div>
                             <div class="filter-range-wrap">
                                 <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
                                      data-min="1" data-max="300"></div>
                                 <div class="range-slider">
                                     <div class="price-input">
-                                        <p>Price:</p>
+                                        <p>Цена:</p>
                                         <input type="text" id="minamount">
                                         <input type="text" id="maxamount">
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" id="filter-button">Filter</a>
+                            <a href="#" id="filter-button">Филтър</a>
                         </div>
                         <div class="sidebar__sizes">
                             <div class="section-title">
-                                <h4>Shop by size</h4>
+                                <h4>Пазарувай по размер</h4>
                             </div>
                             <div class="size__list">
                                 <label for="XXS">
@@ -122,46 +122,46 @@
                         </div>
                         <div class="sidebar__color">
                             <div class="section-title">
-                                <h4>Shop by color</h4>
+                                <h4>Пазарувай по цвят</h4>
                             </div>
                             <div class="size__list color__list">
                                 <label for="Black">
-                                    Blacks
+                                    Черни
                                     <input type="checkbox" id="Black" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="White">
-                                    Whites
+                                    Бели
                                     <input type="checkbox" id="White" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="Red">
-                                    Reds
+                                    Червени
                                     <input type="checkbox" id="Red" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="Gray">
-                                    Grays
+                                    Сиви
                                     <input type="checkbox" id="Gray" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="Blue">
-                                    Blues
+                                    Сини
                                     <input type="checkbox" id="Blue" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="Beige">
-                                    Beige Tones
+                                    Бежови тонове
                                     <input type="checkbox" id="Beige" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="Green">
-                                    Greens
+                                    Зелени
                                     <input type="checkbox" id="Green" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="Yellow">
-                                    Yellows
+                                    Жълти
                                     <input type="checkbox" id="Yellow" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
@@ -249,8 +249,8 @@
                 max: maxPrice,
                 values: [minPrice, maxPrice],
                 slide: function (event, ui) {
-                    minamount.val('$' + ui.values[0]);
-                    maxamount.val('$' + ui.values[1]);
+                    minamount.val(ui.values[0] + 'лв');
+                    maxamount.val(ui.values[1] + 'лв');
                 }
             });
 

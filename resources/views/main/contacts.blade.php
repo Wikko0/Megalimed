@@ -26,8 +26,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="/"><i class="fa fa-home"></i> Home</a>
-                        <span>Contact us</span>
+                        <a href="/"><i class="fa fa-home"></i> Начало</a>
+                        <span>Контакти</span>
                     </div>
                 </div>
             </div>
@@ -42,26 +42,26 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__content">
                         <div class="contact__address">
-                            <h5>Contact info</h5>
+                            <h5>Свържи се с нас</h5>
                             <ul>
                                 <li>
-                                    <h6><i class="fa fa-map-marker"></i> Address</h6>
+                                    <h6><i class="fa fa-map-marker"></i> Адрес</h6>
                                     <p>{{$settingsProvider->address}}</p>
                                 </li>
                                 <li>
-                                    <h6><i class="fa fa-phone"></i> Phone</h6>
+                                    <h6><i class="fa fa-phone"></i> Телефонен номер</h6>
                                     <p><span>{{$settingsProvider->phone}}</span></p>
                                 </li>
                                 <li>
-                                    <h6><i class="fa fa-headphones"></i> Support</h6>
+                                    <h6><i class="fa fa-headphones"></i> Емайл адрес</h6>
                                     <p>{{$settingsProvider->email}}</p>
                                 </li>
                                 <li>
-                                    <h6><i class="fa fa-facebook"></i> Facebook</h6>
+                                    <h6><i class="fa fa-facebook"></i> Фейсбук</h6>
                                     <p><a href="{{$settingsProvider->facebook}}">{{$settingsProvider->facebook}}</a></p>
                                 </li>
                                 <li>
-                                    <h6><i class="fa fa-instagram"></i> Instagram</h6>
+                                    <h6><i class="fa fa-instagram"></i> Инстаграм</h6>
                                     <p><a href="{{$settingsProvider->instagram}}">{{$settingsProvider->instagram}}</a></p>
                                 </li>
                             </ul>
@@ -81,103 +81,5 @@
     <!-- Services Section Begin -->
     @include('extends.servicesSection')
     <!-- Services Section End -->
-
-@endsection
-@section('scripts')
-    <script>
-        $(document).ready(function () {
-            var rangeSlider = $(".price-range"),
-                minamount = $("#minamount"),
-                maxamount = $("#maxamount"),
-                minPrice = rangeSlider.data('min'),
-                maxPrice = rangeSlider.data('max');
-
-
-            rangeSlider.slider({
-                range: true,
-                min: minPrice,
-                max: maxPrice,
-                values: [minPrice, maxPrice],
-                slide: function (event, ui) {
-                    minamount.val('$' + ui.values[0]);
-                    maxamount.val('$' + ui.values[1]);
-                }
-            });
-
-
-            $("#filter-button").on("click", function (event) {
-                event.preventDefault();
-
-
-                var minPriceValue = rangeSlider.slider("values", 0);
-                var maxPriceValue = rangeSlider.slider("values", 1);
-
-
-                $(".product__item").each(function () {
-                    var productPrice = parseFloat($(this).find(".product__price").text().replace('$', '').trim());
-
-                    if (productPrice < minPriceValue || productPrice > maxPriceValue) {
-                        $(this).closest(".col-lg-4.col-md-6").remove();
-                    }
-                });
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            function filterProducts(selectedValues, productDataKey) {
-                var productData = productDataKey === 'size' ? 'size' : 'color';
-
-                if (selectedValues.length === 0) {
-                    $('.product__item').parent().show();
-                    return;
-                }
-
-                $('.product__item').each(function() {
-                    var productDataStr = JSON.parse($(this).data(productData));
-                    var productDataArray = JSON.parse(productDataStr);
-                    var showProduct = false;
-
-                    for (var i = 0; i < selectedValues.length; i++) {
-                        var selectedValue = selectedValues[i];
-                        for (var j = 0; j < productDataArray.length; j++) {
-                            if (productDataArray[j] === selectedValue) {
-                                showProduct = true;
-                                break;
-                            }
-                        }
-                        if (showProduct) {
-                            break;
-                        }
-                    }
-
-                    if (showProduct) {
-                        $(this).parent().show();
-                    } else {
-                        $(this).parent().hide();
-                    }
-                });
-            }
-
-            $('.size-checkbox').change(function() {
-                var selectedSizes = [];
-                $('.size-checkbox:checked').each(function() {
-                    selectedSizes.push($(this).attr('id'));
-                });
-                filterProducts(selectedSizes, 'size');
-            });
-
-            $('.color-checkbox').change(function() {
-                var selectedColors = [];
-                $('.color-checkbox:checked').each(function() {
-                    selectedColors.push($(this).attr('id'));
-                });
-                filterProducts(selectedColors, 'color');
-            });
-        });
-    </script>
-
-
 
 @endsection

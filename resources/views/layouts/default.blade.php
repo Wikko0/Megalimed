@@ -11,6 +11,7 @@
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
@@ -79,13 +80,13 @@
             <div class="col-xl-5 col-lg-7">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="/">Home</a></li>
+                        <li class="active"><a href="/">Начало</a></li>
                         @foreach($categoryProvider as $values)
                         <li><a href="/shop/{{$values->url}}">{{$values->menu}}</a></li>
                         @endforeach
-                        <li><a href="{{route('shop')}}">Shop</a></li>
-                        <li><a href="/about-us">About Us</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="{{route('shop')}}">Магазин</a></li>
+                        <li><a href="{{route('about')}}">За нас</a></li>
+                        <li><a href="{{route('contact')}}">Контакти</a></li>
                     </ul>
                 </nav>
             </div>
@@ -163,10 +164,10 @@
             </div>
             <div class="col-lg-4 col-md-8 col-sm-8">
                 <div class="footer__newslatter">
-                    <h6>NEWSLETTER</h6>
+                    <h6>Абонирай се</h6>
                     <form action="#">
-                        <input type="text" placeholder="Email">
-                        <button type="submit" class="site-btn">Subscribe</button>
+                        <input type="text" placeholder="Емайл">
+                        <button type="submit" class="site-btn">Абонирай се</button>
                     </form>
                     <div class="footer__social">
                         <a href="{{$settingsProvider->facebook}}"><i class="fa fa-facebook"></i></a>
@@ -178,7 +179,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="footer__copyright__text">
-                    <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Megalimed. All rights reserved</p>
+                    <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script> Megalimed. Всички права запазени!</p>
                 </div>
             </div>
         </div>

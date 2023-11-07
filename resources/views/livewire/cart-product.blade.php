@@ -1,12 +1,12 @@
 <form wire:submit.prevent="addToCart">
 <div class="product__details__button">
     <div class="quantity">
-        <span>Quantity:</span>
+        <span>Количество:</span>
         <div class="pro-qty">
             <input wire:model="quantity" type="text" value="1">
         </div>
     </div>
-    <button type="submit" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</button>
+    <button type="submit" class="cart-btn"><span class="icon_bag_alt"></span> Добави в количката</button>
     <ul>
         @if(Auth::user())
             <li><a href="{{route('make.favorites', [$product->id])}}"><span class="icon_heart_alt"></span></a></li>
@@ -23,7 +23,7 @@
 <div class="product__details__widget">
     <ul>
         <li>
-            <span>Available color:</span>
+            <span>Налични цветове:</span>
             <div class="color__checkbox">
                 @foreach(json_decode($product->color) as $color)
                     <label for="{{$color}}">
@@ -37,7 +37,7 @@
             @enderror
         </li>
         <li>
-            <span>Available size:</span>
+            <span>Налични размери:</span>
             <div class="size__btn">
                 @foreach(json_decode($product->size) as $size)
                     <label for="{{$size}}-btn">

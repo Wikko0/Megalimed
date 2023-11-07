@@ -30,7 +30,7 @@
                         <div class="categories__text">
                             <h1>{{$values->name}}</h1>
                             <p>{{$values->description}}</p>
-                            <a href="shop/{{$values->url}}">Shop now</a>
+                            <a href="shop/{{$values->url}}">Купете сега</a>
                         </div>
                     </div>
                     @endforeach
@@ -42,8 +42,7 @@
                             <div class="categories__item set-bg" data-setbg="{{asset($values->image)}}">
                                 <div class="categories__text">
                                     <h4>{{$values->name}}</h4>
-                                    <p>358 items</p>
-                                    <a href="shop/{{$values->url}}">Shop now</a>
+                                    <a href="shop/{{$values->url}}">Купете сега</a>
                                 </div>
                             </div>
                         </div>
@@ -62,12 +61,12 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="section-title">
-                        <h4>New product</h4>
+                        <h4>Нови продукти</h4>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <ul class="filter__controls">
-                        <li class="active" data-filter="*">All</li>
+                        <li class="active" data-filter="*">Всички</li>
                         @foreach($categoryProvider as $value)
                             <li data-filter=".{{$value->url}}"> {{$value->name}}</li>
                         @endforeach
@@ -127,23 +126,23 @@
                     <div class="banner__slider owl-carousel">
                         <div class="banner__item">
                             <div class="banner__text">
-                                <span>The Medical Attire Collection</span>
-                                <h1>The Professional Lab Coat</h1>
-                                <a href="#">Shop now</a>
+                                <span>Колекция медицинско облекло</span>
+                                <h1>Елегантни манти и екипи</h1>
+                                <a href="{{route('shop')}}">Купете сега</a>
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
-                                <span>The Medical Footwear Collection</span>
-                                <h1>The Comfortable Scrub Shoes</h1>
-                                <a href="#">Shop now</a>
+                                <span>Колекция медицински обувки</span>
+                                <h1>Удобните скраб обувки</h1>
+                                <a href="{{route('shop')}}">Купете сега</a>
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
-                                <span>The Medical Accessories Collection</span>
-                                <h1>The Essential Stethoscope</h1>
-                                <a href="#">Shop now</a>
+                                <span>Колекция медицински аксесоари</span>
+                                <h1>Привлекателни аксесоари</h1>
+                                <a href="{{route('shop')}}">Купете сега</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +159,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="trend__content">
                         <div class="section-title">
-                            <h4>Hot Trend</h4>
+                            <h4>Тренд</h4>
                         </div>
                         @foreach($productProvider->random(3) as $value)
                         <div class="trend__item">
@@ -186,7 +185,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="trend__content">
                         <div class="section-title">
-                            <h4>Best seller</h4>
+                            <h4>Бестселъри</h4>
                         </div>
 
                         @foreach($productProvider->random(3) as $value)
@@ -213,7 +212,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="trend__content">
                         <div class="section-title">
-                            <h4>Feature</h4>
+                            <h4>Които може да ти харесат</h4>
                         </div>
 
                         @foreach($productProvider->random(3) as $value)
@@ -254,29 +253,29 @@
                 <div class="col-lg-6 p-0">
                     <div class="discount__text">
                         <div class="discount__text__title">
-                            <span>Discount</span>
-                            <h2>Summer 2023</h2>
-                            <h5><span>Sale</span> 50%</h5>
+                            <span>Намаление</span>
+                            <h2>Лято 2023</h2>
+                            <h5><span>Разпродажба</span> 50%</h5>
                         </div>
                         <div class="discount__countdown" id="countdown-time">
                             <div class="countdown__item">
                                 <span>22</span>
-                                <p>Days</p>
+                                <p>Дни</p>
                             </div>
                             <div class="countdown__item">
                                 <span>18</span>
-                                <p>Hour</p>
+                                <p>Часа</p>
                             </div>
                             <div class="countdown__item">
                                 <span>46</span>
-                                <p>Min</p>
+                                <p>Минути</p>
                             </div>
                             <div class="countdown__item">
                                 <span>05</span>
-                                <p>Sec</p>
+                                <p>Секунди</p>
                             </div>
                         </div>
-                        <a href="#">Shop now</a>
+                        <a href="{{route('shop')}}">Купете сега</a>
                     </div>
                 </div>
             </div>

@@ -30,7 +30,7 @@
     @empty
     <tr>
         <td>
-            No item in cart
+            Няма продукти в количката
         </td>
     </tr>
 @endforelse
