@@ -7,6 +7,7 @@ use App\Http\Controllers\Main\AccountController;
 use App\Http\Controllers\Main\ShopController;
 use App\Http\Controllers\Main\ProductController;
 use App\Http\Controllers\Main\CartController;
+use App\Http\Controllers\Main\ContactsController;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
@@ -29,6 +30,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/login', [LoginController::class, 'loginUser'])->name('login');
 Route::get('/logout', [LoginController::class, 'logoutUser'])->name('logout');
 Route::post('/register', [RegisterController::class, 'registerUser'])->name('register');
+Route::get('/contact', [ContactsController::class, 'index'])->name('contact');
+Route::get('/about', [ContactsController::class, 'index'])->name('about');
 
 Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');

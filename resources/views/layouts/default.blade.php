@@ -138,29 +138,26 @@
                     <div class="footer__logo">
                         <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                        cilisis.</p>
+                    <p>Вашият онлайн магазин за медицински дрехи.</p>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-5">
                 <div class="footer__widget">
-                    <h6>Quick links</h6>
+                    <h6>Бързи линкове</h6>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="{{route('about')}}">За нас</a></li>
+                        <li><a href="{{route('contact')}}">Контакти</a></li>
+                        <li><a href="{{$settingsProvider->instagram}}">Instagram</a></li>
+                        <li><a href="{{$settingsProvider->facebook}}">Facebook</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-4">
                 <div class="footer__widget">
-                    <h6>Account</h6>
+                    <h6>Акаунт</h6>
                     <ul>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">Orders Tracking</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="{{route('account')}}">Моят акаунт</a></li>
+                        <li><a href="{{route('favorites')}}">Любими</a></li>
                     </ul>
                 </div>
             </div>
@@ -172,8 +169,8 @@
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
                     <div class="footer__social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="{{$settingsProvider->facebook}}"><i class="fa fa-facebook"></i></a>
+                        <a href="{{$settingsProvider->instagram}}"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
