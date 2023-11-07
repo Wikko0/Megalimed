@@ -7,7 +7,6 @@ use App\Http\Controllers\Main\AccountController;
 use App\Http\Controllers\Main\ShopController;
 use App\Http\Controllers\Main\ProductController;
 use App\Http\Controllers\Main\CartController;
-use App\Http\Livewire\CartTable;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
@@ -15,6 +14,7 @@ use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\SettingsController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -74,4 +74,6 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('/upload/temp', [AdminProductController::class, 'uploadTempProduct'])->name('product.temp.upload');
     Route::delete('/delete/temp', [AdminProductController::class, 'deleteTempProduct'])->name('product.temp.delete');
 
+    Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+    Route::post('/settings', [SettingsController::class, 'doSettings'])->name('settings.form');
 });

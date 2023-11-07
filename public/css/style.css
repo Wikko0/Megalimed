@@ -895,6 +895,12 @@ ol {
 	margin-bottom: 5px;
 }
 
+.trend__item__text h6 a{
+    font-size: 14px;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
 .trend__item__text .rating {
 	line-height: 18px;
 	margin-bottom: 6px;
