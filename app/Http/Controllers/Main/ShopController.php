@@ -22,6 +22,10 @@ class ShopController extends Controller
     {
         $categories = Category::where('url', $url)->first();
 
+        if (!$categories) {
+            abort(404);
+        }
+
         $products = Product::where('category_id', $categories->id)->paginate(12);
         $products->appends(request()->query());
 

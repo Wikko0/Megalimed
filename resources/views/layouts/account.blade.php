@@ -24,8 +24,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="/"><i class="fa fa-home"></i> Home</a>
-                        <span>Account</span>
+                        <a href="/"><i class="fa fa-home"></i> Начало</a>
+                        <span>Потребителски панел</span>
                     </div>
                 </div>
             </div>

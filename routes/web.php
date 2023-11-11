@@ -9,6 +9,7 @@ use App\Http\Controllers\Main\ProductController;
 use App\Http\Controllers\Main\CartController;
 use App\Http\Controllers\Main\ContactsController;
 use App\Http\Controllers\Main\AboutController;
+use App\Http\Controllers\Main\OrderController;
 
 /* Admin Controllers */
 use App\Http\Controllers\Admin\DashboardController;
@@ -50,6 +51,11 @@ Route::get('/product/{id}', [ProductController::class, 'index'])->name('product'
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::post('/product/{productId}', [ProductController::class, 'calculator'])->name('calculator');
+
+Route::get('/cart/checkout', [OrderController::class, 'index'])->name('checkout');
+Route::post('/cart/checkout', [OrderController::class, 'makeCheckout'])->name('checkout.form');
+Route::get('/checkout/success', [OrderController::class, 'successCheckout'])->name('checkout.success');
+
 /*
 |--------------------------------------------------------------------------
 | Admin Routes

@@ -2245,6 +2245,37 @@ ol {
 	background: #111111;
 }
 
+.product__details__widget ul li .color__checkbox label .checkmark.white-bg {
+    background: #F8F8FF;
+}
+.product__details__widget ul li .color__checkbox label .checkmark.red-bg {
+    background: #FF0000;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.blue-bg {
+    background: #0000FF;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.yellow-bg {
+    background: #FFFF00;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.purple-bg {
+    background: #800080;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.orange-bg {
+    background: #FFA500;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.pink-bg {
+    background: #FFC0CB;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.brown-bg {
+    background: #A52A2A;
+}
+
 .product__details__widget ul li .color__checkbox label .checkmark.gray-bg {
 	background: #e4aa8b;
 }

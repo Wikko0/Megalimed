@@ -5,6 +5,6 @@
             <li>Междинна сума <span>{{$cart}}</span></li>
             <li>Общо <span>{{$cart}}</span></li>
         </ul>
-        <a href="#" class="primary-btn">Продължи към плащане</a>
+        <a href="{{route('checkout')}}" class="primary-btn">Продължи към плащане</a>
     </div>
 </div>

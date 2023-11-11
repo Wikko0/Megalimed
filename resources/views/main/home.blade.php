@@ -161,7 +161,7 @@
                         <div class="section-title">
                             <h4>Тренд</h4>
                         </div>
-                        @foreach($productProvider->random(3) as $value)
+                        @foreach($productProvider->shuffle()->take(3) as $value)
                         <div class="trend__item">
                             <div class="trend__item__pic">
                                 <a href="/product/{{$value->id}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Trend {{$value->name}}" width="90" height="90"></a>
@@ -188,7 +188,7 @@
                             <h4>Бестселъри</h4>
                         </div>
 
-                        @foreach($productProvider->random(3) as $value)
+                        @foreach($productProvider->shuffle()->take(3) as $value)
                             <div class="trend__item">
                                 <div class="trend__item__pic">
                                     <a href="/product/{{$value->id}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Trend {{$value->name}}" width="90" height="90"></a>
@@ -215,7 +215,7 @@
                             <h4>Които може да ти харесат</h4>
                         </div>
 
-                        @foreach($productProvider->random(3) as $value)
+                        @foreach($productProvider->shuffle()->take(3) as $value)
                             <div class="trend__item">
                                 <div class="trend__item__pic">
                                     <a href="/product/{{$value->id}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Trend {{$value->name}}" width="90" height="90"></a>
