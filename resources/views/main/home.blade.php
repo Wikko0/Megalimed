@@ -241,6 +241,7 @@
     </section>
     <!-- Trend Section End -->
 
+    @if(!empty($discountProvider->status) && $discountProvider->status == 'on')
     <!-- Discount Section Begin -->
     <section class="discount">
         <div class="container">
@@ -282,9 +283,24 @@
         </div>
     </section>
     <!-- Discount Section End -->
+    @endif
 
     <!-- Services Section Begin -->
     @include('extends.servicesSection')
     <!-- Services Section End -->
 
 @endsection
+
+@if(!empty($discountProvider->status) && $discountProvider->status == 'on')
+
+    @section('scripts')
+        <script>
+            var discountData = "<?php echo date('d/m/Y H:i:s', strtotime($discountProvider->date)) ?>";
+            console.log(discountData);
+            $("#countdown-time").countdown(discountData, function(event) {
+                $(this).html(event.strftime("<div class='countdown__item'><span>%D</span> <p>Day</p> </div>" + "<div class='countdown__item'><span>%H</span> <p>Hour</p> </div>" + "<div class='countdown__item'><span>%M</span> <p>Min</p> </div>" + "<div class='countdown__item'><span>%S</span> <p>Sec</p> </div>"));
+            });
+        </script>
+    @endsection
+
+@endif

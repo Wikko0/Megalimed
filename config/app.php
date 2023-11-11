@@ -200,6 +200,7 @@ return [
         App\Providers\CategoryProvider::class,
         App\Providers\ProductProvider::class,
         App\Providers\SettingsProvider::class,
+        App\Providers\DiscountProvider::class,
     ],
 
     /*

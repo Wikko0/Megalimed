@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\DiscountController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -80,4 +81,7 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     Route::post('/settings', [SettingsController::class, 'doSettings'])->name('settings.form');
+
+    Route::get('/discount', [DiscountController::class, 'index'])->name('discount');
+    Route::post('/discount', [DiscountController::class, 'doDiscount'])->name('discount.form');
 });
