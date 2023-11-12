@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Favorite;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -73,5 +74,30 @@ class AccountController extends Controller
 
         return redirect()->route('favorites')
             ->withSuccess('Добавихте продукта към любими.');
+    }
+
+    public function orders(): View
+    {
+        $userId = Auth::user()->id;
+
+        $orderedProducts = Order::where('user_id', $userId)->pluck('products')->toArray();
+
+        if (empty($orderedProducts)) {
+            $products = Product::whereIn('id', $orderedProducts)->paginate(8);
+            $products->appends(request()->query());
+            return view('main.orders', compact('products'));
+        }
+
+        $decodedOrderedProducts = array_map(function ($product) {
+            return json_decode($product, true);
+        }, $orderedProducts);
+
+
+        $productNames = collect($decodedOrderedProducts[0])->pluck('product')->toArray();
+
+        $products = Product::whereIn('name', $productNames)->paginate(8);
+        $products->appends(request()->query());
+
+        return view('main.orders', compact('products'));
     }
 }

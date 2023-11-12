@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index($id): View
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('status', 'Published')->findOrFail($id);
 
         return view('main.product', compact('product'));
     }

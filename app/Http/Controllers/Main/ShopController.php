@@ -12,7 +12,7 @@ class ShopController extends Controller
 {
     public function index(): View
     {
-        $products = Product::paginate(12);
+        $products = Product::where('status', 'Published')->paginate(12);
         $products->appends(request()->query());
 
         return view('main.shop', compact('products'));
@@ -26,7 +26,7 @@ class ShopController extends Controller
             abort(404);
         }
 
-        $products = Product::where('category_id', $categories->id)->paginate(12);
+        $products = Product::where(['category_id' => $categories->id, 'status' => 'Published'])->paginate(12);
         $products->appends(request()->query());
 
         return view('main.shop', compact('products'));

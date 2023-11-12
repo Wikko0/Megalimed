@@ -5,6 +5,10 @@
             <li>Междинна сума <span>{{$cart}}</span></li>
             <li>Общо <span>{{$cart}}</span></li>
         </ul>
+        @if(Cart::content()->count() > 0)
         <a href="{{route('checkout')}}" class="primary-btn">Продължи към плащане</a>
+        @else
+            <a href="#" class="primary-btn">Продължи към плащане</a>
+        @endif
     </div>
 </div>

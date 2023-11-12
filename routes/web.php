@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\DiscountController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -41,7 +42,7 @@ Route::put('/account/update', [AccountController::class, 'updateProfile'])->name
 
 Route::get('/account/favorites', [AccountController::class, 'favorites'])->name('favorites');
 Route::get('/favorites/{id}', [AccountController::class, 'makeFavorites'])->name('make.favorites');
-Route::get('/account/orders', [AccountController::class, 'updateProfile'])->name('orders');
+Route::get('/account/orders', [AccountController::class, 'orders'])->name('orders');
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.categories');
@@ -90,4 +91,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 
     Route::get('/discount', [DiscountController::class, 'index'])->name('discount');
     Route::post('/discount', [DiscountController::class, 'doDiscount'])->name('discount.form');
+
+    Route::get('/order', [AdminOrderController::class, 'index'])->name('order');
+    Route::post('/order/{id}', [AdminOrderController::class, 'doOrder'])->name('order.form');
+
 });

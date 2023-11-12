@@ -129,31 +129,44 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="checkout__order">
-                            <h5>Твоята поръчка</h5>
-                            <div class="checkout__order__product">
-                                <ul>
-                                    <li>
-                                        <span class="top__text">Продукт</span>
-                                        <span class="top__text__right">Общо</span>
-                                    </li>
-                                    <li>01. Chain buck bag <span>$ 300.0</span></li>
-                                    <li>02. Zip-pockets pebbled<br /> tote briefcase <span>$ 170.0</span></li>
-                                    <li>03. Black jean <span>$ 170.0</span></li>
-                                    <li>04. Cotton shirt <span>$ 110.0</span></li>
-                                </ul>
+                        <div class="col-lg-4">
+                            <div class="checkout__order">
+                                <h5>Твоята поръчка</h5>
+                                <div class="checkout__order__product">
+                                    <ul>
+                                        <li>
+                                            <span class="top__text">Продукт</span>
+                                            <span class="top__text__right">Общо</span>
+                                        </li>
+                                        @foreach(Cart::content() as $item)
+                                            <li>{{ $loop->iteration }}. {{ $item->name }} <span>{{ $item->price }} лев.</span></li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <div class="checkout__order__total">
+                                    <ul>
+                                        <li>Междинна сума <span>{{ \Cart::subTotal() }} лев.</span></li>
+                                        <li>Общо <span>{{ \Cart::total() }} лев.</span></li>
+                                    </ul>
+                                </div>
+                                @if(Cart::count() > 0)
+                                    @foreach(Cart::content() as $cartItem)
+                                    <input type="hidden" name="product[]" value="{{$cartItem->name}}">
+                                    <input type="hidden" name="quantity[]" value="{{$cartItem->qty}}">
+                                    <input type="hidden" name="price[]" value="{{$cartItem->price}}">
+                                    <input type="hidden" name="size[]" value="{{$cartItem->options['size']}}">
+                                    <input type="hidden" name="color[]" value="{{$cartItem->options['color']}}">
+
+                                    @endforeach
+                                    <button type="submit" class="site-btn">Потвърди поръчката</button>
+                                @else
+                                    <div class="site-btn">Няма налични продукти</div>
+                                @endif
+
                             </div>
-                            <div class="checkout__order__total">
-                                <ul>
-                                    <li>Subtotal <span>$ 750.0</span></li>
-                                    <li>Total <span>$ 750.0</span></li>
-                                </ul>
-                            </div>
-                            <button type="submit" class="site-btn">Потвърди поръчката</button>
                         </div>
+
                     </div>
-                </div>
             </form>
         </div>
     </section>

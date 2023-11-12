@@ -21,6 +21,7 @@ class OrderController extends Controller
 
     public function makeCheckout(Request $request): RedirectResponse
     {
+
         $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'required|string',
@@ -56,6 +57,18 @@ class OrderController extends Controller
             'note.string' => 'Забележката трябва да бъде текст.',
         ]);
 
+        $orderItems = collect();
+        for ($i = 0; $i < count($request->input('product')); $i++) {
+            $orderItems->push([
+                'product' => $request->input('product')[$i],
+                'quantity' => $request->input('quantity')[$i],
+                'price' => $request->input('price')[$i],
+                'size' => $request->input('size')[$i],
+                'color' => $request->input('color')[$i],
+            ]);
+        }
+
+
         $order = new Order([
             'first_name' => $request->input('first_name'),
             'last_name' => $request->input('last_name'),
@@ -66,6 +79,9 @@ class OrderController extends Controller
             'number' => $request->input('number'),
             'email' => $request->input('email'),
             'note' => $request->input('note'),
+
+            'products' => $orderItems->toJson(),
+
             'status' => 'Awaiting approval',
         ]);
 
@@ -92,7 +108,7 @@ class OrderController extends Controller
         $order->save();
 
         Cart::destroy();
-        return redirect()->route('checkout.success')->withSuccess('Поръчката беше успешно направена!');
+        return redirect()->route('checkout.success');
     }
 
     public function successCheckout(): View|RedirectResponse

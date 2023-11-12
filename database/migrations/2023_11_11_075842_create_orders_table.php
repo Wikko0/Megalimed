@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('number')->nullable();
             $table->string('email')->nullable();
             $table->text('note')->nullable();
+
+            $table->json('products')->nullable();
+
             $table->string('status')->nullable();
             $table->timestamps();
         });
