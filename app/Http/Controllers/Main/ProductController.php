@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Calculator;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -16,23 +17,28 @@ class ProductController extends Controller
         return view('main.product', compact('product'));
     }
 
-    public function calculator($productId, Request $request)
+    public function calculator(Request $request)
     {
-        $calculator = $request->input('calculator');
-        $product = Product::findOrFail($productId);
-        $productSize = json_decode($product->size);
 
-        foreach ($productSize as $sizes) {
-            $size = strtolower($sizes);
-            if ($product->getAttribute($size)) {
-                $attributeSize = explode("-", $product->getAttribute($size));
-                $minHeight = (int) $attributeSize[0];
-                $maxHeight = (int) $attributeSize[1];
+        $height = $request->input('height');
+        $kilograms = $request->input('kilograms');
+        $calculator = Calculator::get();
 
-                if ($calculator >= $minHeight && $calculator <= $maxHeight) {
+        foreach ($calculator as $value) {
+            $minHeight = $value->minHeight;
+            $maxHeight = $value->maxHeight;
+            $minKg = $value->minKg;
+            $maxKg = $value->maxKg;
+            $size = $value->size;
+
+            if ($kilograms >= $minKg && $kilograms <= $maxKg) {
+                return redirect()->back()->with('calculator_message', strtoupper($size));
+            }
+
+                if ($height >= $minHeight && $height <= $maxHeight) {
                     return redirect()->back()->with('calculator_message', strtoupper($size));
                 }
-            }
+
         }
 
         return redirect()->back()->with('calculator_message', 'Няма размер който да отговаря на вашият ръст');

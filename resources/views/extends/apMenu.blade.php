@@ -4,7 +4,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <h1 class="navbar-brand navbar-brand-autodark">
-            <a href=".">
+            <a href="{{route('home')}}">
                 <img src="{{asset('img/logo.png')}}" width="110" height="32" alt="Megalimed" class="navbar-brand-image">
             </a>
         </h1>
@@ -100,6 +100,27 @@
                   </span>
                         <span class="nav-link-title">
                      Orders
+                  </span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.calculator')}}" >
+                  <span class="nav-link-icon d-md-none d-lg-inline-block">
+               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calculator" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M4 3m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path>
+   <path d="M8 7m0 1a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1z"></path>
+   <path d="M8 14l0 .01"></path>
+   <path d="M12 14l0 .01"></path>
+   <path d="M16 14l0 .01"></path>
+   <path d="M8 17l0 .01"></path>
+   <path d="M12 17l0 .01"></path>
+   <path d="M16 17l0 .01"></path>
+</svg>
+                  </span>
+                        <span class="nav-link-title">
+                     Calculator
                   </span>
                     </a>
                 </li>

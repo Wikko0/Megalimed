@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeMail;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
-    public function registerUser(Request $request): Redirect
+    public function registerUser(Request $request): RedirectResponse
     {
         $request->validate([
             'first_name' => 'required|string|max:255',
@@ -28,6 +31,8 @@ class RegisterController extends Controller
         ]);
 
         $user->assignRole('user');
+
+        Mail::to($user->email)->send(new WelcomeMail());
 
         return redirect()->route('home')->withSuccess('Вашият акаунт беше създаден успешно.');
     }

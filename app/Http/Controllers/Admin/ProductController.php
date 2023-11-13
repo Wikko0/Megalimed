@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique',
+            'name' => 'required|unique:products',
             'barcode' => 'required',
             'description' => 'required',
             'specification' => 'required',

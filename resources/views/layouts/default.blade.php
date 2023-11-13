@@ -7,6 +7,7 @@
     <meta name="keywords" content="Megalimed, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
     <title>Megalimed | Shop</title>
 
     <!-- Google Font -->
@@ -14,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Comforter+Brush&display=swap" rel="stylesheet">
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('favicon.png')}}" />
 
@@ -148,8 +149,8 @@
                     <ul>
                         <li><a href="{{route('about')}}">За нас</a></li>
                         <li><a href="{{route('contact')}}">Контакти</a></li>
-                        <li><a href="{{$settingsProvider->instagram}}">Instagram</a></li>
-                        <li><a href="{{$settingsProvider->facebook}}">Facebook</a></li>
+                        <li><a href="{{$settingsProvider->instagram ?? 'https://www.instagram.com/'}}">Instagram</a></li>
+                        <li><a href="{{$settingsProvider->facebook ?? 'https://www.facebook.com/'}}">Facebook</a></li>
                     </ul>
                 </div>
             </div>

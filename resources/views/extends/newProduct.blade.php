@@ -179,40 +179,6 @@
                     </div>
                 </div>
 
-                <div class="mb-3 size-field" id="size-XXS-field" style="display: none;">
-                    <label class="form-label">Size XXS (cm to cm)</label>
-                    <input type="text" name="sizeXXS" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-                <div class="mb-3 size-field" id="size-XS-field" style="display: none;">
-                    <label class="form-label">Size XS (cm to cm)</label>
-                    <input type="text" name="sizeXS" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-                <div class="mb-3 size-field" id="size-S-field" style="display: none;">
-                    <label class="form-label">Size S (cm to cm)</label>
-                    <input type="text" name="sizeS" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-                <div class="mb-3 size-field" id="size-M-field" style="display: none;">
-                    <label class="form-label">Size M (cm to cm)</label>
-                    <input type="text" name="sizeM" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-                <div class="mb-3 size-field" id="size-L-field" style="display: none;">
-                    <label class="form-label">Size L (cm to cm)</label>
-                    <input type="text" name="sizeL" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-                <div class="mb-3 size-field" id="size-XL-field" style="display: none;">
-                    <label class="form-label">Size XL (cm to cm)</label>
-                    <input type="text" name="sizeXL" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-                <div class="mb-3 size-field" id="size-XXL-field" style="display: none;">
-                    <label class="form-label">Size XXL (cm to cm)</label>
-                    <input type="text" name="sizeXXL" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-                <div class="mb-3 size-field" id="size-XXXL-field" style="display: none;">
-                    <label class="form-label">Size XXXL (cm to cm)</label>
-                    <input type="text" name="sizeXXXL" class="form-control" data-mask="000-000" data-mask-visible="true" placeholder="000-000 cm" autocomplete="off"/>
-                </div>
-            </div>
-
             <div class="modal-body">
                 <h5 class="modal-title">Media</h5>
                 <div class="mb-8">
@@ -229,7 +195,7 @@
                 <button type="submit" class="btn btn-primary ms-auto" data-dismiss="modal">
                     <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
-                    Create new category
+                    Create new product
                 </button>
             </div>
     </div>
@@ -250,22 +216,7 @@
         });
     });
 </script>
-<script>
-    const sizeCheckboxes = document.querySelectorAll('input[name="size[]"]');
 
-    sizeCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            const targetId = this.getAttribute('data-target');
-            const targetField = document.getElementById(targetId);
-            if (this.checked) {
-                targetField.style.display = 'block';
-            } else {
-                targetField.style.display = 'none';
-            }
-        });
-    });
-
-</script>
 <script>
     FilePond.registerPlugin(FilePondPluginFileValidateType,FilePondPluginImagePreview);
 

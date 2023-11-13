@@ -295,8 +295,9 @@
 
     @section('scripts')
         <script>
-            var discountData = "<?php echo date('d/m/Y H:i:s', strtotime($discountProvider->date)) ?>";
-            console.log(discountData);
+
+            var discountData = "{{\Carbon\Carbon::createFromFormat('d/m/Y H:i:s', $discountProvider->date)->format('m/d/Y H:i:s')}}";
+
             $("#countdown-time").countdown(discountData, function(event) {
                 $(this).html(event.strftime("<div class='countdown__item'><span>%D</span> <p>Day</p> </div>" + "<div class='countdown__item'><span>%H</span> <p>Hour</p> </div>" + "<div class='countdown__item'><span>%M</span> <p>Min</p> </div>" + "<div class='countdown__item'><span>%S</span> <p>Sec</p> </div>"));
             });

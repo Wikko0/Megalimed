@@ -2,8 +2,8 @@
     <div class="cart__total__procced">
         <h6>Количка</h6>
         <ul>
-            <li>Междинна сума <span>{{$cart}}</span></li>
-            <li>Общо <span>{{$cart}}</span></li>
+            <li>Междинна сума <span>{{$cart_subtotal}}</span></li>
+            <li>Общо <span>{{$cart_total}}</span></li>
         </ul>
         @if(Cart::content()->count() > 0)
         <a href="{{route('checkout')}}" class="primary-btn">Продължи към плащане</a>

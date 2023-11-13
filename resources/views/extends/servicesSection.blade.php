@@ -26,7 +26,7 @@
             <div class="services__item">
                 <i class="fa fa-headphones"></i>
                 <h6>Сигурно Плащане</h6>
-                <p>100% сигурно плащане</p>
+                <p>Наложен платеж</p>
             </div>
         </div>
     </div>

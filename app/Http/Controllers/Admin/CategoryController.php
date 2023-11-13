@@ -27,7 +27,7 @@ class CategoryController extends Controller
             'menu' => 'required|string|max:255',
             'url' => ['required', 'string', 'max:10', 'regex:/^[a-zA-Z0-9_-]+$/'],
             'description' => 'required|string|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         if ($validator->fails()) {

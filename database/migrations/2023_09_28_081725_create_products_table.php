@@ -25,14 +25,6 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->text('color')->nullable();
             $table->text('size')->nullable();
-            $table->string('xxs')->nullable();
-            $table->string('xs')->nullable();
-            $table->string('s')->nullable();
-            $table->string('m')->nullable();
-            $table->string('l')->nullable();
-            $table->string('xl')->nullable();
-            $table->string('xxl')->nullable();
-            $table->string('xxxl')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

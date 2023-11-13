@@ -27,7 +27,7 @@ class OrderController extends Controller
             'last_name' => 'required|string',
             'password' => 'required',
             'country' => 'required|string',
-            'address' => 'required|string',
+            'address' => 'string',
             'city' => 'required|string',
             'post_code' => 'required|string',
             'number' => 'required|string',

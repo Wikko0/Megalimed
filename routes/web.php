@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\CalculatorController as AdminCalculatorController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -37,13 +38,6 @@ Route::post('/register', [RegisterController::class, 'registerUser'])->name('reg
 Route::get('/contact', [ContactsController::class, 'index'])->name('contact');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
-Route::get('/account', [AccountController::class, 'index'])->name('account');
-Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');
-
-Route::get('/account/favorites', [AccountController::class, 'favorites'])->name('favorites');
-Route::get('/favorites/{id}', [AccountController::class, 'makeFavorites'])->name('make.favorites');
-Route::get('/account/orders', [AccountController::class, 'orders'])->name('orders');
-
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.categories');
 
@@ -51,12 +45,21 @@ Route::get('/product/{id}', [ProductController::class, 'index'])->name('product'
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
-Route::post('/product/{productId}', [ProductController::class, 'calculator'])->name('calculator');
+Route::post('/calculator', [ProductController::class, 'calculator'])->name('calculator');
 
 Route::get('/cart/checkout', [OrderController::class, 'index'])->name('checkout');
 Route::post('/cart/checkout', [OrderController::class, 'makeCheckout'])->name('checkout.form');
 Route::get('/checkout/success', [OrderController::class, 'successCheckout'])->name('checkout.success');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/account', [AccountController::class, 'index'])->name('account');
+    Route::put('/account/update', [AccountController::class, 'updateProfile'])->name('profile.update');
+
+    Route::get('/account/favorites', [AccountController::class, 'favorites'])->name('favorites');
+    Route::get('/favorites/{id}', [AccountController::class, 'makeFavorites'])->name('make.favorites');
+    Route::get('/account/orders', [AccountController::class, 'orders'])->name('orders');
+
+});
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -94,5 +97,8 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 
     Route::get('/order', [AdminOrderController::class, 'index'])->name('order');
     Route::post('/order/{id}', [AdminOrderController::class, 'doOrder'])->name('order.form');
+
+    Route::get('/calculator', [AdminCalculatorController::class, 'index'])->name('calculator');
+    Route::post('/calculator', [AdminCalculatorController::class, 'doCalculator'])->name('calculator.form');
 
 });

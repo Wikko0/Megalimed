@@ -40,7 +40,7 @@
             <span>Налични размери:</span>
             <div class="size__btn">
                 @foreach(json_decode($product->size) as $size)
-                    <label for="{{$size}}-btn">
+                    <label for="{{$size}}-btn" class="{{ $selectedSize == $size ? 'active' : '' }}">
                         <input wire:click="setSelectedSize('{{$size}}')" type="radio" id="{{$size}}-btn">
                         {{$size}}
                     </label>

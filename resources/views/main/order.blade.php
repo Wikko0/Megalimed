@@ -76,10 +76,11 @@
                                     <p>Държава <span>*</span></p>
                                     <input type="text" name="country">
                                 </div>
-                                <div class="checkout__form__input">
-                                    <p>Адрес <span>*</span></p>
-                                    <input type="text" placeholder="Еконт" name="address">
-                                </div>
+                                <iframe title="Econt Office Locator"
+                                        allow="geolocation;"
+                                        src="https://staging.officelocator.econt.com?shopUrl=https://example.staging.officelocator.econt.com&city=Sofia&address=ul. rezbarska 5&officeType=office&lang=bg"
+                                        style="width: 100%; height: 90vh; border-width: 0px;">
+                                </iframe>
                                 <div class="checkout__form__input">
                                     <p>Град<span>*</span></p>
                                     <input type="text" name="city">
@@ -176,4 +177,49 @@
     @include('extends.servicesSection')
     <!-- Services Section End -->
 
+@endsection
+
+@section('scripts')
+    <script>
+        function displayMessage(event) {
+            if (event.data?.office === undefined) {
+                return;
+            }
+
+            // Извличане на fullAddress от обекта на офиса
+            const fullAddress = event.data.office.address.fullAddress;
+            console.log("Full Address:", fullAddress);
+
+            // Изпращане на стойността на fullAddress към контролера
+            sendDataToController(fullAddress);
+        }
+
+        function sendDataToController(fullAddress) {
+
+            $.ajax({
+                url: '/cart/checkout',
+                method: 'POST',
+                data: { address: fullAddress },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                },
+                contentType: false,
+                processData: false,
+                success: function(response) {
+
+                    console.log(response);
+                },
+                error: function(error) {
+
+                    console.error(error);
+                }
+            });
+        }
+
+        if (window.addEventListener) {
+            window.addEventListener('message', displayMessage);
+        } else {
+            window.attachEvent("onmessage", displayMessage);
+        }
+    </script>
 @endsection
