@@ -215,7 +215,7 @@
                             <h4>Които може да ти харесат</h4>
                         </div>
 
-                        @foreach($productProvider->shuffle()->take(3)->where('status', 'Published') as $value)
+                        @foreach($recommendedProducts as $value)
                             <div class="trend__item">
                                 <div class="trend__item__pic">
                                     <a href="/product/{{$value->id}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Trend {{$value->name}}" width="90" height="90"></a>
