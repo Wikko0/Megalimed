@@ -53,6 +53,33 @@
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$XXS->maxKg??null}}">
                                     </div>
                                 </div>
+
+
+
+                            <div class="mb-3">
+                                <label class="form-label required">Length Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$XXS->lengthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$XXS->widthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Length Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$XXS->lengthBot??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$XXS->widthBot??null}}">
+                                </div>
+                            </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -90,6 +117,33 @@
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$XS->maxKg??null}}">
                                     </div>
                                 </div>
+
+
+
+                            <div class="mb-3">
+                                <label class="form-label required">Length Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$XS->lengthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$XS->widthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Length Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$XS->lengthBot??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$XS->widthBot??null}}">
+                                </div>
+                            </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -127,6 +181,33 @@
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$S->maxKg??null}}">
                                     </div>
                                 </div>
+
+
+
+                            <div class="mb-3">
+                                <label class="form-label required">Length Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$S->lengthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$S->widthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Length Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$S->lengthBot??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$S->widthBot??null}}">
+                                </div>
+                            </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -164,6 +245,33 @@
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$M->maxKg??null}}">
                                     </div>
                                 </div>
+
+
+
+                            <div class="mb-3">
+                                <label class="form-label required">Length Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$M->lengthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$M->widthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Length Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$M->lengthBot??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$M->widthBot??null}}">
+                                </div>
+                            </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -201,6 +309,33 @@
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$L->maxKg??null}}">
                                     </div>
                                 </div>
+
+
+
+                            <div class="mb-3">
+                                <label class="form-label required">Length Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$L->lengthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$L->widthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Length Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$L->lengthBot??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$L->widthBot??null}}">
+                                </div>
+                            </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -238,6 +373,33 @@
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$XL->maxKg??null}}">
                                     </div>
                                 </div>
+
+
+
+                            <div class="mb-3">
+                                <label class="form-label required">Length Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$XL->lengthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$XL->widthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Length Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$XL->lengthBot??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$XL->widthBot??null}}">
+                                </div>
+                            </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -275,6 +437,34 @@
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$XXL->maxKg??null}}">
                                     </div>
                                 </div>
+
+
+
+
+                            <div class="mb-3">
+                                <label class="form-label required">Length Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$XXL->lengthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Top</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$XXL->widthTop??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Length Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$XXL->lengthBot??null}}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label required">Width Bot</label>
+                                <div>
+                                    <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$XXL->widthBot??null}}">
+                                </div>
+                            </div>
                             </div>
                             <div class="card-footer text-end">
                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -310,6 +500,32 @@
                                     <label class="form-label required">Maximum KG</label>
                                     <div>
                                         <input type="number" class="form-control" placeholder="Enter maximum kilograms" name="maxKg" value="{{$XXXL->maxKg??null}}">
+                                    </div>
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label class="form-label required">Length Top</label>
+                                    <div>
+                                        <input type="number" class="form-control" placeholder="Enter length top" name="lengthTop" value="{{$XXXL->lengthTop??null}}">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label required">Width Top</label>
+                                    <div>
+                                        <input type="number" class="form-control" placeholder="Enter width top" name="widthTop" value="{{$XXXL->widthTop??null}}">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label required">Length Bot</label>
+                                    <div>
+                                        <input type="number" class="form-control" placeholder="Enter length bot" name="lengthBot" value="{{$XXXL->lengthBot??null}}">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label required">Width Bot</label>
+                                    <div>
+                                        <input type="number" class="form-control" placeholder="Enter width bot" name="widthBot" value="{{$XXXL->widthBot??null}}">
                                     </div>
                                 </div>
                             </div>

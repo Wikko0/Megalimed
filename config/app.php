@@ -201,6 +201,7 @@ return [
         App\Providers\ProductProvider::class,
         App\Providers\SettingsProvider::class,
         App\Providers\DiscountProvider::class,
+        App\Providers\CalculatorProvider::class,
     ],
 
     /*

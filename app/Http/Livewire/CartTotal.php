@@ -12,7 +12,8 @@ class CartTotal extends Component
     public $cart_subtotal;
     public function render()
     {
-        $this->cart_total = Cart::total();
+
+        $this->cart_total = Cart::subtotal() + 6.99;
         $this->cart_subtotal = Cart::subtotal();
         return view('livewire.cart-total', ['cart_total' => $this->cart_total, 'cart_subtotal' => $this->cart_subtotal]);
     }

@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+Route::post('/address', [OrderController::class, 'getAddress'])->name('address');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post('/login', [LoginController::class, 'loginUser'])->name('login');

@@ -38,8 +38,8 @@
     <!-- Checkout Section Begin -->
     <section class="checkout spad">
         <div class="container">
-            <form action="{{route('checkout.form')}}" method="POST" class="checkout__form">
-                @csrf
+            <form id="form-data" class="checkout__form">
+
                 <div class="row">
                     <div class="col-lg-8">
                         <h5>Адрес за фактуриране</h5>
@@ -48,12 +48,14 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>Име <span>*</span></p>
+                                    <div id="first_name_error" class="form-text text-danger"></div>
                                     <input type="text" name="first_name" value="{{ explode(' ', auth()->user()->name)[0]}}" readonly>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>Фамилия <span>*</span></p>
+                                    <div id="last_name_error" class="form-text text-danger"></div>
                                     <input type="text" name="last_name" value="{{ explode(' ', auth()->user()->name)[1]}}" readonly>
                                 </div>
                             </div>
@@ -61,12 +63,14 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="checkout__form__input">
                                         <p>Име <span>*</span></p>
+                                        <div id="first_name_error" class="form-text text-danger"></div>
                                         <input type="text" name="first_name">
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="checkout__form__input">
                                         <p>Фамилия <span>*</span></p>
+                                        <div id="last_name_error" class="form-text text-danger"></div>
                                         <input type="text" name="last_name">
                                     </div>
                                 </div>
@@ -74,6 +78,7 @@
                             <div class="col-lg-12">
                                 <div class="checkout__form__input">
                                     <p>Държава <span>*</span></p>
+                                    <div id="country_error" class="form-text text-danger"></div>
                                     <input type="text" name="country">
                                 </div>
                                 <iframe title="Econt Office Locator"
@@ -81,25 +86,33 @@
                                         src="https://staging.officelocator.econt.com?shopUrl=https://example.staging.officelocator.econt.com&city=Sofia&address=ul. rezbarska 5&officeType=office&lang=bg"
                                         style="width: 100%; height: 90vh; border-width: 0px;">
                                 </iframe>
+                                <div id="address_error" class="form-text text-danger"></div>
                                 <div class="checkout__form__input">
                                     <p>Град<span>*</span></p>
+                                    <div id="city_error" class="form-text text-danger"></div>
                                     <input type="text" name="city">
                                 </div>
                                 <div class="checkout__form__input">
                                     <p>Пощенски код <span>*</span></p>
+                                    <div id="post_code_error" class="form-text text-danger"></div>
                                     <input type="number" name="post_code">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
+
                                     <p>Мобилен телефон <span>*</span></p>
+                                    <div id="number_error" class="form-text text-danger"></div>
                                     <input type="number" name="number">
+
                                 </div>
+
                             </div>
                                 @if(Auth::user())
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="checkout__form__input">
                                             <p>Емайл <span>*</span></p>
+                                            <div id="email_error" class="form-text text-danger"></div>
                                             <input type="text" name="email" value="{{Auth::user()->email}}" readonly>
                                             <input type="hidden" name="password" value="no">
                                         </div>
@@ -109,6 +122,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
                                     <p>Емайл <span>*</span></p>
+                                    <div id="email_error" class="form-text text-danger"></div>
                                     <input type="text" name="email">
                                 </div>
                             </div>
@@ -119,6 +133,7 @@
                                 </div>
                                 <div class="checkout__form__input">
                                     <p>Парола <span>*</span></p>
+                                    <div id="passowrd_error" class="form-text text-danger"></div>
                                     <input type="password" name="password">
                                 </div>
                                 @endif
@@ -152,22 +167,17 @@
                                 </div>
                                 @if(Cart::count() > 0)
                                     @foreach(Cart::content() as $cartItem)
-                                    <input type="hidden" name="product[]" value="{{$cartItem->name}}">
-                                    <input type="hidden" name="quantity[]" value="{{$cartItem->qty}}">
-                                    <input type="hidden" name="price[]" value="{{$cartItem->price}}">
-                                    <input type="hidden" name="size[]" value="{{$cartItem->options['size']}}">
-                                    <input type="hidden" name="color[]" value="{{$cartItem->options['color']}}">
-
+                                        <input type="hidden" name="product[]" value="{{$cartItem->name}}">
+                                        <input type="hidden" name="quantity[]" value="{{$cartItem->qty}}">
+                                        <input type="hidden" name="price[]" value="{{$cartItem->price}}">
+                                        <input type="hidden" name="size[]" value="{{$cartItem->options['size']}}">
+                                        <input type="hidden" name="color[]" value="{{$cartItem->options['color']}}">
                                     @endforeach
-                                    <button type="submit" class="site-btn">Потвърди поръчката</button>
+                                    <button type="button" class="site-btn submit-form" id="create_new">Потвърди поръчката</button>
                                 @else
                                     <div class="site-btn">Няма налични продукти</div>
-                                @endif
-
-                            </div>
-                        </div>
-
-                    </div>
+                @endif
+                <input type="hidden" id="econtOffice" name="address">
             </form>
         </div>
     </section>
@@ -186,34 +196,9 @@
                 return;
             }
 
-            // Извличане на fullAddress от обекта на офиса
             const fullAddress = event.data.office.address.fullAddress;
-            console.log("Full Address:", fullAddress);
-
-            // Изпращане на стойността на fullAddress към контролера
-            sendDataToController(fullAddress);
-        }
-
-        function sendDataToController(fullAddress) {
-
-            $.ajax({
-                url: '/cart/checkout',
-                method: 'POST',
-                data: { address: fullAddress },
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
-                },
-                contentType: false,
-                processData: false,
-                success: function(response) {
-
-                    console.log(response);
-                },
-                error: function(error) {
-
-                    console.error(error);
-                }
-            });
+            document.getElementById('econtOffice').value = fullAddress;
+            console.log(fullAddress)
         }
 
         if (window.addEventListener) {
@@ -221,5 +206,33 @@
         } else {
             window.attachEvent("onmessage", displayMessage);
         }
+
+        $(".submit-form").click(function(e){
+            e.preventDefault();
+            var data = $('#form-data').serialize();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content')
+                },
+                contentType: 'application/json',
+                processData: false
+            });
+
+            $.ajax({
+                url: '{{ route('checkout.form') }}',
+                method: 'POST',
+                data: JSON.stringify({ data }),
+                success: function(res){
+                    window.location=res.url;
+                },
+                error: function(reject) {
+                    var response = $.parseJSON(reject.responseText);
+                    $.each(response.errors, function(key, val) {
+                        $("#" + key + "_error").text(val[0]);
+                    });
+                }
+            });
+        });
     </script>
 @endsection

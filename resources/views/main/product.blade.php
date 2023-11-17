@@ -85,6 +85,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Спецификация</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Размери</a>
+                            </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
@@ -94,6 +97,53 @@
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
                                 <h6>Спецификация</h6>
                                 <p>{{$product->specification}}</p>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <h6>Таблица с размери за горнището</h6>
+                                <img src="{{asset('img/size/size_top.png')}}"  width="250" height="250">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Размер</th>
+                                        <th scope="col">Дължина на горнището (A)</th>
+                                        <th scope="col">Ширина на горнището (B)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($calculatorProvider as $i => $calculator)
+                                    <tr>
+                                        <th scope="row">{{$i++}}</th>
+                                        <td>{{$calculator->size}}</td>
+                                        <td>{{$calculator->lengthTop}}</td>
+                                        <td>{{$calculator->widthTop}}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
+                                <h6>Таблица с размери за долнището</h6>
+                                <img src="{{asset('img/size/size_bot.png')}}" width="250" height="250">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Размер</th>
+                                        <th scope="col">Ширина на долнището (C)</th>
+                                        <th scope="col">Дължина на долнището (D)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($calculatorProvider as $i => $calculator)
+                                        <tr>
+                                            <th scope="row">{{$i++}}</th>
+                                            <td>{{$calculator->size}}</td>
+                                            <td>{{$calculator->widthBot}}</td>
+                                            <td>{{$calculator->lengthBot}}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

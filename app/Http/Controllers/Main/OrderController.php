@@ -10,24 +10,19 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class OrderController extends Controller
 {
-    public function index(): View
+    private function validateFormData($formData): array
     {
-        return view('main.order');
-    }
-
-    public function makeCheckout(Request $request): RedirectResponse
-    {
-
-        $request->validate([
+      return Validator::make($formData, [
             'first_name' => 'required|string',
             'last_name' => 'required|string',
             'password' => 'required',
             'country' => 'required|string',
-            'address' => 'string',
+            'address' => 'required|string',
             'city' => 'required|string',
             'post_code' => 'required|string',
             'number' => 'required|string',
@@ -41,8 +36,8 @@ class OrderController extends Controller
             'password.required' => 'Полето за парола е задължително.',
             'country.required' => 'Полето за държава е задължително.',
             'country.string' => 'Държавата трябва да бъде текст.',
-            'address.required' => 'Полето за адрес е задължително.',
-            'address.string' => 'Адресът трябва да бъде текст.',
+          'address.required' => 'Полето за еконт е задължително. (натисни върху Избери офис)',
+          'address.string' => 'Еконт трябва да бъде текст.',
             'city.required' => 'Полето за град е задължително.',
             'city.string' => 'Градът трябва да бъде текст.',
             'post_code.required' => 'Полето за пощенски код е задължително.',
@@ -55,43 +50,59 @@ class OrderController extends Controller
             'email.max' => 'Имейлът не може да бъде по-дълъг от 255 символа.',
             'email.unique' => 'Този имейл вече се използва от друг потребител.',
             'note.string' => 'Забележката трябва да бъде текст.',
-        ]);
+        ])->validate();
+    }
+
+    public function index(): View
+    {
+        return view('main.order');
+    }
+
+    public function makeCheckout(Request $request)
+    {
+
+        $data = $request->input('data');
+
+        parse_str($data, $formData);
+
+        $this->validateFormData($formData);
 
         $orderItems = collect();
-        for ($i = 0; $i < count($request->input('product')); $i++) {
+        for ($i = 0; $i < count($formData['product']); $i++) {
             $orderItems->push([
-                'product' => $request->input('product')[$i],
-                'quantity' => $request->input('quantity')[$i],
-                'price' => $request->input('price')[$i],
-                'size' => $request->input('size')[$i],
-                'color' => $request->input('color')[$i],
+                'product' => $formData['product'][$i],
+                'quantity' => $formData['quantity'][$i],
+                'price' => $formData['price'][$i],
+                'size' => $formData['size'][$i],
+                'color' => $formData['color'][$i],
             ]);
         }
 
 
         $order = new Order([
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'country' => $request->input('country'),
-            'address' => $request->input('address'),
-            'city' => $request->input('city'),
-            'post_code' => $request->input('post_code'),
-            'number' => $request->input('number'),
-            'email' => $request->input('email'),
-            'note' => $request->input('note'),
+            'first_name' => $formData['first_name'],
+            'last_name' => $formData['last_name'],
+            'country' => $formData['country'],
+            'address' => $formData['address'],
+
+            'city' => $formData['city'],
+            'post_code' => $formData['post_code'],
+            'number' => $formData['number'],
+            'email' => $formData['email'],
+            'note' => $formData['note'],
 
             'products' => $orderItems->toJson(),
 
             'status' => 'Awaiting approval',
         ]);
 
-        if ($request->input('password') !== 'no'){
-            $fullName = $request->input('first_name') . ' ' . $request->input('last_name');
+        if ($formData['password'] !== 'no'){
+            $fullName = $formData['first_name'] . ' ' . $formData['last_name'];
 
             $user = User::create([
                 'name' => $fullName,
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
+                'email' => $formData['email'],
+                'password' => Hash::make($formData['password']),
             ]);
 
             $user->assignRole('user');
@@ -108,7 +119,7 @@ class OrderController extends Controller
         $order->save();
 
         Cart::destroy();
-        return redirect()->route('checkout.success');
+        return response()->json(['url'=>url('/checkout/success')]);
     }
 
     public function successCheckout(): View|RedirectResponse

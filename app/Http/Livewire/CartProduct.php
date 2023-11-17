@@ -58,7 +58,7 @@ class CartProduct extends Component
         Cart::add($product->id, $product->name, $this->quantity, $price, [
             'color' => $this->selectedColor,
             'size' => $this->selectedSize,
-        ]);
+        ], 0);
 
         $this->showCartPopup = true;
 

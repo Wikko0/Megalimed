@@ -43,6 +43,11 @@ class CalculatorController extends Controller
             'maxHeight' => ['required'],
             'minKg' => ['required'],
             'maxKg' => ['required'],
+
+            'lengthTop' => ['required'],
+            'widthTop' => ['required'],
+            'lengthBot' => ['required'],
+            'widthBot' => ['required'],
         ]);
 
         Calculator::where('size', $request->input('size'))->update([
@@ -50,6 +55,11 @@ class CalculatorController extends Controller
            'maxHeight' => $request->input('maxHeight'),
            'minKg' => $request->input('minKg'),
            'maxKg' => $request->input('maxKg'),
+
+            'lengthTop' => $request->input('lengthTop'),
+            'widthTop' => $request->input('widthTop'),
+            'lengthBot' => $request->input('lengthBot'),
+            'widthBot' => $request->input('widthBot'),
         ]);
 
         return redirect()->back()->withSuccess('Усшено обновихте калкулатора за размер '.$request->input('size'));

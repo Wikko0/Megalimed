@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('maxHeight')->nullable();
             $table->string('minKg')->nullable();
             $table->string('maxKg')->nullable();
+            $table->string('lengthTop')->nullable();
+            $table->string('widthTop')->nullable();
+            $table->string('lengthBot')->nullable();
+            $table->string('widthBot')->nullable();
             $table->timestamps();
         });
     }

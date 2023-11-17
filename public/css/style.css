@@ -3503,6 +3503,12 @@ ol {
 	}
 }
 
+@media only screen and (min-width: 320px) and (max-width: 801px) {
+    .header__logo {
+        margin-left: 100px;
+    }
+}
+
 @media only screen and (min-width: 1200px) and (max-width: 1599px) {
 	.header__menu ul li {
 		margin-right: 20px;
@@ -3747,6 +3753,10 @@ ol {
 /* Wide Mobile = 480px */
 
 @media only screen and (max-width: 767px) {
+
+    .header__logo {
+        padding: 26px 0;
+    }
 	.canvas__open {
 		display: block;
 		font-size: 22px;
