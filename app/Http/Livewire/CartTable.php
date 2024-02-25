@@ -10,6 +10,8 @@ use mysql_xdevapi\Collection;
 class CartTable extends Component
 {
 
+    public $listeners = ['cart_table' => 'render'];
+
     public function decrementQuantity($rowId)
     {
         $product = Cart::get($rowId);

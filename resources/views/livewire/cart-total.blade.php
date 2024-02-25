@@ -1,8 +1,23 @@
+<div class="row">
+    <div class="col-lg-6">
+        <div class="discount__content">
+            <h6>Код за отстъпка</h6>
+            <form wire:submit.prevent="applyDiscount">
+                <input wire:model="discountCode" type="text" placeholder="Твоят код за отстъпка">
+                <button type="submit" class="site-btn">Въведи</button>
+            </form>
+        </div>
+    </div>
 <div class="col-lg-4 offset-lg-2">
     <div class="cart__total__procced">
         <h6>Количка</h6>
         <ul>
             <li>Междинна сума <span>{{$cart_subtotal}}</span></li>
+            @foreach(Cart::content() as $cartItem)
+                @if(isset($cartItem->options['discounted']))
+                    <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
+                @endif
+            @endforeach
             <li>Общо <span>{{$cart_total}}</span></li>
         </ul>
         @if(Cart::content()->count() > 0)
@@ -11,4 +26,5 @@
             <a href="#" class="primary-btn">Продължи към плащане</a>
         @endif
     </div>
+</div>
 </div>

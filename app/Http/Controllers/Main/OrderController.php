@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ConfirmMail;
 use App\Models\Order;
 use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -10,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
@@ -135,6 +137,7 @@ class OrderController extends Controller
             if (!$order) {
                 return redirect()->route('home')->withErrors(['message' => 'Няма налична поръчка.']);
             }
+            Mail::to(Auth::user()->email)->send(new ConfirmMail($order));
 
             return view('main.success', compact('order'));
         } else {

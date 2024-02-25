@@ -24,7 +24,7 @@
                 <span class="inc qtybtn" wire:click="incrementQuantity('{{ $cartItem->rowId }}')">+</span>
             </div>
         </td>
-        <td class="cart__total">{{$cartItem->price * $cartItem->qty}} лев.</td>
+        <td class="cart__total">{{ round($cartItem->price * $cartItem->qty, 2) }} лев.</td>
         <td class="cart__close"><span wire:click.prevent="deleteProduct('{{ $cartItem->rowId }}')" class="icon_close"></span></td>
     </tr>
     @empty

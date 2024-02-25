@@ -178,6 +178,11 @@
                                 <div class="checkout__order__total">
                                     <ul>
                                         <li>Междинна сума <span>{{ \Cart::subTotal() }} лев.</span></li>
+                                        @foreach(Cart::content() as $cartItem)
+                                            @if($cartItem->options['discounted'])
+                                            <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
+                                            @endif
+                                        @endforeach
                                         <li>Общо <span>{{ $cartTotal }} лев.</span></li>
                                     </ul>
                                 </div>

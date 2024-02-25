@@ -67,8 +67,9 @@
                         <a href="{{route('shop')}}">Продължи да пазаруваш</a>
                     </div>
                 </div>
-                @livewire('cart-total')
+
             </div>
+                @livewire('cart-total')
         </div>
     </section>
     <!-- Shop Cart Section End -->
