@@ -127,7 +127,7 @@
                                 @if(Auth::user())
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="checkout__form__input">
-                                            <p>Емайл <span>*</span></p>
+                                            <p>Имейл <span>*</span></p>
                                             <div id="email_error" class="form-text text-danger"></div>
                                             <input type="text" name="email" value="{{Auth::user()->email}}" readonly>
                                             <input type="hidden" name="password" value="no">
@@ -137,7 +137,7 @@
                                 @else
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="checkout__form__input">
-                                    <p>Емайл <span>*</span></p>
+                                    <p>Имейл <span>*</span></p>
                                     <div id="email_error" class="form-text text-danger"></div>
                                     <input type="text" name="email">
                                 </div>
@@ -178,8 +178,8 @@
                                 <div class="checkout__order__total">
                                     <ul>
                                         <li>Междинна сума <span>{{ \Cart::subTotal() }} лев.</span></li>
-                                        @foreach(Cart::content() as $cartItem)
-                                            @if($cartItem->options['discounted'])
+                                        @foreach(Cart::content()->take(1) as $cartItem)
+                                            @if(isset($cartItem->options['discounted']))
                                             <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
                                             @endif
                                         @endforeach

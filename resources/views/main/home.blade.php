@@ -256,8 +256,8 @@
                     <div class="discount__text">
                         <div class="discount__text__title">
                             <span>Намаление</span>
-                            <h2>Лято 2023</h2>
-                            <h5><span>Разпродажба</span> 50%</h5>
+                            <h2>{{$discountProvider->name}}</h2>
+                            <h5><span>Разпродажба</span> {{$discountProvider->percent}}%</h5>
                         </div>
                         <div class="discount__countdown" id="countdown-time">
                             <div class="countdown__item">

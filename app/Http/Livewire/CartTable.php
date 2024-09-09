@@ -14,21 +14,37 @@ class CartTable extends Component
 
     public function decrementQuantity($rowId)
     {
-        $product = Cart::get($rowId);
 
-        $qty = $product->qty - 1;
-        Cart::update($rowId, $qty);
+        if (Cart::content()->has($rowId)) {
+            $product = Cart::get($rowId);
+            $qty = $product->qty - 1;
 
-        $this->emit('cart_total');
+            if ($qty > 0) {
+                Cart::update($rowId, $qty);
+            } else {
+                Cart::remove($rowId);
+            }
+
+            $this->emit('cart_total');
+        } else {
+            session()->flash('error', 'Продуктът не беше намерен в количката.');
+            $this->emit('refreshPage');
+        }
     }
 
     public function incrementQuantity($rowId)
     {
-        $product = Cart::get($rowId);
-        $qty = $product->qty + 1;
-        Cart::update($rowId, $qty);
 
-        $this->emit('cart_total');
+        if (Cart::content()->has($rowId)) {
+            $product = Cart::get($rowId);
+            $qty = $product->qty + 1;
+
+            Cart::update($rowId, $qty);
+            $this->emit('cart_total');
+        } else {
+            session()->flash('error', 'Продуктът не беше намерен в количката.');
+            $this->emit('refreshPage');
+        }
     }
 
     public function deleteProduct($rowId)

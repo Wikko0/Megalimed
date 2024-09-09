@@ -13,7 +13,7 @@
         <h6>Количка</h6>
         <ul>
             <li>Междинна сума <span>{{$cart_subtotal}}</span></li>
-            @foreach(Cart::content() as $cartItem)
+            @foreach(Cart::content()->take(1) as $cartItem)
                 @if(isset($cartItem->options['discounted']))
                     <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
                 @endif

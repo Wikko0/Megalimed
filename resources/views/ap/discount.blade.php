@@ -22,7 +22,7 @@
                                 @endforeach
                             </div>
                         @endif
-                        <form action="{{ route('admin.discount.form') }}" method="post">
+                        <form action="{{ route('admin.discount.form') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-header">
                                 <h3 class="card-title">Create Discount</h3>
@@ -37,6 +37,10 @@
                                     </label>
                                   </span>
                                     </label>
+                                </div>
+                                <div class="mb-3">
+                                    <div class="form-label">Image</div>
+                                    <input type="file" name="image" class="form-control" />
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label required">Discount name</label>

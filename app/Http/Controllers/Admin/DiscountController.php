@@ -7,6 +7,7 @@ use App\Models\Discount;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Intervention\Image\Facades\Image;
 
 class DiscountController extends Controller
 {
@@ -25,6 +26,15 @@ class DiscountController extends Controller
             'percent' => ['required'],
             'date' => ['required'],
         ]);
+
+        if ($request->image){
+            $file = $request->file("image");
+            $photoPath = $file->storeAs('/img', 'discount.jpg',['disk' => 'public_uploads']);
+
+            $photo = Image::make(public_path("{$photoPath}"));
+            $photo->save();
+
+        }
 
         Discount::updateOrCreate([
             'id' => '1'
