@@ -81,6 +81,9 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
     Route::post('/category', [CategoryController::class, 'doCategory'])->name('category.form');
     Route::delete('/category/{id}', [CategoryController::class, 'deleteCategory'])->name('category.delete');
+    Route::get('/category/edit/{id}', [CategoryController::class, 'editCategoryView'])->name('category.edit');
+    Route::put('/category/edit/{id}', [CategoryController::class, 'editCategory'])->name('category.edit');
+
 
     Route::get('/product', [AdminProductController::class, 'index'])->name('product');
     Route::post('/product', [AdminProductController::class, 'doProduct'])->name('product.form');

@@ -63,4 +63,55 @@ class CategoryController extends Controller
 
         return redirect()->back()->withSuccess('Усшено изтрихте тази категория!');
     }
+
+    public function editCategoryView($id): View
+    {
+        $category = Category::findOrFail($id);
+
+        return view('ap.editCategory', compact('category'));
+    }
+
+    public function editCategory(Request $request, $id): RedirectResponse
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'menu' => 'required|string|max:255',
+            'url' => ['required', 'string', 'max:10', 'regex:/^[a-zA-Z0-9_-]+$/'],
+            'description' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.category.edit', $id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $category = Category::findOrFail($id);
+        $data = $request->all();
+
+        $category->name = $data['name'];
+        $category->url = $data['url'];
+        $category->description = $data['description'];
+        $category->menu = $data['menu'];
+
+        if ($request->hasFile('image')) {
+            if ($category->image && file_exists(public_path($category->image))) {
+                unlink(public_path($category->image));
+            }
+
+            $file = $request->file("image");
+            $photoPath = $file->storeAs('/img/categories', 'categories-'.$id.'.jpg',['disk' => 'public_uploads']);
+
+            $photo = Image::make(public_path("{$photoPath}"));
+            $photo->save();
+
+            $category->image = $photoPath;
+        }
+
+        $category->save();
+
+        return redirect()->route('admin.category.edit', $id)->withSuccess('Успешно редактирахте категорията.');
+    }
+
 }

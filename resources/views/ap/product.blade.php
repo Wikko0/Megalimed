@@ -84,12 +84,9 @@
                                 <span class="dropdown">
                                     <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>
                                     <div class="dropdown-menu dropdown-menu-end">
-                                         <form method="get" action="{{ route('admin.product.edit', ['id' => $product->id]) }}">
-                                            @csrf
-                                            <button class="dropdown-item">
-                                                Edit
-                                            </button>
-                                        </form>
+                                        <a class="dropdown-item" href="{{ route('admin.product.edit', ['id' => $product->id]) }}">
+                                            Edit
+                                        </a>
                                         <form method="post" action="{{ route('admin.product.delete', ['id' => $product->id]) }}">
                                             @csrf
                                             @method('DELETE')
