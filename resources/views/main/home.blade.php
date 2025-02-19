@@ -25,21 +25,23 @@
             <div class="row">
                 <div class="col-lg-6 p-0 categories__slider owl-carousel">
                     @foreach($categoryProvider as $values)
-                    <div class="categories__item categories__large__item set-bg"
-                         data-setbg="{{asset($values->image)}}">
-                        <div class="categories__text">
-                            <h1>{{$values->name}}</h1>
-                            <p>{{$values->description}}</p>
-                            <a href="shop/{{$values->url}}">Купете сега</a>
+                        <div class="categories__item categories__large__item set-bg"
+                             data-setbg="{{asset($values->image)}}"
+                             onclick="window.location.href='shop/{{$values->url}}';">
+                            <div class="categories__text">
+                                <h1>{{$values->name}}</h1>
+                                <p>{{$values->description}}</p>
+                                <a href="shop/{{$values->url}}">Купете сега</a>
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
+
                 <div class="col-lg-6">
                     <div class="row">
                         @foreach($categoryProvider->take(4) as $values)
                         <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="{{asset($values->image)}}">
+                            <div class="categories__item set-bg" data-setbg="{{asset($values->image)}}" onclick="window.location.href='shop/{{$values->url}}';">
                                 <div class="categories__text">
                                     <h4>{{$values->name}}</h4>
                                     <a href="shop/{{$values->url}}">Купете сега</a>
@@ -66,27 +68,25 @@
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <ul class="filter__controls">
-                        <li class="active" data-filter="*">Всички</li>
+                        <li class="active" data-filter="*" data-category="all">Всички</li>
                         @foreach($categoryProvider as $value)
-                            <li data-filter=".{{$value->url}}"> {{$value->name}}</li>
+                            <li data-filter=".{{$value->url}}" data-category="{{$value->id}}">{{$value->name}}</li>
                         @endforeach
                     </ul>
                 </div>
             </div>
-            <div class="row property__gallery">
+
+            <div class="row property__gallery" id="product-list">
+
                 @foreach($productProvider->take(8)->where('status', 'Published') as $value)
                     <div class="col-lg-3 col-md-4 col-sm-6 mix {{$value->category->url}}">
                         <div class="product__item">
-
-                                <div class="product__item__pic set-bg product-image" data-setbg="{{ProductHelper::getFirstProductImage($value->id)}}" data-product-url="/product/{{$value->id}}" data-product-image="{{ProductHelper::getSecondProductImage($value->id)}}">
+                            <div class="product__item__pic set-bg product-image" data-setbg="{{ProductHelper::getFirstProductImage($value->id)}}" data-product-url="/product/{{$value->id}}" data-product-image="{{ProductHelper::getSecondProductImage($value->id)}}">
                                 {!! ProductHelper::getProductLabel($value->id) !!}
                                 <ul class="product__hover">
                                     <li><a href="{{ProductHelper::getFirstProductImage($value->id)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
                                     @if(Auth::user())
                                         <li><a href="{{route('make.favorites', [$value->id])}}"><span class="icon_heart_alt"></span></a></li>
-
-                                    @else
-                                        <li><a href="#"><span class="icon_heart_alt account-switch"></span></a></li>
                                     @endif
                                     <li>
                                         <a href="/product/{{$value->id}}">
@@ -109,10 +109,8 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
-
     </section>
 
 
@@ -289,12 +287,57 @@
     <!-- Services Section Begin -->
     @include('extends.servicesSection')
     <!-- Services Section End -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            function initializeScripts() {
+                // Тук слагаш целия JavaScript, който трябва да се изпълнява върху продуктите
+                $('.set-bg').each(function() {
+                    var bg = $(this).data('setbg');
+                    $(this).css('background-image', 'url(' + bg + ')');
+                });
+
+                $('.image-popup').magnificPopup({
+                    type: 'image'
+                });
+
+
+            }
+
+
+            initializeScripts();
+
+            $('.filter__controls li').click(function() {
+                var categoryId = $(this).data('category');
+                $('.filter__controls li').removeClass('active');
+                $(this).addClass('active');
+
+                $.ajax({
+                    url: '/get-products-by-category',
+                    method: 'GET',
+                    data: {
+                        category_id: categoryId
+                    },
+                    success: function(response) {
+
+                        $('#product-list').html(response);
+
+                        initializeScripts();
+                    },
+                    error: function(xhr) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 
 @endsection
 
 @if(!empty($discountProvider->status) && $discountProvider->status == 'on')
 
     @section('scripts')
+
         <script>
 
             var discountData = "{{\Carbon\Carbon::createFromFormat('d/m/Y H:i:s', $discountProvider->date)->format('m/d/Y H:i:s')}}";

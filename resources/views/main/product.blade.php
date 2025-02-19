@@ -62,13 +62,6 @@
                 <div class="col-lg-6">
                     <div class="product__details__text">
                         <h3>{{$product->name}} <span>Баркод: {{$product->barcode}}</span></h3>
-                        <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
                         {!! ProductHelper::getPriceProductDetails($product->id) !!}
                         <p>{{Str::words($product->description, 15, '...')}}</p>
 

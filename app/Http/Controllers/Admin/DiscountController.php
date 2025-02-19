@@ -22,10 +22,12 @@ class DiscountController extends Controller
 
 
         $this->validate($request, [
-            'name' => ['required'],
-            'percent' => ['required'],
-            'date' => ['required'],
-        ]);
+    'name' => ['required'],
+    'percent' => ['required'],
+    'date' => ['required', 'regex:/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}:\d{2}$/'],],
+	[
+					'date.regex' => 'Моля, въведете дата и час в правилния формат: dd/mm/yyyy hh:mm:ss.'
+	]);
 
         if ($request->image){
             $file = $request->file("image");

@@ -1360,11 +1360,13 @@ ol {
 	font-family: "Comforter", cursive;
 	color: #111111;
 	margin-bottom: 5px;
+    background-color: #ffffff;
 }
 
 .categories__text h4 {
 	color: #111111;
 	font-weight: 700;
+    background-color:#ffffff;
 }
 
 .categories__text p {
@@ -2339,6 +2341,22 @@ ol {
 
 .product__details__widget ul li .color__checkbox label .checkmark.fuchsia-bg {
     background: #FC1283;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.pastelpurple-bg {
+    background: #C4A8D0;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.roquefort-bg {
+    background: #40B5AD;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.lightbenetton-bg {
+    background: #40E0D0;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.caribbeanblue-bg {
+    background: #086590;
 }
 
 .product__details__widget ul li .color__checkbox label .checkmark:after {

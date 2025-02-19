@@ -15,12 +15,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group mt-3">
-                                        <input type="text" name="email" class="form-control" required>
+                                        <input type="text" name="email" id="email" class="form-control" required>
                                         <label class="form-control-placeholder" for="email">Твоят имейл адрес</label>
                                     </div>
                                     <div class="form-group">
                                         <input id="password-field" type="password" name="password" class="form-control" required>
-                                        <label class="form-control-placeholder" for="password">Парола</label>
+                                        <label class="form-control-placeholder" for="password-field">Парола</label>
                                         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                     </div>
                                     <div class="form-group d-md-flex">

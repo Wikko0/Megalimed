@@ -16,20 +16,20 @@
                                     </div>
                                     <form action="#" class="signin-form">
                                         <div class="form-group mt-3">
-                                            <input type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required>
+                                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
                                             <label class="form-control-placeholder" for="first_name">Име</label>
                                         </div>
                                         <div class="form-group mt-3">
-                                            <input type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
+                                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
                                             <label class="form-control-placeholder" for="last_name">Фамилия</label>
                                         </div>
                                         <div class="form-group mt-3">
-                                            <input type="text" class="form-control" name="email" value="{{ old('email') }}" required>
-                                            <label class="form-control-placeholder" for="email">Твоят имейл адрес</label>
+                                            <input type="text" class="form-control" id="emails" name="email" value="{{ old('email') }}" required>
+                                            <label class="form-control-placeholder" for="emails">Твоят имейл адрес</label>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" name="password" required>
-                                            <label class="form-control-placeholder" for="password">Парола</label>
+                                            <input type="password" class="form-control" id="password" name="password" required>
+                                            <label class="form-control-placeholder" faor="password">Парола</label>
                                                </div>
                                         <div class="form-group">
                                             <button type="submit" class="form-control btn btn-primary rounded submit px-3">Регистрирай се сега</button>

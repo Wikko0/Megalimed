@@ -167,6 +167,22 @@
                             <input type="checkbox" name="color[]" value="Fuchsia" class="form-selectgroup-input" data-color="Fuchsia">
                             <span class="form-selectgroup-label">Fuchsia</span>
                         </label>
+                        <label class="form-selectgroup-item">
+                            <input type="checkbox" name="color[]" value="Pastel Purple" class="form-selectgroup-input" data-color="Pastel Purple">
+                            <span class="form-selectgroup-label">Pastel Purple</span>
+                        </label>
+                        <label class="form-selectgroup-item">
+                            <input type="checkbox" name="color[]" value="Roquefort" class="form-selectgroup-input" data-color="Roquefort">
+                            <span class="form-selectgroup-label">Roquefort</span>
+                        </label>
+                        <label class="form-selectgroup-item">
+                            <input type="checkbox" name="color[]" value="Light Benetton" class="form-selectgroup-input" data-color="Light Benetton">
+                            <span class="form-selectgroup-label">Light Benetton</span>
+                        </label>
+                        <label class="form-selectgroup-item">
+                            <input type="checkbox" name="color[]" value="Caribbean Blue" class="form-selectgroup-input" data-color="Caribbean Blue">
+                            <span class="form-selectgroup-label">Caribbean Blue</span>
+                        </label>
                     </div>
                 </div>
                 <div class="mb-3">

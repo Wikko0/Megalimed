@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
+Route::get('/get-products-by-category', [HomeController::class, 'getProductsByCategory'])->name('get.product');
 Route::post('/address', [OrderController::class, 'getAddress'])->name('address');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 

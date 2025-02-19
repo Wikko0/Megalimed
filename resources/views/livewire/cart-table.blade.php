@@ -14,7 +14,7 @@
                 </div>
             </div>
         </td>
-        <td class="cart__price">{{$cartItem->price}} лев.</td>
+        <td class="cart__price">{{$cartItem->price}} лв.</td>
         <td class="cart__size">{{$cartItem->options['size']}}</td>
         <td class="cart__color">{{$cartItem->options['color']}}</td>
         <td class="cart__quantity">

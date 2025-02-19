@@ -215,6 +215,26 @@
                                     <input type="checkbox" id="Fuchsia" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
+                                <label for="Pastel Purple">
+                                    Pastel Purple
+                                    <input type="checkbox" id="Pastel Purple" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Roquefort">
+                                    Roquefort
+                                    <input type="checkbox" id="Roquefort" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Light Benetton">
+                                    Light Benetton
+                                    <input type="checkbox" id="Light Benetton" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Caribbean Blue">
+                                    Caribbean Blue
+                                    <input type="checkbox" id="Caribbean Blue" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                         </div>
                     </div>

@@ -17,11 +17,12 @@ class ProductController extends Controller
 {
     public function index(): View
     {
-        $products = Product::paginate(8);
+        $products = Product::orderBy('barcode', 'desc')->paginate(8);
         $products->appends(request()->query());
 
         return view('ap.product', compact('products'));
     }
+
 
 
     public function doProduct(Request $request)
