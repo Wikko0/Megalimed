@@ -195,12 +195,17 @@ class ProductController extends Controller
             'specification' => 'required',
             'price' => 'required',
             'stock' => 'required',
+            'media' => 'nullable',
         ]);
 
+        $temporaryImages = TemporaryFile::all();
+
         if ($validator->fails()) {
-            return redirect()->route('admin.product.edit', $id)
-                ->withErrors($validator)
-                ->withInput();
+            foreach ($temporaryImages as $temporaryImage) {
+                Storage::deleteDirectory('img/product/tmp/' . $temporaryImage->folder);
+                $temporaryImage->delete();
+            }
+            return redirect()->route('admin.product')->withErrors($validator)->withInput();
         }
 
         $product = Product::findOrFail($id);
@@ -211,6 +216,7 @@ class ProductController extends Controller
         $product->description = $data['description'];
         $product->specification = $data['specification'];
         $product->price = $data['price'];
+
         if ($request->color && $request->size) {
             $newColors = $request->color;
             $newSizes = $request->size;
@@ -218,40 +224,12 @@ class ProductController extends Controller
             $currentColors = $product->color;
             $currentSizes = $product->size;
 
-
-            if ($currentColors) {
-                $currentColorsArray = json_decode($currentColors, true);
-
-                if (is_array($currentColorsArray)) {
-                    $updatedColorsArray = array_values(array_unique(array_merge($currentColorsArray, $newColors)));
-                    $updatedColors = json_encode($updatedColorsArray);
-                } else {
-                    $updatedColors = json_encode($newColors);
-                }
-            } else {
-                $updatedColors = json_encode($newColors);
-            }
-
-
-            if ($currentSizes) {
-                $currentSizesArray = json_decode($currentSizes, true);
-
-                if (is_array($currentSizesArray)) {
-                    $updatedSizesArray = array_values(array_unique(array_merge($currentSizesArray, $newSizes)));
-                    $updatedSizes = json_encode($updatedSizesArray);
-                } else {
-                    $updatedSizes = json_encode($newSizes);
-                }
-            } else {
-                $updatedSizes = json_encode($newSizes);
-            }
+            $updatedColors = $currentColors ? json_encode(array_values(array_unique(array_merge(json_decode($currentColors, true) ?? [], $newColors)))) : json_encode($newColors);
+            $updatedSizes = $currentSizes ? json_encode(array_values(array_unique(array_merge(json_decode($currentSizes, true) ?? [], $newSizes)))) : json_encode($newSizes);
 
             $product->color = $updatedColors;
             $product->size = $updatedSizes;
         }
-
-
-
 
         if ($data['discount-type'] === 'discounted') {
             $product->discount = $data['discount'];
@@ -262,6 +240,20 @@ class ProductController extends Controller
         $product->category_id = $data['category_id'];
         $product->stock = json_encode($data['stock']);
         $product->save();
+
+        $targetDirectory = public_path('img/product/product-' . $product->id);
+
+
+        if ($request->input('media')) {
+            File::deleteDirectory($targetDirectory);
+            File::makeDirectory($targetDirectory, 0755, true, true);
+        }
+
+        foreach ($temporaryImages as $i => $temporaryImage) {
+            File::move(storage_path('app/img/product/tmp/' . $temporaryImage->folder . '/' . $temporaryImage->filename), $targetDirectory . '/' . $i . '.' . $temporaryImage->extension);
+            Storage::deleteDirectory('img/product/tmp/' . $temporaryImage->folder);
+            $temporaryImage->delete();
+        }
 
         return redirect()->route('admin.product.edit', $id)->withSuccess('Успешно редактирахте продукта.');
     }

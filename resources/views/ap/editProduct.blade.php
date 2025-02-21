@@ -273,16 +273,57 @@
                                     <div class="mb-3" id="stock-fields">
 
                                     </div>
-
                                 </div>
 
+
+                                <label class="form-label">Change Media</label>
+                                <div class="form-selectgroup-boxes row mb-3">
+                                    <div class="col-lg-6">
+                                        <label class="form-selectgroup-item">
+                                            <input type="radio" name="change-media" value="none" class="form-selectgroup-input" checked>
+                                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                                        <span class="me-3">
+                                                            <span class="form-selectgroup-check"></span>
+                                                        </span>
+                                                        <span class="form-selectgroup-label-content">
+                                                            <span class="form-selectgroup-title strong mb-1">None</span>
+                                                            <span class="d-block text-muted">I don't want to change media</span>
+                                                        </span>
+                                                    </span>
+                                        </label>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label class="form-selectgroup-item">
+                                            <input type="radio" name="change-media" value="change-media" class="form-selectgroup-input">
+                                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                                                        <span class="me-3">
+                                                            <span class="form-selectgroup-check"></span>
+                                                        </span>
+                                                        <span class="form-selectgroup-label-content">
+                                                            <span class="form-selectgroup-title strong mb-1">Change Media</span>
+                                                            <span class="d-block text-muted">I want to change medias</span>
+                                                        </span>
+                                                    </span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="card-body" id="changeMediaField" style="display: none;">
+                                    <div class="modal-body">
+                                        <h5 class="modal-title">Media</h5>
+                                        <div class="mb-8">
+
+                                            <input type="file" name="media" id="media" accept="image/jpeg, image/png" multiple />
+
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <button type="submit" class="btn btn-primary ms-auto" data-dismiss="modal">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 5l0 14" /><path d="M5 12l14 0" /></svg>
                                     Edit product
                                 </button>
-                            </form>
                             </form>
                         </div>
                     </div>
@@ -366,5 +407,41 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        const changeMediaRadios = document.querySelectorAll('input[name="change-media"]');
+        const changeMediaField = document.getElementById('changeMediaField');
+
+        changeMediaRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'change-media') {
+                    changeMediaField.style.display = 'block';
+                } else {
+                    changeMediaField.style.display = 'none';
+                }
+            });
+        });
+    </script>
+
+    <script>
+        FilePond.registerPlugin(FilePondPluginFileValidateType,FilePondPluginImagePreview);
+
+
+        const inputElement = document.querySelector('input[id="media"]');
+
+        const pond = FilePond.create(inputElement, {
+            allowMultiple: true,
+            allowFileValidate: true,
+            acceptedFileTypes: ['image/jpeg', 'image/png'],
+            server: {
+                process: '/admin/upload/temp',
+                revert: '/admin/delete/temp',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            }
+        });
+
     </script>
 @endsection
