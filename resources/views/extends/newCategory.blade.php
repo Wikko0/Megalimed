@@ -10,6 +10,10 @@
             </div>
             <div class="modal-body">
                 <div class="mb-3">
+                    <label class="form-label">Number</label>
+                    <input type="number" class="form-control" name="number" placeholder="Number of the location to be displayed">
+                </div>
+                <div class="mb-3">
                     <label class="form-label">Name</label>
                     <input type="text" class="form-control" name="name" placeholder="Your category name">
                 </div>

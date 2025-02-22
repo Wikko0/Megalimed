@@ -23,6 +23,7 @@ class CategoryController extends Controller
     public function doCategory(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
+            'number' => 'required|int|unique:categories,number',
             'name' => 'required|string|max:255',
             'menu' => 'required|string|max:255',
             'url' => ['required', 'string', 'max:10', 'regex:/^[a-zA-Z0-9_-]+$/'],
@@ -44,6 +45,7 @@ class CategoryController extends Controller
         $photo->save();
 
         Category::create([
+            'number' => $request->input('number'),
             'name' => $request->input('name'),
             'menu' => $request->input('menu'),
             'url' => $request->input('url'),
@@ -74,6 +76,7 @@ class CategoryController extends Controller
     public function editCategory(Request $request, $id): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
+            'number' => 'required|int|unique:categories,number',
             'name' => 'required|string|max:255',
             'menu' => 'required|string|max:255',
             'url' => ['required', 'string', 'max:10', 'regex:/^[a-zA-Z0-9_-]+$/'],
@@ -90,6 +93,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $data = $request->all();
 
+        $category->number = $data['number'];
         $category->name = $data['name'];
         $category->url = $data['url'];
         $category->description = $data['description'];

@@ -30,6 +30,10 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="mb-3">
+                                        <label class="form-label">Number</label>
+                                        <input type="number" class="form-control" name="number" placeholder="Number of the location to be displayed" value="{{ old('name', $category->number) }}">
+                                    </div>
+                                    <div class="mb-3">
                                         <label class="form-label">Name</label>
                                         <input type="text" class="form-control" name="name" placeholder="Enter menu category name" value="{{ old('name', $category->name) }}">
                                     </div>

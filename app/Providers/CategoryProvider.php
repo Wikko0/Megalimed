@@ -27,7 +27,7 @@ class CategoryProvider extends ServiceProvider
     public function boot()
     {
         if (Schema::hasTable('categories')) {
-            $category = Category::all();
+            $category = Category::orderBy('number', 'asc')->get();
             View::share('categoryProvider', $category);
         }
     }

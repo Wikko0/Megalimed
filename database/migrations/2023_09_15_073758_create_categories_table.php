@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('url');
             $table->string('description');
             $table->text('image');
+            $table->string('number')->nullable();
             $table->timestamps();
         });
     }

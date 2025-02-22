@@ -43,6 +43,7 @@
                         <thead>
                         <tr>
                             <th class="w-1">Id.</th>
+                            <th>Number</th>
                             <th>Name of category</th>
                             <th>Menu name of category</th>
                             <th>Url</th>
@@ -54,6 +55,7 @@
                         @foreach($categories as $category)
                             <tr>
                                 <td><span class="text-muted">{{ $loop->iteration + ($categories->perPage() * ($categories->currentPage() - 1)) }}</span></td>
+                                <td>#{{ $category->number }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ $category->menu }}</td>
                                 <td>{{ url('/shop') }}/{{ $category->url }}</td>
