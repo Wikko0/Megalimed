@@ -2359,6 +2359,26 @@ ol {
     background: #086590;
 }
 
+.product__details__widget ul li .color__checkbox label .checkmark.grey-bg {
+    background: #3B3541;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.magenta-bg {
+    background: #862268;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.darkpetrol-bg {
+    background: #112C4A;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.sand-bg {
+    background: #CCB498;
+}
+
+.product__details__widget ul li .color__checkbox label .checkmark.darkcaribbean-bg {
+    background: #05545B;
+}
+
 .product__details__widget ul li .color__checkbox label .checkmark:after {
 	position: absolute;
 	left: 3px;
