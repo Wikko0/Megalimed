@@ -76,7 +76,7 @@ class CategoryController extends Controller
     public function editCategory(Request $request, $id): RedirectResponse
     {
         $validator = Validator::make($request->all(), [
-            'number' => 'required|int|unique:categories,number',
+            'number' => 'required|int|unique:categories,number,' . $id,
             'name' => 'required|string|max:255',
             'menu' => 'required|string|max:255',
             'url' => ['required', 'string', 'max:10', 'regex:/^[a-zA-Z0-9_-]+$/'],

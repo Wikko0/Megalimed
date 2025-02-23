@@ -235,6 +235,31 @@
                                     <input type="checkbox" id="Caribbean Blue" class="color-checkbox">
                                     <span class="checkmark"></span>
                                 </label>
+                                <label for="Grey">
+                                    Grey
+                                    <input type="checkbox" id="Grey" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Magenta">
+                                    Magenta
+                                    <input type="checkbox" id="Magenta" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Dark Petrol">
+                                    Dark Petrol
+                                    <input type="checkbox" id="Dark Petrol" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Sand">
+                                    Sand
+                                    <input type="checkbox" id="Sand" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Dark Caribbean">
+                                    Dark Caribbean
+                                    <input type="checkbox" id="Dark Caribbean" class="color-checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                         </div>
                     </div>
