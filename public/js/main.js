@@ -200,8 +200,28 @@
     /*------------------
 		Magnific
     --------------------*/
-    $('.image-popup').magnificPopup({
-        type: 'image'
+    $(document).ready(function() {
+        $('.image-popup').magnificPopup({
+            type: 'image',
+            mainClass: 'mfp-with-zoom',
+            callbacks: {
+                open: function() {
+                    setTimeout(() => {
+                        const img = document.querySelector('.mfp-img');
+
+                        if (img) {
+                            const panzoomInstance = Panzoom(img, {
+                                maxScale: 5,
+                                minScale: 1,
+                                contain: 'outside'
+                            });
+
+                            img.parentElement.addEventListener('wheel', panzoomInstance.zoomWithWheel);
+                        }
+                    }, 100);
+                }
+            }
+        });
     });
 
 

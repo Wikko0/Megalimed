@@ -226,6 +226,7 @@
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/jquery.nicescroll.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+<script src="https://unpkg.com/@panzoom/panzoom@4.6.0/dist/panzoom.min.js"></script>
 @livewireScripts
 @yield('scripts')
 <script>

@@ -53,7 +53,9 @@
                         <div class="product__details__slider__content">
                             <div class="product__details__pic__slider owl-carousel">
                                 @foreach(ProductHelper::getAllProductImage($product->id) as $i => $value)
-                                <img data-hash="product-{{$i}}" class="product__big__img" src="{{asset($value)}}" alt="">
+                                    <a href="{{asset($value)}}" class="image-popup">
+                                        <img data-hash="product-{{$i}}" class="product__big__img" src="{{asset($value)}}" alt="">
+                                    </a>
                                   @endforeach
                             </div>
                         </div>

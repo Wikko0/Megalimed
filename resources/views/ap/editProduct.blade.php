@@ -230,6 +230,42 @@
                                                 <input type="checkbox" name="color[]" value="Fuchsia" class="form-selectgroup-input" data-color="Fuchsia">
                                                 <span class="form-selectgroup-label">Fuchsia</span>
                                             </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Pastel Purple" class="form-selectgroup-input" data-color="Pastel Purple">
+                                                <span class="form-selectgroup-label">Pastel Purple</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Roquefort" class="form-selectgroup-input" data-color="Roquefort">
+                                                <span class="form-selectgroup-label">Roquefort</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Light Benetton" class="form-selectgroup-input" data-color="Light Benetton">
+                                                <span class="form-selectgroup-label">Light Benetton</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Caribbean Blue" class="form-selectgroup-input" data-color="Caribbean Blue">
+                                                <span class="form-selectgroup-label">Caribbean Blue</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Grey" class="form-selectgroup-input" data-color="Grey">
+                                                <span class="form-selectgroup-label">Grey</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Magenta" class="form-selectgroup-input" data-color="Magenta">
+                                                <span class="form-selectgroup-label">Magenta</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Dark Petrol" class="form-selectgroup-input" data-color="Dark Petrol">
+                                                <span class="form-selectgroup-label">Dark Petrol</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Sand" class="form-selectgroup-input" data-color="Sand">
+                                                <span class="form-selectgroup-label">Sand</span>
+                                            </label>
+                                            <label class="form-selectgroup-item">
+                                                <input type="checkbox" name="color[]" value="Dark Caribbean" class="form-selectgroup-input" data-color="Dark Caribbean">
+                                                <span class="form-selectgroup-label">Dark Caribbean</span>
+                                            </label>
                                         </div>
                                     </div>
                                     <div class="mb-3">
