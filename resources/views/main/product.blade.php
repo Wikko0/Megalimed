@@ -44,9 +44,9 @@
                     <div class="product__details__pic">
                         <div class="product__details__pic__left product__thumb nice-scroll">
                             @foreach(ProductHelper::getAllProductImage($product->id) as $i => $value)
-                            <a class="pt" href="#product-{{$i}}">
-                                <img src="{{asset($value)}}" alt="">
-                            </a>
+                                <a class="pt" href="javascript:void(0);" data-index="{{$i}}">
+                                    <img src="{{asset($value)}}" alt="">
+                                </a>
                             @endforeach
 
                         </div>
@@ -54,9 +54,9 @@
                             <div class="product__details__pic__slider owl-carousel">
                                 @foreach(ProductHelper::getAllProductImage($product->id) as $i => $value)
                                     <a href="{{asset($value)}}" class="image-popup">
-                                        <img data-hash="product-{{$i}}" class="product__big__img" src="{{asset($value)}}" alt="">
+                                        <img class="product__big__img" src="{{asset($value)}}" alt="">
                                     </a>
-                                  @endforeach
+                                @endforeach
                             </div>
                         </div>
                     </div>

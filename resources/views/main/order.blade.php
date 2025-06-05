@@ -45,20 +45,20 @@
                         <h5>Адрес за фактуриране</h5>
                         <div class="row">
                             @if(Auth::user())
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="checkout__form__input">
-                                    <p>Име <span>*</span></p>
-                                    <div id="first_name_error" class="form-text text-danger"></div>
-                                    <input type="text" name="first_name" value="{{ explode(' ', auth()->user()->name)[0]}}" readonly>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="checkout__form__input">
+                                        <p>Име <span>*</span></p>
+                                        <div id="first_name_error" class="form-text text-danger"></div>
+                                        <input type="text" name="first_name" value="{{ explode(' ', auth()->user()->name)[0]}}" readonly>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="checkout__form__input">
-                                    <p>Фамилия <span>*</span></p>
-                                    <div id="last_name_error" class="form-text text-danger"></div>
-                                    <input type="text" name="last_name" value="{{ explode(' ', auth()->user()->name)[1]}}" readonly>
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="checkout__form__input">
+                                        <p>Фамилия <span>*</span></p>
+                                        <div id="last_name_error" class="form-text text-danger"></div>
+                                        <input type="text" name="last_name" value="{{ explode(' ', auth()->user()->name)[1]}}" readonly>
+                                    </div>
                                 </div>
-                            </div>
                             @else
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="checkout__form__input">
@@ -81,14 +81,14 @@
                                     <div id="country_error" class="form-text text-danger"></div>
                                     <input type="text" name="country">
                                 </div>
-                                    <div class="checkout__form__input">
-                                        <p>Изберете вид доставка <span>*</span></p>
-                                        <div id="delivery_type_error" class="form-text text-danger"></div>
-                                        <select id="delivery_type" name="delivery_type" onchange="toggleDeliveryForm()">
-                                            <option value="to_address">До адрес</option>
-                                            <option value="to_office">До офис</option>
-                                        </select>
-                                    </div>
+                                <div class="checkout__form__input">
+                                    <p>Изберете вид доставка <span>*</span></p>
+                                    <div id="delivery_type_error" class="form-text text-danger"></div>
+                                    <select id="delivery_type" name="delivery_type" onchange="toggleDeliveryForm()">
+                                        <option value="to_address">До адрес</option>
+                                        <option value="to_office">До офис</option>
+                                    </select>
+                                </div>
                                 <div class="checkout__form__input" id="address_form">
                                     <p>Адрес<span>*</span></p>
                                     <input id="address" type="text" name="address">
@@ -124,43 +124,43 @@
                                 </div>
 
                             </div>
-                                @if(Auth::user())
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="checkout__form__input">
-                                            <p>Имейл <span>*</span></p>
-                                            <div id="email_error" class="form-text text-danger"></div>
-                                            <input type="text" name="email" value="{{Auth::user()->email}}" readonly>
-                                            <input type="hidden" name="password" value="no">
-                                        </div>
+                            @if(Auth::user())
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="checkout__form__input">
+                                        <p>Имейл <span>*</span></p>
+                                        <div id="email_error" class="form-text text-danger"></div>
+                                        <input type="text" name="email" value="{{Auth::user()->email}}" readonly>
+                                        <input type="hidden" name="password" value="no">
                                     </div>
-                                    <div class="col-lg-12">
-                                @else
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="checkout__form__input">
-                                    <p>Имейл <span>*</span></p>
-                                    <div id="email_error" class="form-text text-danger"></div>
-                                    <input type="text" name="email">
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="checkout__form__checkbox">
-                                    <p>АВТОМАТИЧНО ще ви бъде направена регистрация в нашия сайт с посочения емайл и парола.
-                                        </p>
+                                <div class="col-lg-12">
+                                    @else
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <div class="checkout__form__input">
+                                                <p>Имейл <span>*</span></p>
+                                                <div id="email_error" class="form-text text-danger"></div>
+                                                <input type="text" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="checkout__form__checkbox">
+                                                <p>АВТОМАТИЧНО ще ви бъде направена регистрация в нашия сайт с посочения емайл и парола.
+                                                </p>
+                                            </div>
+                                            <div class="checkout__form__input">
+                                                <p>Парола <span>*</span></p>
+                                                <div id="passowrd_error" class="form-text text-danger"></div>
+                                                <input type="password" name="password">
+                                            </div>
+                                            @endif
+                                            <div class="checkout__form__input">
+                                                <p>Допълнителна информация</p>
+                                                <input type="text" name="note"
+                                                       placeholder="Може да напишете допълнителна информация за поръчката">
+                                            </div>
+                                        </div>
                                 </div>
-                                <div class="checkout__form__input">
-                                    <p>Парола <span>*</span></p>
-                                    <div id="passowrd_error" class="form-text text-danger"></div>
-                                    <input type="password" name="password">
-                                </div>
-                                @endif
-                                <div class="checkout__form__input">
-                                    <p>Допълнителна информация</p>
-                                    <input type="text" name="note"
-                                           placeholder="Може да напишете допълнителна информация за поръчката">
-                                </div>
-                            </div>
                         </div>
-                    </div>
                         <div class="col-lg-4">
                             <div class="checkout__order">
                                 <h5>Твоята поръчка</h5>
@@ -180,7 +180,7 @@
                                         <li>Междинна сума <span>{{ \Cart::subTotal() }} лев.</span></li>
                                         @foreach(Cart::content()->take(1) as $cartItem)
                                             @if(isset($cartItem->options['discounted']))
-                                            <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
+                                                <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
                                             @endif
                                         @endforeach
                                         <li>Общо <span>{{ $cartTotal }} лев.</span></li>

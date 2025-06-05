@@ -4227,3 +4227,30 @@ h3 {
 #office_frame {
     display: none;
 }
+.chatbot-window {
+    width: auto !important;
+    opacity: 0;
+    transform: scale(0.95) translateY(50%);
+    visibility: hidden;
+    pointer-events: none;
+    z-index: -1;
+    transition: all 0.3s ease;
+    position: fixed;
+    bottom: 50px;
+    right: 5px;
+}
+.chatbot-window iframe {
+    pointer-events: none;
+}
+
+.chatbot-window.open {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 9999;
+}
+
+.chatbot-window.open iframe {
+    pointer-events: auto;
+}

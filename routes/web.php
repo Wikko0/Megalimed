@@ -29,8 +29,9 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+Route::post('/update-price', [OrderController::class, 'updatePrice'])->name('updatePrice');
 Route::get('/get-products-by-category', [HomeController::class, 'getProductsByCategory'])->name('get.product');
-Route::post('/address', [OrderController::class, 'getAddress'])->name('address');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::post('/login', [LoginController::class, 'loginUser'])->name('login');

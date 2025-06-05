@@ -17,17 +17,37 @@
         $(".loader").fadeOut();
         $("#preloder").delay(200).fadeOut("slow");
 
-        /*------------------
-            Product filter
-        --------------------*/
-        $('.filter__controls li').on('click', function () {
-            $('.filter__controls li').removeClass('active');
-            $(this).addClass('active');
+        $(window).on('load', function () {
+            var mixer;
+
+            if ($('.property__gallery').length > 0) {
+                mixer = mixitup('.property__gallery', {
+                    selectors: {
+                        target: '.mix'
+                    },
+                    animation: {
+                        duration: 300,
+                        queue: true // безопасно, ако потребител щрака бързо
+                    },
+                    callbacks: {
+                        onMixEnd: function () {
+                            document.querySelector('.property__gallery').style.height = 'auto';
+                        }
+                    }
+                });
+
+                // Филтриране при клик
+                $('.filter__controls li').on('click', function () {
+                    $('.filter__controls li').removeClass('active');
+                    $(this).addClass('active');
+
+                    var filterValue = $(this).attr('data-filter');
+
+                    mixer.filter(filterValue);
+                });
+            }
         });
-        if ($('.property__gallery').length > 0) {
-            var containerEl = document.querySelector('.property__gallery');
-            var mixer = mixitup(containerEl);
-        }
+
     });
 
     /*------------------
@@ -169,21 +189,28 @@
     /*--------------------------
         Product Details Slider
     ----------------------------*/
-    $(".product__details__pic__slider").owlCarousel({
-        loop: false,
-        margin: 0,
-        items: 1,
-        dots: false,
-        nav: true,
-        navText: ["<i class='arrow_carrot-left'></i>","<i class='arrow_carrot-right'></i>"],
-        smartSpeed: 1200,
-        autoHeight: false,
-        autoplay: false,
-        mouseDrag: false,
-        startPosition: 'URLHash'
-    }).on('changed.owl.carousel', function(event) {
-        var indexNum = event.item.index + 1;
-        product_thumbs(indexNum);
+    $(document).ready(function() {
+        var owl = $(".product__details__pic__slider").owlCarousel({
+            loop: false,
+            margin: 0,
+            items: 1,
+            dots: false,
+            nav: true,
+            navText: ["<i class='arrow_carrot-left'></i>", "<i class='arrow_carrot-right'></i>"],
+            smartSpeed: 1200,
+            autoHeight: false,
+            autoplay: false,
+            mouseDrag: false
+        });
+
+
+        $(".product__thumb a").on("click", function() {
+            var index = $(this).data("index");
+            owl.trigger("to.owl.carousel", [index, 300]);
+
+
+            history.replaceState(null, null, window.location.pathname);
+        });
     });
 
     function product_thumbs (num) {
