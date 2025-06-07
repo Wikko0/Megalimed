@@ -10,6 +10,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -20,57 +21,68 @@ class OrderController extends Controller
     private function validateFormData($formData): array
     {
         return Validator::make($formData, [
-            'first_name' => 'required|string',
-            'last_name' => 'required|string',
-            'password' => 'required',
-            'country' => 'required|string',
-            'address' => 'required|string',
-            'city' => 'required|string',
-            'post_code' => 'required|string',
+            'name' => 'required|string',
+            'email' => 'required|string|email',
             'number' => 'required|string',
-            'email' => 'required|string|email|max:255|unique:users,email,' . auth()->id(),
-            'note' => 'nullable|string',
+            'post_code' => 'nullable|string',
+            'country' => 'required|string',
+            'city' => 'nullable|string',
+            'address' => 'nullable|string',
+            'office_code' => 'nullable|string',
+            'shipping_price_input' => 'nullable|string',
+            'shipping_currency_input' => 'nullable|string',
         ], [
-            'first_name.required' => 'Полето за име е задължително.',
-            'first_name.string' => 'Името трябва да бъде текст.',
-            'last_name.required' => 'Полето за фамилия е задължително.',
-            'last_name.string' => 'Фамилията трябва да бъде текст.',
-            'password.required' => 'Полето за парола е задължително.',
-            'country.required' => 'Полето за държава е задължително.',
-            'country.string' => 'Държавата трябва да бъде текст.',
-            'address.required' => 'Полето за адрес е задължително.',
-            'address.string' => 'Еконт трябва да бъде текст.',
-            'city.required' => 'Полето за град е задължително.',
-            'city.string' => 'Градът трябва да бъде текст.',
-            'post_code.required' => 'Полето за пощенски код е задължително.',
-            'post_code.string' => 'Пощенският код трябва да бъде текст.',
-            'number.required' => 'Полето за телефонен номер е задължително.',
-            'number.string' => 'Телефонният номер трябва да бъде текст.',
+            'name.required' => 'Полето за име е задължително.',
+            'name.string' => 'Полето за име трябва да бъде текст.',
+
             'email.required' => 'Полето за имейл е задължително.',
-            'email.string' => 'Имейлът трябва да бъде текст.',
-            'email.email' => 'Невалиден имейл адрес.',
-            'email.max' => 'Имейлът не може да бъде по-дълъг от 255 символа.',
-            'email.unique' => 'Този имейл вече се използва от друг потребител.',
-            'note.string' => 'Забележката трябва да бъде текст.',
+            'email.string' => 'Полето за имейл трябва да бъде текст.',
+            'email.email' => 'Моля, въведи валиден имейл адрес.',
+
+            'number.required' => 'Полето за телефонен номер е задължително.',
+            'number.string' => 'Полето за телефонен номер трябва да бъде текст.',
+
+            'post_code.string' => 'Полето за пощенски код трябва да бъде текст.',
+
+            'country.required' => 'Полето за държава е задължително.',
+            'country.string' => 'Полето за държава трябва да бъде текст.',
+
         ])->validate();
+
     }
 
     public function index(): View
     {
         $subtotalString = Cart::subtotal();
-        $subtotalString = str_replace('.00', '', $subtotalString);
-        $subtotalString = str_replace(',', '', $subtotalString);
-        $cartTotal = floatval($subtotalString) + 6.99;
-        return view('main.order', ['cartTotal' => $cartTotal]);
+        $subtotalString = str_replace(['.00', ','], '', $subtotalString);
+
+        $shipmentCalcUrl = Config::get('econt.shipment_calc_url');
+        $shopId = Config::get('econt.shop_id');
+        $currency = Config::get('econt.shop_currency');
+
+
+        $totalWeight = Cart::content()->sum(function ($item) {
+            return $item->qty * 0.5;
+        });
+        $params = [
+            'id_shop' => $shopId,
+            'order_total' => $subtotalString,
+            'order_currency' => $currency,
+            'order_weight' => $totalWeight,
+            'confirm_txt' => 'Потвърди',
+            'ignore_history' => 1,
+        ];
+
+        $iframeUrl = $shipmentCalcUrl . '?' . http_build_query($params, null, '&');;
+
+        return view('main.order', [
+            'iframeUrl' => $iframeUrl,
+        ]);
     }
 
     public function makeCheckout(Request $request)
     {
-
-        $data = $request->input('data');
-
-        parse_str($data, $formData);
-
+        $formData = $request->all();
         $this->validateFormData($formData);
 
         $orderItems = collect();
@@ -84,64 +96,37 @@ class OrderController extends Controller
             ]);
         }
 
-
         $order = new Order([
-            'first_name' => $formData['first_name'],
-            'last_name' => $formData['last_name'],
-            'country' => $formData['country'],
-            'address' => $formData['address'],
-
-            'city' => $formData['city'],
-            'post_code' => $formData['post_code'],
-            'number' => $formData['number'],
+            'first_name' => $formData['name'],
             'email' => $formData['email'],
-            'note' => $formData['note'],
-
+            'number' => $formData['number'],
+            'post_code' => $formData['post_code'] ?? null,
+            'country' => $formData['country'],
+            'city' => $formData['city'] ?? null,
+            'address' => trim(($formData['address'] ?? '') . ' ' . ($formData['office_code'] ?? '')),
             'products' => $orderItems->toJson(),
-
             'status' => 'Awaiting approval',
         ]);
 
-        if ($formData['password'] !== 'no'){
-            $fullName = $formData['first_name'] . ' ' . $formData['last_name'];
-
-            $user = User::create([
-                'name' => $fullName,
-                'email' => $formData['email'],
-                'password' => Hash::make($formData['password']),
-            ]);
-
-            $user->assignRole('user');
-
-            Auth::login($user);
-
-            $order->user_id = $user->id;
-        }
-
-        if (Auth::check()) {
-            $order->user_id = Auth::user()->id;
-        }
-
         $order->save();
 
+        if (!empty($formData['email'])) {
+            Mail::to($formData['email'])->send(new ConfirmMail($order));
+        }
+
         Cart::destroy();
-        return response()->json(['url'=>url('/checkout/success')]);
+
+        return redirect('/checkout/success?order_id=' . $order->id);
     }
 
-    public function successCheckout(): View|RedirectResponse
+    public function successCheckout(Request $request): View|RedirectResponse
     {
-        if (Auth::check()) {
-            $order = Auth::user()->orders()->latest()->first();
+        $orderId = $request->query('order_id');
 
-
-            if (!$order) {
-                return redirect()->route('home')->withErrors(['message' => 'Няма налична поръчка.']);
-            }
-            Mail::to(Auth::user()->email)->send(new ConfirmMail($order));
-
-            return view('main.success', compact('order'));
-        } else {
-            return redirect()->route('home')->withErrors( 'Моля, влезте в профила си, за да видите поръчките си.');
+        if (!$orderId || !$order = Order::find($orderId)) {
+            return redirect()->route('home')->withErrors(['message' => 'Няма налична поръчка.']);
         }
+
+        return view('main.success', compact('order'));
     }
 }

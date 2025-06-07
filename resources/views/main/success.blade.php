@@ -45,14 +45,12 @@
 
                     <ul class="list-unstyled text-center">
                         <li><strong>Име:</strong> {{ $order->first_name }}</li>
-                        <li><strong>Фамилия:</strong> {{ $order->last_name }}</li>
-                        <li><strong>Държава:</strong> {{ $order->country }}</li>
-                        <li><strong>Адрес:</strong> {{ $order->address }}</li>
+                        <li><strong>Код на държава:</strong> {{ $order->country }}</li>
+                        <li><strong>Адрес или офис код:</strong> {{ $order->address }}</li>
                         <li><strong>Град:</strong> {{ $order->city }}</li>
                         <li><strong>Пощенски код:</strong> {{ $order->post_code }}</li>
                         <li><strong>Телефонен номер:</strong> {{ $order->number }}</li>
                         <li><strong>Имейл:</strong> {{ $order->email }}</li>
-                        <li><strong>Допълнителна информация:</strong> {{ $order->note ?? 'Няма' }}</li>
                     </ul>
 
                     <p class="card-text text-center">Благодарим ви, че пазарувахте от нас! 🎉</p>

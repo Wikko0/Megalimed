@@ -32,10 +32,9 @@
                         <thead>
                         <tr>
                             <th class="w-1">Id.</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>Name</th>
                             <th>Country</th>
-                            <th>Address</th>
+                            <th>Address or office code</th>
                             <th>City</th>
                             <th>Post Code</th>
                             <th>Number</th>
@@ -50,7 +49,6 @@
                             <tr>
                                 <td><span class="text-muted">{{ $loop->iteration + ($orders->perPage() * ($orders->currentPage() - 1)) }}</span></td>
                                 <td>{{ $order->first_name }}</td>
-                                <td>{{ $order->last_name }}</td>
                                 <td>{{ $order->country }}</td>
                                 <td>{{ $order->address }}</td>
                                 <td>{{ $order->city }}</td>

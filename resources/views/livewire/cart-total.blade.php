@@ -18,7 +18,6 @@
                         <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
                     @endif
                 @endforeach
-                <li>Общо <span>{{$cart_total}}</span></li>
             </ul>
             @if(Cart::content()->count() > 0)
                 <a href="{{route('checkout')}}" class="primary-btn">Продължи към плащане</a>
