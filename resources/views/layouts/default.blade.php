@@ -1,42 +1,94 @@
 <!DOCTYPE html>
-<html lang="zxx">
-
+<html lang="bg">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Онлайн магазин за медицински дрехи - предлагаме голямо разнообразие от професионални и стилни дрехи за медицински персонал.">
-    <meta name="keywords" content="megalimed, мегалимед, медицински дрехи, лекарски халати, медицински униформи, медицински облекла, медицинско облекло">
-    <meta property="og:title" content="Мегалимед">
-    <meta property="og:url" content="http://megalimed.com"/>
-    <meta property="og:description"
-          content="Онлайн магазин за медицински дрехи - предлагаме голямо разнообразие от професионални и стилни дрехи за медицински персонал."/>
-    <meta property="og:site_name" content="Мегалимед"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf_token" content="{{ csrf_token() }}" />
-    <title>Megalimed | Shop</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta name="author" content="Megalimed">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
-    <!-- Google Font -->
+    <title>Медицински екипи и униформи | Онлайн магазин Megalimed</title>
+    <meta name="description" content="Купи онлайн медицински екипи, униформи и медицински дрехи за лекари, медицински сестри и персонал. Високо качество, модерен дизайн и бърза доставка.">
+    <meta name="keywords" content="медицински екипи, медицински дрехи, медицински униформи, лекарски халати, дамски медицински дрехи, мъжки медицински екипи, облекло за медицински персонал, Megalimed, Мегалимед">
+
+    <!-- Canonical и Sitemap -->
+    <link rel="canonical" href="https://megalimed.com/">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/public/sitemap.xml">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="Медицински екипи и дрехи от Megalimed">
+    <meta property="og:description" content="Онлайн магазин за модерни и качествени медицински екипи, дрехи и униформи. Дамски и мъжки модели за медицински персонал.">
+    <meta property="og:url" content="https://megalimed.com/">
+    <meta property="og:site_name" content="Megalimed">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://megalimed.com/img/logo.svg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Медицински екипи и дрехи | Megalimed">
+    <meta name="twitter:description" content="Професионални медицински дрехи, екипи и униформи с високо качество и бърза доставка.">
+    <meta name="twitter:image" content="https://megalimed.com/img/logo.svg">
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Comforter+Brush&display=swap" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('favicon.png')}}" />
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="{{asset('css/login.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/elegant-icons.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/jquery-ui.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/magnific-popup.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}" type="text/css">
+    <!-- Preload CSS/JS/IMAGES -->
+    <link rel="preload" href="{{ asset('css/style.css') }}" as="style">
+    <link rel="preload" href="{{ asset('js/main.js') }}" as="script">
+    <link rel="preload" as="image" href="{{ asset($categoryProvider[0]->image) }}">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/elegant-icons.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
     @livewireStyles
 
-   </head>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Store",
+          "name": "Megalimed",
+          "url": "https://megalimed.com/",
+          "logo": "https://megalimed.com/img/logo.svg",
+          "image": "https://megalimed.com/img/logo.svg",
+          "sameAs": [
+            "{{ $settingsProvider->facebook ?? 'https://www.facebook.com/' }}",
+        "{{ $settingsProvider->instagram ?? 'https://www.instagram.com/' }}"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BG"
+      }
+    }
+    </script>
+    @yield('jsonld')
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQ65YJ45N6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-BQ65YJ45N6');
+    </script>
+</head>
+
 
 <body>
 <!-- Page Preloder -->
@@ -64,7 +116,7 @@
 
     </ul>
     <div class="offcanvas__logo">
-        <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
+        <a href="{{route('home')}}"><img src="{{asset('img/logo.svg')}}" alt="Megalimed - Онлайн магазин за медицински дрехи" width="204" height="38"></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__auth">
@@ -86,7 +138,7 @@
             <div class="col-xl-5 col-lg-7">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="/">Начало</a></li>
+                        <li class="active"><a href="{{route('home')}}">Начало</a></li>
                         @foreach($categoryProvider as $values)
                         <li><a href="/shop/{{$values->url}}">{{$values->menu}}</a></li>
                         @endforeach
@@ -98,7 +150,7 @@
             </div>
             <div class="col-xl-4 col-lg-2">
                 <div class="header__logo">
-                    <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                    <a href="{{route('home')}}"><img src="{{asset('img/logo.svg')}}" alt="Megalimed - Начало" width="204" height="38"></a>
                 </div>
             </div>
             <div class="col-lg-3">
@@ -143,7 +195,7 @@
             <div class="col-lg-4 col-md-6 col-sm-7">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="/"><img src="{{asset('img/logo.png')}}" alt=""></a>
+                        <a href="{{route('home')}}"><img src="{{asset('img/logo.svg')}}" alt="Megalimed - Медицински екипи и униформи" width="204" height="38"></a>
                     </div>
                     <p>Вашият онлайн магазин за медицински дрехи.</p>
                 </div>
@@ -152,10 +204,10 @@
                 <div class="footer__widget">
                     <h6>Бързи линкове</h6>
                     <ul>
-                        <li><a href="{{route('about')}}">За нас</a></li>
-                        <li><a href="{{route('contact')}}">Контакти</a></li>
-                        <li><a href="{{$settingsProvider->instagram ?? 'https://www.instagram.com/'}}">Instagram</a></li>
-                        <li><a href="{{$settingsProvider->facebook ?? 'https://www.facebook.com/'}}">Facebook</a></li>
+                        <li><a href="{{route('about')}}" aria-label="За нас">За нас</a></li>
+                        <li><a href="{{route('contact')}}" aria-label="Контакти с нас">Контакти</a></li>
+                        <li><a href="{{$settingsProvider->instagram ?? 'https://www.instagram.com/'}}" aria-label="Посети нашата Инстаграм страница">Instagram</a></li>
+                        <li><a href="{{$settingsProvider->facebook ?? 'https://www.facebook.com/'}}" aria-label="Посети нашата Facebook страница">Facebook</a></li>
                     </ul>
                 </div>
             </div>
@@ -163,8 +215,8 @@
                 <div class="footer__widget">
                     <h6>Акаунт</h6>
                     <ul>
-                        <li><a href="{{route('account')}}">Моят акаунт</a></li>
-                        <li><a href="{{route('favorites')}}">Любими</a></li>
+                        <li><a href="{{route('account')}}" aria-label="Посети вашият акаунт">Моят акаунт</a></li>
+                        <li><a href="{{route('favorites')}}" aria-label="Любими">Любими</a></li>
                     </ul>
                 </div>
             </div>
@@ -176,8 +228,8 @@
                         <button type="submit" class="site-btn">Абонирай се</button>
                     </form>
                     <div class="footer__social">
-                        <a href="{{$settingsProvider->facebook}}"><i class="fa fa-facebook"></i></a>
-                        <a href="{{$settingsProvider->instagram}}"><i class="fa fa-instagram"></i></a>
+                        <a href="{{$settingsProvider->facebook}}" aria-label="Посети нашата Facebook страница"><i class="fa fa-facebook"></i></a>
+                        <a href="{{$settingsProvider->instagram}}" aria-label="Посети нашата Инстаграм страница"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -232,29 +284,43 @@
 <script>
     document.addEventListener('livewire:load', function () {
         Livewire.on('cart_updated', () => {
-            // Показване на прозореца
+
             document.getElementById("cartPopup").style.display = "block";
         });
 
-        // Затваряне на прозореца
         document.getElementById("closePopup").addEventListener("click", function() {
             document.getElementById("cartPopup").style.display = "none";
         });
 
-        // Продължаване на пазаруването
         document.getElementById("continueShopping").addEventListener("click", function() {
             document.getElementById("cartPopup").style.display = "none";
         });
 
-        // Отиване към кошницата
+
         document.getElementById("viewCart").addEventListener("click", function() {
-            // Пренасочване към страницата на кошницата
-            window.location.href = "/cart"; // Заменете с правилния URL
+
+            window.location.href = "/cart";
         });
     });
 </script>
 <script src="https://integrateai.website/static/js/integration/embed-chatbot.js?bot_id=1d229d13-cbce-4eb4-a284-b9fd7d4c05b2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGF0Ym90X2lkIjoiMWQyMjlkMTMtY2JjZS00ZWI0LWEyODQtYjlmZDdkNGMwNWIyIiwidXNlcl9pZCI6IjEiLCJkb21haW4iOiJtZWdhbGltZWQuY29tIiwiaWF0IjoxNzQzNjg5NDc1Ljg5Mzk2OSwiZXhwIjoxOTIzNjg5NDc1Ljg5Mzk2OSwic3ViIjoiYWRtaW4ifQ.oXszLg-VjlzjCZm7WwqrbZNRhIVBUzT8cN_FxmGCGW0&style=true&btn-bg=%2300ffe3&btn-hov=%2301beab"></script>
+<script>
 
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new MutationObserver(() => {
+            const iframe = document.querySelector("iframe.chatbot-iframe");
+            if (iframe && !iframe.title) {
+                iframe.title = "Чатбот за клиентска поддръжка на Megalimed";
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+</script>
 </body>
 
 </html>

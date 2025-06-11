@@ -10,19 +10,19 @@
                                 @foreach($products as $value)
                                     <div class="col-lg-4 col-md-6">
                                         <div class="product__item" data-size="{{ json_encode($value->size) }}" data-color="{{ json_encode($value->color) }}">
-                                            <div class="product__item__pic set-bg product-image" data-setbg="{{ProductHelper::getFirstProductImage($value->id)}}" data-product-url="/product/{{$value->id}}" data-product-image="{{ProductHelper::getSecondProductImage($value->id)}}">
+                                            <div class="product__item__pic set-bg product-image" data-setbg="{{ProductHelper::getFirstProductImage($value->id)}}" data-product-url="/product/{{$value->slug}}" data-product-image="{{ProductHelper::getSecondProductImage($value->id)}}">
                                             {!! ProductHelper::getProductLabel($value->id) !!}
                                                 <ul class="product__hover">
                                                     <li><a href="{{ProductHelper::getFirstProductImage($value->id)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
                                                     <li>
-                                                        <a href="/product/{{$value->id}}">
+                                                        <a href="/product/{{$value->slug}}">
                                                             <span class="icon_bag_alt"></span>
                                                         </a>
                                                     </li>
                                                 </ul>
                                             </div>
                                             <div class="product__item__text">
-                                                <h6><a href="/product/{{$value->id}}">{{$value->name}}</a></h6>
+                                                <h6><a href="/product/{{$value->slug}}">{{$value->name}}</a></h6>
                                                 <div class="rating">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>
@@ -56,11 +56,11 @@
                     </div>
                     <div class="tab-pane" id="favorites">
                         <h2>Любими</h2>
-                        <!-- Включете списък с любимите продукти на потребителя -->
+
                     </div>
                     <div class="tab-pane" id="orders">
                         <h2>Твоите поръчки</h2>
-                        <!-- Включете списък с поръчките на потребителя и тяхното състояние -->
+
                     </div>
                 </div>
             </div>

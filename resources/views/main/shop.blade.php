@@ -1,5 +1,6 @@
 @extends('layouts.default')
 @section('content')
+    <h1 class="visually-hidden">Медицински облекла и обувки за лекари и медицински персонал</h1>
     <!-- Success/ Errors -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible">
@@ -25,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="/"><i class="fa fa-home"></i> Начало</a>
+                        <a href="{{route('home')}}"><i class="fa fa-home"></i> Начало</a>
                         <span>Магазин</span>
                     </div>
                 </div>
@@ -269,10 +270,10 @@
                         @foreach($products as $value)
                         <div class="col-lg-4 col-md-6">
                             <div class="product__item" data-size="{{ json_encode($value->size) }}" data-color="{{ json_encode($value->color) }}">
-                                <div class="product__item__pic set-bg product-image" data-setbg="{{ProductHelper::getFirstProductImage($value->id)}}" data-product-url="/product/{{$value->id}}" data-product-image="{{ProductHelper::getSecondProductImage($value->id)}}">
+                                <div class="product__item__pic set-bg product-image" data-setbg="{{ProductHelper::getFirstProductImage($value->id)}}" data-product-url="/product/{{$value->slug}}" data-product-image="{{ProductHelper::getSecondProductImage($value->id)}}">
                                 {!! ProductHelper::getProductLabel($value->id) !!}
                                     <ul class="product__hover">
-                                        <li><a href="{{ProductHelper::getFirstProductImage($value->id)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                        <li><a href="{{ProductHelper::getFirstProductImage($value->id)}}" class="image-popup" aria-label="Увеличи изображение на продукт {{$value->name}}"><span class="arrow_expand"></span></a></li>
                                         @if(Auth::user())
                                             <li><a href="{{route('make.favorites', [$value->id])}}"><span class="icon_heart_alt"></span></a></li>
 
@@ -280,14 +281,14 @@
                                             <li><a href="#"><span class="icon_heart_alt account-switch"></span></a></li>
                                         @endif
                                         <li>
-                                            <a href="/product/{{$value->id}}">
+                                            <a href="/product/{{$value->slug}}">
                                                 <span class="icon_bag_alt"></span>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">
-                                    <h6><a href="/product/{{$value->id}}">{{$value->name}}</a></h6>
+                                    <h6><a href="/product/{{$value->slug}}">{{$value->name}}</a></h6>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>

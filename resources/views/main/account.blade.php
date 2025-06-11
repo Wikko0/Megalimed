@@ -5,7 +5,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="profile">
                         <h2>Профил и сигурност</h2>
-                        <!-- Включете форма за редактиране на информацията за профила, например име, фамилия, имейл и др. -->
+
                         <form action="{{ route('profile.update') }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -30,11 +30,11 @@
                     </div>
                     <div class="tab-pane" id="favorites">
                         <h2>Любими</h2>
-                        <!-- Включете списък с любимите продукти на потребителя -->
+
                     </div>
                     <div class="tab-pane" id="orders">
                         <h2>Твоите поръчки</h2>
-                        <!-- Включете списък с поръчките на потребителя и тяхното състояние -->
+                        
                     </div>
                 </div>
             </div>

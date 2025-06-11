@@ -41,7 +41,11 @@ class CategoryController extends Controller
         $file = $request->file("image");
         $photoPath = $file->storeAs('/img/categories', 'categories-'.$lastResult.'.jpg',['disk' => 'public_uploads']);
 
-        $photo = Image::make(public_path("{$photoPath}"));
+        $photo = Image::make(public_path("{$photoPath}"))
+            ->resize(null, 700, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
         $photo->save();
 
         Category::create([
@@ -107,7 +111,11 @@ class CategoryController extends Controller
             $file = $request->file("image");
             $photoPath = $file->storeAs('/img/categories', 'categories-'.$id.'.jpg',['disk' => 'public_uploads']);
 
-            $photo = Image::make(public_path("{$photoPath}"));
+            $photo = Image::make(public_path("{$photoPath}"))
+                ->resize(null, 700, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
             $photo->save();
 
             $category->image = $photoPath;

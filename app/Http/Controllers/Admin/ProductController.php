@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -23,7 +24,23 @@ class ProductController extends Controller
         return view('ap.product', compact('products'));
     }
 
+    protected function createUniqueSlug($name, $excludeId = null)
+    {
+        $slug = Str::slug($name);
+        $originalSlug = $slug;
+        $count = 1;
 
+        while (
+        Product::where('slug', $slug)
+            ->when($excludeId, fn($query) => $query->where('id', '!=', $excludeId))
+            ->exists()
+        ) {
+            $slug = $originalSlug . '-' . $count;
+            $count++;
+        }
+
+        return $slug;
+    }
 
     public function doProduct(Request $request)
     {
@@ -55,6 +72,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $data['name'];
+        $product->slug = $this->createUniqueSlug($data['name']);
         $product->barcode = $data['barcode'];
         $product->description = $data['description'];
         $product->specification = $data['specification'];
@@ -212,6 +230,7 @@ class ProductController extends Controller
         $data = $request->all();
 
         $product->name = $data['name'];
+        $product->slug = $this->createUniqueSlug($data['name'], $product->id);
         $product->barcode = $data['barcode'];
         $product->description = $data['description'];
         $product->specification = $data['specification'];

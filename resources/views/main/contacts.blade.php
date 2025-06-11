@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-
+    <h1 class="visually-hidden">Свържете се с нас – Megalimed</h1>
     <!-- Success/ Errors -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible">
@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="/"><i class="fa fa-home"></i> Начало</a>
+                        <a href="{{route('home')}}"><i class="fa fa-home"></i> Начало</a>
                         <span>Контакти</span>
                     </div>
                 </div>

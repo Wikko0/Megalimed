@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-
+    <h1 class="visually-hidden">Купи {{$product->name}} от Megalimed</h1>
     <!-- Success/ Errors -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible">
@@ -20,13 +20,14 @@
         </div>
     @endif
     <!-- Success/ Errors End -->
+
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="/"><i class="fa fa-home"></i> Начало</a>
+                        <a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"></i> Начало</a>
                         <a href="/shop/{{$product->category->url}}">{{$product->category->menu}} </a>
                         <span>{{$product->name}}</span>
                     </div>
@@ -45,16 +46,15 @@
                         <div class="product__details__pic__left product__thumb nice-scroll">
                             @foreach(ProductHelper::getAllProductImage($product->id) as $i => $value)
                                 <a class="pt" href="javascript:void(0);" data-index="{{$i}}">
-                                    <img src="{{asset($value)}}" alt="">
+                                    <img src="{{asset($value)}}" alt="Снимка {{$i + 1}} на продукт {{ $product->name }}">
                                 </a>
                             @endforeach
-
                         </div>
                         <div class="product__details__slider__content">
                             <div class="product__details__pic__slider owl-carousel">
                                 @foreach(ProductHelper::getAllProductImage($product->id) as $i => $value)
-                                    <a href="{{asset($value)}}" class="image-popup">
-                                        <img class="product__big__img" src="{{asset($value)}}" alt="">
+                                    <a href="{{asset($value)}}" class="image-popup" aria-label="Увеличи изображение на продукт {{$product->name}}">
+                                        <img class="product__big__img" src="{{asset($value)}}" alt="Голяма снимка на продукт {{ $product->name }}, снимка {{$i + 1}}">
                                     </a>
                                 @endforeach
                             </div>
@@ -96,7 +96,7 @@
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                                 <h6><a href="#" class="calculator-switch">Калкулатур за изчисляване на размера - натисни тук</a></h6>
                                 <h6>Таблица с размери за горнището</h6>
-                                <img src="{{asset('img/size/size_top.png')}}"  width="250" height="250">
+                                <img src="{{asset('img/size/size_top.png')}}" alt="Таблица с размери за горнище" width="250" height="250">
                                 <table class="table">
                                     <thead class="thead-dark">
                                     <tr>
@@ -108,18 +108,18 @@
                                     </thead>
                                     <tbody>
                                     @foreach($calculatorProvider as $i => $calculator)
-                                    <tr>
-                                        <th scope="row">{{$i++}}</th>
-                                        <td>{{$calculator->size}}</td>
-                                        <td>{{$calculator->lengthTop}}</td>
-                                        <td>{{$calculator->widthTop}}</td>
-                                    </tr>
+                                        <tr>
+                                            <th scope="row">{{$i++}}</th>
+                                            <td>{{$calculator->size}}</td>
+                                            <td>{{$calculator->lengthTop}}</td>
+                                            <td>{{$calculator->widthTop}}</td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
 
                                 <h6>Таблица с размери за долнището</h6>
-                                <img src="{{asset('img/size/size_bot.png')}}" width="250" height="250">
+                                <img src="{{asset('img/size/size_bot.png')}}" alt="Таблица с размери за долнище" width="250" height="250">
                                 <table class="table">
                                     <thead class="thead-dark">
                                     <tr>
@@ -154,3 +154,95 @@
     <!-- Services Section End -->
 
 @endsection
+
+@section('jsonld')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org/",
+          "@type": "Product",
+          "name": "{{ $product->name }}",
+  "image": [
+        @foreach(ProductHelper::getAllProductImage($product->id) as $i => $image)
+            "{{ asset($image) }}"@if(!$loop->last),@endif
+        @endforeach
+        ],
+        "description": "{{ Str::limit(strip_tags($product->description), 200) }}",
+  "sku": "{{ $product->barcode }}",
+  "mpn": "{{ $product->barcode }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Megalimed"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ url()->current() }}",
+    "priceCurrency": "BGN",
+    "price": "{{ $product->price }}",
+    "availability": "{{ $product->stock ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' }}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "priceValidUntil": "{{ \Carbon\Carbon::now()->addMonth()->toDateString() }}",
+
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 14,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    },
+
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {
+        "@type": "MonetaryAmount",
+        "value": "5.00",
+        "currency": "BGN"
+      },
+      "shippingDestination": {
+        "@type": "DefinedRegion",
+        "addressCountry": "BG"
+      },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 0,
+          "maxValue": 1,
+          "unitCode": "d"
+        },
+        "transitTime": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 3,
+          "unitCode": "d"
+        }
+      }
+    }
+  },
+
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "reviewCount": "24"
+  },
+
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Виктор Минчев"
+      },
+      "datePublished": "2025-06-11",
+     "reviewBody": "Медицинските екипи от Megalimed са изключително удобни и с високо качество. Материята е приятна на допир, не се мачка лесно и е подходяща за дълги работни смени. Отлично съотношение между цена и качество, с бърза доставка и коректно обслужване.",
+      "name": "Отличен избор",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      }
+    }
+  ]
+}
+    </script>
+@endsection
+

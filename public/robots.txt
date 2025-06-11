@@ -1,2 +1,3 @@
 User-agent: *
 Disallow:
+Sitemap: https://megalimed.com/sitemap.xml

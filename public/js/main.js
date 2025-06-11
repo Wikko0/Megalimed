@@ -161,8 +161,8 @@
     });
 
     /*--------------------------
-        Banner Slider
-    ----------------------------*/
+    Banner Slider
+----------------------------*/
     $(".banner__slider").owlCarousel({
         loop: true,
         margin: 0,
@@ -170,7 +170,12 @@
         dots: true,
         smartSpeed: 1200,
         autoHeight: false,
-        autoplay: true
+        autoplay: true,
+        onInitialized: function(event) {
+            $('.banner__slider .owl-dot').each(function(index) {
+                $(this).attr('aria-label', 'Премини към слайд ' + (index + 1));
+            });
+        }
     });
 
     /*--------------------------
@@ -183,8 +188,14 @@
         dots: true,
         smartSpeed: 1200,
         autoHeight: false,
-        autoplay: true
+        autoplay: true,
+        onInitialized: function(event) {
+            $('.categories__slider .owl-dot').each(function(index) {
+                $(this).attr('aria-label', 'Премини към категория ' + (index + 1));
+            });
+        }
     });
+
 
     /*--------------------------
         Product Details Slider

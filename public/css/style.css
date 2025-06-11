@@ -817,6 +817,7 @@ ol {
 	background: #a1a1a1;
 	border-radius: 50%;
 	margin-right: 10px;
+    padding: 12px !important;
 }
 
 .banner__slider.owl-carousel .owl-dots button.active {
@@ -848,6 +849,7 @@ ol {
 	background: #a1a1a1;
 	border-radius: 50%;
 	margin-right: 10px;
+    padding: 12px !important;
 }
 
 .categories__slider.owl-carousel .owl-dots button.active {
@@ -923,7 +925,7 @@ ol {
 
 .trend__item__text .product__price span {
 	font-size: 14px;
-	color: #b1b0b0;
+	color: #555555;
 	text-decoration: line-through;
 	margin-left: 4px;
 }
@@ -1331,16 +1333,43 @@ ol {
 }
 
 .categories__item {
-	height: 314px;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	align-items: center;
-	padding-left: 30px;
-	margin-bottom: 10px;
-	margin-right: 10px;
+    height: 314px;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.categories__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    z-index: 0;
+}
+
+.categories__text {
+    position: relative;
+    z-index: 1;
+}
+
+.categories__item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    z-index: 0;
 }
 
 .categories__item.categories__large__item {
@@ -1356,9 +1385,10 @@ ol {
 	margin-bottom: 15px;
 }
 
-.categories__text h1 {
+.categories__text h2 {
 	font-family: "Comforter", cursive;
 	color: #111111;
+    font-size: 70px;
 	margin-bottom: 5px;
     background-color: #ffffff;
 }
@@ -1595,7 +1625,7 @@ ol {
 
 .product__item__text .product__price span {
 	font-size: 14px;
-	color: #b1b0b0;
+	color: #555555;
 	text-decoration: line-through;
 	margin-left: 4px;
 }
@@ -4253,4 +4283,15 @@ h3 {
 
 .chatbot-window.open iframe {
     pointer-events: auto;
+}
+.visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
 }

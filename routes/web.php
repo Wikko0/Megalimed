@@ -43,7 +43,9 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 Route::get('/shop/{url}', [ShopController::class, 'categories'])->name('shop.categories');
 
-Route::get('/product/{id}', [ProductController::class, 'index'])->name('product');
+Route::get('/product/{slug}', [ProductController::class, 'index'])
+    ->where('slug', '[A-Za-z0-9\-]+')
+    ->name('product');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 

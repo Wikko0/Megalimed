@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="/"><i class="fa fa-home"></i> Начало</a>
+                        <a href="{{route('home')}}"><i class="fa fa-home"></i> Начало</a>
                         <span>Потребителски панел</span>
                     </div>
                 </div>

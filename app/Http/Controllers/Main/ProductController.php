@@ -10,9 +10,11 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index($id): View
+    public function index($slug): View
     {
-        $product = Product::where('status', 'Published')->findOrFail($id);
+        $product = Product::where('status', 'Published')
+            ->where('slug', $slug)
+            ->firstOrFail();
 
         return view('main.product', compact('product'));
     }

@@ -1,5 +1,6 @@
 @extends('layouts.default')
 @section('content')
+    <h1 class="visually-hidden">Медицински екипи и униформи - Онлайн магазин Megalimed</h1>
     <!-- Success/ Errors -->
     @if(session('success'))
         <div class="alert alert-success alert-dismissible">
@@ -25,13 +26,20 @@
             <div class="row">
                 <div class="col-lg-6 p-0 categories__slider owl-carousel">
                     @foreach($categoryProvider as $values)
-                        <div class="categories__item categories__large__item set-bg"
-                             data-setbg="{{asset($values->image)}}"
-                             onclick="window.location.href='shop/{{$values->url}}';">
+                        <div class="categories__item categories__large__item"
+                             onclick="window.location.href='{{ url('shop/'.$values->url) }}';"
+                             role="img"
+                             aria-label="{{ $values->name }} - {{ $values->description }}">
+
+                            <img src="{{ asset($values->image) }}"
+                                 alt="{{ $values->name }}"
+                                 decoding="async"
+                                 loading="{{ $loop->first ? 'eager' : 'lazy' }}" />
+
                             <div class="categories__text">
-                                <h1>{{$values->name}}</h1>
-                                <p>{{$values->description}}</p>
-                                <a href="shop/{{$values->url}}">Купете сега</a>
+                                <h2>{{ $values->name }}</h2>
+                                <p>{{ $values->description }}</p>
+                                <a href="{{ url('shop/'.$values->url) }}">Купете сега</a>
                             </div>
                         </div>
                     @endforeach
@@ -40,18 +48,28 @@
                 <div class="col-lg-6">
                     <div class="row">
                         @foreach($categoryProvider->take(4) as $values)
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="{{asset($values->image)}}" onclick="window.location.href='shop/{{$values->url}}';">
-                                <div class="categories__text">
-                                    <h4>{{$values->name}}</h4>
-                                    <a href="shop/{{$values->url}}">Купете сега</a>
+                            <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                                <div class="categories__item"
+                                     onclick="window.location.href='{{ url('shop/' . $values->url) }}';"
+                                     role="img"
+                                     aria-label="{{ $values->name }} - {{ $values->description }}">
+
+                                    <img class="categories__img"
+                                         src="{{ asset($values->image) }}"
+                                         alt="{{ $values->name }}"
+                                         loading="lazy"
+                                         decoding="async" />
+
+                                    <div class="categories__text">
+                                        <h4>{{ $values->name }}</h4>
+                                        <a href="{{ url('shop/' . $values->url) }}">Купете сега</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         @endforeach
-
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -79,24 +97,37 @@
             <div class="row property__gallery" id="product-list">
 
                 @foreach($productProvider->take(8)->where('status', 'Published') as $value)
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix {{$value->category->url}}">
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix {{ $value->category->url }}">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg product-image" data-setbg="{{ProductHelper::getFirstProductImage($value->id)}}" data-product-url="/product/{{$value->id}}" data-product-image="{{ProductHelper::getSecondProductImage($value->id)}}">
+                            <div class="product__item__pic set-bg product-image"
+                                 data-setbg="{{ ProductHelper::getFirstProductImage($value->id) }}"
+                                 data-product-url="/product/{{ $value->slug }}"
+                                 data-product-image="{{ ProductHelper::getSecondProductImage($value->id) }}"
+                                 role="img"
+                                 aria-label="{{ $value->name }}">
+
                                 {!! ProductHelper::getProductLabel($value->id) !!}
+
+                                <img src="{{ ProductHelper::getFirstProductImage($value->id) }}" alt="{{ $value->name }}" loading="lazy" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(1px, 1px, 1px, 1px); clip-path: inset(50%); border:0;" aria-hidden="false" />
+
                                 <ul class="product__hover">
-                                    <li><a href="{{ProductHelper::getFirstProductImage($value->id)}}" class="image-popup"><span class="arrow_expand"></span></a></li>
+                                    <li>
+                                        <a href="{{ ProductHelper::getFirstProductImage($value->id) }}" class="image-popup" aria-label="Увеличи изображение на продукт">
+                                            <span class="arrow_expand"></span>
+                                        </a>
+                                    </li>
                                     @if(Auth::user())
-                                        <li><a href="{{route('make.favorites', [$value->id])}}"><span class="icon_heart_alt"></span></a></li>
+                                        <li><a href="{{ route('make.favorites', [$value->id]) }}"><span class="icon_heart_alt"></span></a></li>
                                     @endif
                                     <li>
-                                        <a href="/product/{{$value->id}}">
+                                        <a href="/product/{{ $value->slug }}" aria-label="Преглед на продукт">
                                             <span class="icon_bag_alt"></span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6><a href="/product/{{$value->id}}">{{$value->name}}</a></h6>
+                                <h6><a href="/product/{{ $value->slug }}" aria-label="Преглед на продукт">{{ $value->name }}</a></h6>
                                 <div class="rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -109,6 +140,7 @@
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
     </section>
@@ -118,7 +150,10 @@
     <!-- Product Section End -->
 
     <!-- Banner Section Begin -->
-    <section class="banner set-bg" data-setbg="{{asset('img/banner/banner-1.jpg')}}">
+    <section class="banner set-bg" data-setbg="{{ asset('img/banner/banner-1.jpg') }}" aria-label="Колекция медицинско облекло - Елегантни манти и екипи">
+
+        <img src="{{ asset('img/banner/banner-1.jpg') }}" alt="Колекция медицинско облекло - Елегантни манти и екипи" loading="lazy" style="position:absolute; width:1px; height:1px; clip:rect(0 0 0 0); clip-path: inset(50%); overflow:hidden; border:0;" aria-hidden="false" />
+
         <div class="container">
             <div class="row">
                 <div class="col-xl-7 col-lg-8 m-auto">
@@ -126,22 +161,22 @@
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Колекция медицинско облекло</span>
-                                <h1>Елегантни манти и екипи</h1>
-                                <a href="{{route('shop')}}">Купете сега</a>
+                                <h2>Елегантни манти и екипи</h2>
+                                <a href="{{ route('shop') }}">Купете сега</a>
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Колекция медицински обувки</span>
-                                <h1>Удобните скраб обувки</h1>
-                                <a href="{{route('shop')}}">Купете сега</a>
+                                <h2>Удобните скраб обувки</h2>
+                                <a href="{{ route('shop') }}">Купете сега</a>
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Колекция медицински аксесоари</span>
-                                <h1>Привлекателни аксесоари</h1>
-                                <a href="{{route('shop')}}">Купете сега</a>
+                                <h2>Привлекателни аксесоари</h2>
+                                <a href="{{ route('shop') }}">Купете сега</a>
                             </div>
                         </div>
                     </div>
@@ -149,6 +184,7 @@
             </div>
         </div>
     </section>
+
     <!-- Banner Section End -->
 
     <!-- Trend Section Begin -->
@@ -163,10 +199,10 @@
                         @foreach($productProvider->shuffle()->take(3)->where('status', 'Published') as $value)
                         <div class="trend__item">
                             <div class="trend__item__pic">
-                                <a href="/product/{{$value->id}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Trend {{$value->name}}" width="90" height="90"></a>
+                                <a href="/product/{{$value->slug}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Продукт {{$value->name}} - Тренд медицинско облекло" width="90" height="auto" loading="lazy"></a>
                             </div>
                             <div class="trend__item__text">
-                                <h6><a href="/product/{{$value->id}}">{{$value->name}}</a></h6>
+                                <h6><a href="/product/{{$value->slug}}" aria-label="Преглед на продукт">{{$value->name}}</a></h6>
                                 <div class="rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -190,10 +226,10 @@
                         @foreach($productProvider->shuffle()->take(3)->where('status', 'Published') as $value)
                             <div class="trend__item">
                                 <div class="trend__item__pic">
-                                    <a href="/product/{{$value->id}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Trend {{$value->name}}" width="90" height="90"></a>
+                                    <a href="/product/{{$value->slug}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Бестселър {{$value->name}} - Бестселър медицинско облекло" width="90" height="auto" loading="lazy"></a>
                                 </div>
                                 <div class="trend__item__text">
-                                    <h6><a href="/product/{{$value->id}}">{{$value->name}}</a></h6>
+                                    <h6><a href="/product/{{$value->slug}}">{{$value->name}}</a></h6>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -217,10 +253,10 @@
                         @foreach($recommendedProducts as $value)
                             <div class="trend__item">
                                 <div class="trend__item__pic">
-                                    <a href="/product/{{$value->id}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Trend {{$value->name}}" width="90" height="90"></a>
+                                    <a href="/product/{{$value->slug}}"><img src="{{ProductHelper::getFirstProductImage($value->id)}}" alt="Препоръчани {{$value->name}} - медицинско облекло" width="90" height="auto" loading="lazy"></a>
                                 </div>
                                 <div class="trend__item__text">
-                                    <h6><a href="/product/{{$value->id}}">{{$value->name}}</a></h6>
+                                    <h6><a href="/product/{{$value->slug}}">{{$value->name}}</a></h6>
                                     <div class="rating">
                                         <i class="fa fa-star"></i>
                                         <i class="fa fa-star"></i>
@@ -247,7 +283,7 @@
             <div class="row">
                 <div class="col-lg-6 p-0">
                     <div class="discount__pic">
-                        <img src="{{asset('img/discount.jpg')}}" alt="">
+                        <img src="{{asset('img/discount.jpg')}}" alt="Намаление - {{$discountProvider->name}}">
                     </div>
                 </div>
                 <div class="col-lg-6 p-0">
