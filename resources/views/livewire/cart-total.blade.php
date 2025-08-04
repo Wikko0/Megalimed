@@ -12,14 +12,32 @@
         <div class="cart__total__procced">
             <h6>Количка</h6>
             <ul>
-                <li>Междинна сума <span>{{$cart_subtotal}}</span></li>
+                <li>
+                    Междинна сума
+                    <span>
+            {{ $cart_subtotal }} лв
+            <span class="text-muted" style="font-size: 0.85em;">
+                ({{ number_format($cart_subtotal / 1.9558, 2) }} €)
+            </span>
+        </span>
+                </li>
+
                 @foreach(Cart::content()->take(1) as $cartItem)
                     @if(isset($cartItem->options['discounted']))
-                        <li>Намаление <span>{{ $cartItem->options['discounted'] }} лев.</span></li>
+                        <li>
+                            Намаление
+                            <span>
+                    {{ $cartItem->options['discounted'] }} лв.
+                    <span class="text-muted" style="font-size: 0.85em;">
+                        ({{ number_format($cartItem->options['discounted'] / 1.9558, 2) }} €)
+                    </span>
+                </span>
+                        </li>
                     @endif
                 @endforeach
             </ul>
-            @if(Cart::content()->count() > 0)
+
+        @if(Cart::content()->count() > 0)
                 <a href="{{route('checkout')}}" class="primary-btn">Продължи към плащане</a>
             @else
                 <a href="#" class="primary-btn">Продължи към плащане</a>

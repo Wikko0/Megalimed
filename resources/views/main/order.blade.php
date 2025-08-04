@@ -73,19 +73,53 @@
                                         <span class="top__text__right">Общо</span>
                                     </li>
                                     @foreach(Cart::content() as $item)
-                                        <li>{{ $loop->iteration }}. {{ $item->name }} <span>{{ $item->price }} лв.</span></li>
+                                        <li>
+                                            {{ $loop->iteration }}. {{ $item->name }}
+                                            <span>
+            {{ $item->price }} лв.
+            <span class="text-muted" style="font-size: 0.85em;">
+                ({{ number_format($item->price / 1.9558, 2) }} €)
+            </span>
+        </span>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>
                             <div class="checkout__order__total">
                                 <ul>
-                                    <li>Междинна сума <span id="subtotal">{{ \Cart::subTotal() }} лв.</span></li>
+                                    <li>
+                                        Междинна сума
+                                        <span id="subtotal">
+        {{ \Cart::subTotal() }} лв.
+        <span class="text-muted" style="font-size: 0.85em;">
+            ({{ number_format(\Cart::subTotal() / 1.9558, 2) }} €)
+        </span>
+    </span>
+                                    </li>
+
                                     @foreach(Cart::content()->take(1) as $cartItem)
                                         @if(isset($cartItem->options['discounted']))
-                                            <li>Намаление <span>{{ $cartItem->options['discounted'] }} лв.</span></li>
+                                            <li>
+                                                Намаление
+                                                <span>
+                {{ $cartItem->options['discounted'] }} лв.
+                <span class="text-muted" style="font-size: 0.85em;">
+                    ({{ number_format($cartItem->options['discounted'] / 1.9558, 2) }} €)
+                </span>
+            </span>
+                                            </li>
                                         @endif
                                     @endforeach
-                                    <li>Общо <span id="shipping-price">... лв.</span></li>
+
+                                    <li>
+                                        Общо
+                                        <span id="shipping-price">
+        ... лв.
+        <span class="text-muted" style="font-size: 0.85em;">
+            (... €)
+        </span>
+    </span>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -143,7 +177,11 @@
             // Обновяване на тотал
             const subtotalText = document.getElementById('subtotal').textContent.replace(' лв.', '').replace(',', '.');
             const total = (parseFloat(subtotalText) + parseFloat(price)).toFixed(2);
-            document.getElementById('shipping-price').textContent = total + ' ' + currency;
+            const euroTotal = (total / 1.9558).toFixed(2);
+
+            document.getElementById('shipping-price').innerHTML =
+                total + ' ' + currency +
+                ' <span class="text-muted" style="font-size: 0.85em;">(' + euroTotal + ' €)</span>';
 
             // Активиране на бутона
             const submitBtn = document.getElementById('submitBtn');

@@ -32,7 +32,12 @@
                                 </div>
                             </div>
                             <div class="d-flex align-items-baseline">
-                                <div class="h1 mb-0 me-2">{{$totalPrice}} лв.</div>
+                                <div class="h1 mb-0 me-2">
+                                    {{ $totalPrice }} лв.
+                                    <span class="text-muted" style="font-size: 0.8em;">
+                                        ({{ number_format($totalPrice / 1.9558, 2) }} €)
+                                    </span>
+                                </div>
                                 <div class="me-auto">
 
                                 </div>

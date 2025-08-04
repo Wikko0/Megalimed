@@ -14,7 +14,12 @@
                 </div>
             </div>
         </td>
-        <td class="cart__price">{{$cartItem->price}} лв.</td>
+        <td class="cart__price">
+            {{ $cartItem->price }} лв.
+            <span class="text-muted" style="font-size: 0.8em;">
+        ({{ number_format($cartItem->price / 1.9558, 2) }} €)
+    </span>
+        </td>
         <td class="cart__size">{{$cartItem->options['size']}}</td>
         <td class="cart__color">{{$cartItem->options['color']}}</td>
         <td class="cart__quantity">
@@ -24,7 +29,12 @@
                 <span class="inc qtybtn" wire:click="incrementQuantity('{{ $cartItem->rowId }}')">+</span>
             </div>
         </td>
-        <td class="cart__total">{{ round($cartItem->price * $cartItem->qty, 2) }} лев.</td>
+        <td class="cart__total">
+            {{ round($cartItem->price * $cartItem->qty, 2) }} лв.
+            <span class="text-muted" style="font-size: 0.85em;">
+        ({{ number_format(round($cartItem->price * $cartItem->qty, 2) / 1.9558, 2) }} €)
+    </span>
+        </td>
         <td class="cart__close"><span wire:click.prevent="deleteProduct('{{ $cartItem->rowId }}')" class="icon_close"></span></td>
     </tr>
     @empty

@@ -80,10 +80,22 @@ class ProductHelper
             return '';
         }
 
+        $euroRate = 1.9558;
+
         if (!is_null($product->discount)) {
-            return '<div class="product__price">' . $product->discount . ' лв <span>' . $product->price . ' лв</span></div>';
+            $discountEuro = number_format($product->discount / $euroRate, 2);
+            $priceEuro = number_format($product->price / $euroRate, 2);
+
+            return '<div class="product__price">'
+                . $product->discount . ' лв (' . $discountEuro . ' €)'
+                . ' <span>' . $product->price . ' лв (' . $priceEuro . ' €)</span>'
+                . '</div>';
         } else {
-            return '<div class="product__price">' . $product->price . ' лв</div>';
+            $priceEuro = number_format($product->price / $euroRate, 2);
+
+            return '<div class="product__price">'
+                . $product->price . ' лв (' . $priceEuro . ' €)'
+                . '</div>';
         }
     }
 
@@ -115,11 +127,24 @@ class ProductHelper
             return '';
         }
 
+        $euroRate = 1.9558;
+
         if (!is_null($product->discount)) {
-            return ' <div class="product__details__price">' . $product->discount . ' лв <span>' . $product->price . ' лв</span></div>';
+            $discountEuro = number_format($product->discount / $euroRate, 2);
+            $priceEuro = number_format($product->price / $euroRate, 2);
+
+            return '<div class="product__details__price">'
+                . $product->discount . ' лв (' . $discountEuro . ' €)'
+                . ' <span>' . $product->price . ' лв (' . $priceEuro . ' €)</span>'
+                . '</div>';
         } else {
-            return ' <div class="product__details__price">' . $product->price . ' лв</div>';
+            $priceEuro = number_format($product->price / $euroRate, 2);
+
+            return '<div class="product__details__price">'
+                . $product->price . ' лв (' . $priceEuro . ' €)'
+                . '</div>';
         }
+
     }
 
     public static function countFavorites($user): string
