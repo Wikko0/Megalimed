@@ -17,12 +17,14 @@
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/public/sitemap.xml">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="Медицински екипи и дрехи от Megalimed">
-    <meta property="og:description" content="Онлайн магазин за модерни и качествени медицински екипи, дрехи и униформи. Дамски и мъжки модели за медицински персонал.">
-    <meta property="og:url" content="https://megalimed.com/">
-    <meta property="og:site_name" content="Megalimed">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://megalimed.com/img/logo.svg">
+    @section('meta_og')
+        <meta property="og:title" content="Медицински екипи и дрехи от Megalimed">
+        <meta property="og:description" content="Онлайн магазин за модерни и качествени медицински екипи, дрехи и униформи. Дамски и мъжки модели за медицински персонал.">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:site_name" content="Megalimed">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{ asset('img/megalimed.jpg') }}">
+    @show
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -303,22 +305,32 @@
         });
     });
 </script>
-<script src="https://integrateai.website/static/js/integration/embed-chatbot.js?bot_id=1d229d13-cbce-4eb4-a284-b9fd7d4c05b2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGF0Ym90X2lkIjoiMWQyMjlkMTMtY2JjZS00ZWI0LWEyODQtYjlmZDdkNGMwNWIyIiwidXNlcl9pZCI6IjEiLCJkb21haW4iOiJtZWdhbGltZWQuY29tIiwiaWF0IjoxNzQzNjg5NDc1Ljg5Mzk2OSwiZXhwIjoxOTIzNjg5NDc1Ljg5Mzk2OSwic3ViIjoiYWRtaW4ifQ.oXszLg-VjlzjCZm7WwqrbZNRhIVBUzT8cN_FxmGCGW0&style=true&btn-bg=%2300ffe3&btn-hov=%2301beab"></script>
 <script>
-
     document.addEventListener("DOMContentLoaded", function () {
-        const observer = new MutationObserver(() => {
-            const iframe = document.querySelector("iframe.chatbot-iframe");
-            if (iframe && !iframe.title) {
-                iframe.title = "Чатбот за клиентска поддръжка на Megalimed";
-                observer.disconnect();
-            }
-        });
+        const script = document.createElement("script");
+        script.src = "https://integrateai.website/static/js/integration/embed-chatbot.js?bot_id=1d229d13-cbce-4eb4-a284-b9fd7d4c05b2&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGF0Ym90X2lkIjoiMWQyMjlkMTMtY2JjZS00ZWI0LWEyODQtYjlmZDdkNGMwNWIyIiwidXNlcl9pZCI6IjEiLCJkb21haW4iOiJtZWdhbGltZWQuY29tIiwiaWF0IjoxNzQzNjg5NDc1Ljg5Mzk2OSwiZXhwIjoxOTIzNjg5NDc1Ljg5Mzk2OSwic3ViIjoiYWRtaW4ifQ.oXszLg-VjlzjCZm7WwqrbZNRhIVBUzT8cN_FxmGCGW0&style=true&btn-bg=%2300ffe3&btn-hov=%2301beab";
 
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+        script.onload = function () {
+           
+            const observer = new MutationObserver(() => {
+                const iframe = document.querySelector("iframe.chatbot-iframe");
+                if (iframe && !iframe.title) {
+                    iframe.title = "Чатбот за клиентска поддръжка на Megalimed";
+                    observer.disconnect();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        };
+
+        script.onerror = function () {
+            console.error("Чатбот скриптът не можа да се зареди. Няма да се изпълни допълнителен код.");
+        };
+
+        document.head.appendChild(script);
     });
 </script>
 </body>

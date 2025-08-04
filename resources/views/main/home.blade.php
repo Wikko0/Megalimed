@@ -1,4 +1,14 @@
 @extends('layouts.default')
+
+@section('meta_og')
+    <meta property="og:title" content="Медицински екипи и дрехи от Megalimed">
+    <meta property="og:description" content="Онлайн магазин за модерни и качествени медицински екипи, дрехи и униформи. Дамски и мъжки модели за медицински персонал.">
+    <meta property="og:url" content="{{ url('/') }}">
+    <meta property="og:site_name" content="Megalimed">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{{ asset('img/megalimed.jpg') }}">
+@endsection
+
 @section('content')
     <h1 class="visually-hidden">Медицински екипи и униформи - Онлайн магазин Megalimed</h1>
     <!-- Success/ Errors -->

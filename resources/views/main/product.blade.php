@@ -1,4 +1,14 @@
 @extends('layouts.default')
+
+@section('meta_og')
+    <meta property="og:title" content="{{ $product->name }} – Купи от Megalimed">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($product->description), 160) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="Megalimed">
+    <meta property="og:type" content="product">
+    <meta property="og:image" content="{{ asset(ProductHelper::getAllProductImage($product->id)[0] ?? 'img/megalimed.jpg') }}">
+@endsection
+
 @section('content')
     <h1 class="visually-hidden">Купи {{$product->name}} от Megalimed</h1>
     <!-- Success/ Errors -->
